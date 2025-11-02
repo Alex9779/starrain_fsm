@@ -1,0 +1,200 @@
+"""
+API endpoints for Service Appointment doctype
+Handles fetching and reading service appointments from the backend
+"""
+
+import json
+
+import frappe
+from frappe.utils import getdate
+
+
+@frappe.whitelist()
+def get_appointments(
+	posting_date=None,
+	status=None,
+	start_date=None,
+	end_date=None,
+	fields=None,
+	limit_page_length=0,
+):
+	"""
+	Fetch service appointments with optional filters
+
+	Args:
+		posting_date: Filter by specific posting date (YYYY-MM-DD)
+		status: Filter by appointment status
+		start_date: Start date for date range filter (YYYY-MM-DD)
+		end_date: End date for date range filter (YYYY-MM-DD)
+		fields: List of fields to return (JSON string or list)
+		limit_page_length: Maximum number of records to return (0 = unlimited)
+
+	Returns:
+		List of appointment dictionaries with all fields including service_technicians
+	"""
+	filters = {"docstatus": ["!=", 2]}  # Exclude cancelled documents
+
+	# Apply status filter
+	if status and status != "all":
+		filters["status"] = status
+
+	# Apply date range filter (takes priority over posting_date)
+	if start_date and end_date:
+		filters["posting_date"] = ["between", [getdate(start_date), getdate(end_date)]]
+	elif start_date:
+		filters["posting_date"] = [">=", getdate(start_date)]
+	elif end_date:
+		filters["posting_date"] = ["<=", getdate(end_date)]
+	elif posting_date:
+		# Only use posting_date if no date range is provided
+		posting_date = getdate(posting_date)
+		filters["posting_date"] = posting_date
+
+	# Default fields if not specified
+	default_fields = [
+		"name",
+		"service_order",
+		"customer",
+		"status",
+		"posting_date",
+		"scheduled_start_datetime",
+		"scheduled_finish_datetime",
+		"actual_start_datetime",
+		"actual_finish_datetime",
+		"service_type",
+		"description",
+		"naming_series",
+	]
+
+	if fields:
+		if isinstance(fields, str):
+			fields = json.loads(fields)
+		requested_fields = fields
+	else:
+		requested_fields = default_fields
+	print("Filters:", filters)
+	# Fetch appointments
+	appointments = frappe.get_all(
+		"Service Appointment",
+		filters=filters,
+		fields=requested_fields,
+		order_by="scheduled_start_datetime asc",
+		limit_page_length=limit_page_length if limit_page_length > 0 else None,
+	)
+
+	# Enrich each appointment with full details including child tables
+	enriched_appointments = []
+	for appointment in appointments:
+		# Get full document to access child tables
+		appointment_doc = frappe.get_doc("Service Appointment", appointment.name)
+
+		# Build appointment dictionary with requested fields
+		# Use as_dict to handle datetime conversions automatically
+		doc_dict = appointment_doc.as_dict(convert_dates_to_str=True)
+
+		appointment_data = {field: doc_dict.get(field) for field in requested_fields if field in doc_dict}
+
+		# Always include service_technicians child table
+		appointment_data["service_technicians"] = [
+			{
+				"service_technician": tech.service_technician,
+				"full_name": tech.full_name,
+				"name": tech.name,
+			}
+			for tech in appointment_doc.service_technicians
+		]
+
+		# Always include items child table
+		appointment_data["items"] = [
+			{
+				"item_code": item.item_code,
+				"item_name": item.item_name,
+				"qty": item.qty,
+				"rate": item.rate,
+				"amount": item.amount,
+				"uom": item.uom,
+				"name": item.name,
+			}
+			for item in appointment_doc.items
+		]
+
+		enriched_appointments.append(appointment_data)
+
+	return enriched_appointments
+
+
+@frappe.whitelist()
+def get_appointment(name):
+	"""
+	Fetch a single service appointment by name
+
+	Args:
+		name: The name/ID of the service appointment
+
+	Returns:
+		Appointment dictionary with all fields including service_technicians and items
+	"""
+	if not name:
+		frappe.throw("Appointment name is required")
+
+	try:
+		appointment_doc = frappe.get_doc("Service Appointment", name)
+	except frappe.DoesNotExistError:
+		frappe.throw(f"Service Appointment {name} not found", frappe.DoesNotExistError)
+
+	# Convert document to dictionary with date/datetime formatting
+	appointment_data = appointment_doc.as_dict(convert_dates_to_str=True)
+
+	# Format service_technicians child table
+	appointment_data["service_technicians"] = [
+		{
+			"service_technician": tech.service_technician,
+			"full_name": tech.full_name,
+			"name": tech.name,
+		}
+		for tech in appointment_doc.service_technicians
+	]
+
+	# Format items child table
+	appointment_data["items"] = [
+		{
+			"item_code": item.item_code,
+			"item_name": item.item_name,
+			"qty": item.qty,
+			"rate": item.rate,
+			"amount": item.amount,
+			"uom": item.uom,
+			"name": item.name,
+		}
+		for item in appointment_doc.items
+	]
+
+	return appointment_data
+
+
+@frappe.whitelist()
+def get_appointment_statuses():
+	"""
+	Get all available status options for Service Appointment
+
+	Returns:
+		List of status options
+	"""
+	meta = frappe.get_meta("Service Appointment")
+	status_field = meta.get_field("status")
+
+	if status_field and status_field.options:
+		# Parse options (can be a select string or JSON)
+		options = status_field.options.strip()
+		if options.startswith("[") and options.endswith("]"):
+			# JSON array
+			try:
+				return json.loads(options)
+			except json.JSONDecodeError:
+				pass
+		# Split by newline or comma
+		statuses = [s.strip() for s in options.replace("\n", ",").split(",") if s.strip()]
+		return statuses
+
+	# Default statuses if not found in meta
+	return ["Open", "Scheduled", "Dispatched", "In Progress", "Completed", "Cancelled"]

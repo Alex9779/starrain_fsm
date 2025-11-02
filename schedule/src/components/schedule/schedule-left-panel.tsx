@@ -9,7 +9,12 @@ import { Appointment, AppointmentStatus } from "../../pages/schedule/types";
 import { Skeleton } from "../ui/skeleton";
 import { AppointmentDetailSheet } from "./appointment-detail-sheet";
 import { MassActionsDropdown } from "./mass-actions-dropdown";
-import { Filter } from "lucide-react";
+import { Filter, CalendarIcon } from "lucide-react";
+import { Button } from "../ui/button";
+import { Calendar } from "../ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { format } from "date-fns";
+import { cn } from "../../lib/utils";
 
 const STATUS_OPTIONS: AppointmentStatus[] = [
   "Open",
@@ -37,7 +42,9 @@ interface ScheduleLeftPanelProps {
   loading: boolean;
   selectedAppointments: string[];
   statusFilter: string;
+  appointmentDateRange: { startDate: Date | null; endDate: Date | null };
   onStatusFilterChange: (status: string) => void;
+  onDateRangeChange: (range: { startDate: Date | null; endDate: Date | null }) => void;
   onAppointmentSelect: (appointmentId: string, checked: boolean) => void;
   onSelectAll: (checked: boolean) => void;
   onAppointmentClick: (appointment: Appointment) => void;
@@ -49,13 +56,18 @@ export function ScheduleLeftPanel({
   loading,
   selectedAppointments,
   statusFilter,
+  appointmentDateRange,
   onStatusFilterChange,
+  onDateRangeChange,
   onAppointmentSelect,
   onSelectAll,
   onAppointmentClick,
   onMassActionComplete,
 }: ScheduleLeftPanelProps) {
   const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
+  const [filtersPopoverOpen, setFiltersPopoverOpen] = useState(false);
+  const [startDatePickerOpen, setStartDatePickerOpen] = useState(false);
+  const [endDatePickerOpen, setEndDatePickerOpen] = useState(false);
   const selectAllCheckboxRef = useRef<HTMLButtonElement>(null);
 
   const allSelected = appointments.length > 0 && selectedAppointments.length === appointments.length;
@@ -114,25 +126,125 @@ export function ScheduleLeftPanel({
             <Badge variant="secondary">{appointments.length}</Badge>
           </div>
 
-          {/* Status Filter */}
-          <div className="space-y-2">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Filter className="h-4 w-4" />
-              <span>Filter by Status</span>
+          {/* Filter Section */}
+          <div className="flex items-center gap-2 mb-3">
+            {/* Filter Menu Button */}
+            <Popover open={filtersPopoverOpen} onOpenChange={setFiltersPopoverOpen}>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="h-8 w-8 p-0"
+                  title="More Filters"
+                >
+                  <Filter className="h-4 w-4" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-80" align="start">
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <h4 className="font-medium text-sm">Date Range Filter</h4>
+
+                    {/* Start Date */}
+                    <div className="space-y-1">
+                      <label className="text-xs text-muted-foreground">From Date</label>
+                      <Popover open={startDatePickerOpen} onOpenChange={setStartDatePickerOpen}>
+                        <PopoverTrigger asChild>
+                          <Button
+                            variant="outline"
+                            className={cn(
+                              "w-full justify-start text-left font-normal",
+                              !appointmentDateRange.startDate && "text-muted-foreground"
+                            )}
+                            size="sm"
+                          >
+                            <CalendarIcon className="mr-2 h-4 w-4" />
+                            {appointmentDateRange.startDate ? (
+                              format(appointmentDateRange.startDate, "PPP")
+                            ) : (
+                              <span>Pick a date</span>
+                            )}
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            mode="single"
+                            selected={appointmentDateRange.startDate || undefined}
+                            onSelect={(date) => {
+                              if (date) {
+                                onDateRangeChange({
+                                  ...appointmentDateRange,
+                                  startDate: date,
+                                });
+                                setStartDatePickerOpen(false);
+                              }
+                            }}
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
+                    </div>
+
+                    {/* End Date */}
+                    <div className="space-y-1">
+                      <label className="text-xs text-muted-foreground">To Date</label>
+                      <Popover open={endDatePickerOpen} onOpenChange={setEndDatePickerOpen}>
+                        <PopoverTrigger asChild>
+                          <Button
+                            variant="outline"
+                            className={cn(
+                              "w-full justify-start text-left font-normal",
+                              !appointmentDateRange.endDate && "text-muted-foreground"
+                            )}
+                            size="sm"
+                          >
+                            <CalendarIcon className="mr-2 h-4 w-4" />
+                            {appointmentDateRange.endDate ? (
+                              format(appointmentDateRange.endDate, "PPP")
+                            ) : (
+                              <span>Pick a date</span>
+                            )}
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            mode="single"
+                            selected={appointmentDateRange.endDate || undefined}
+                            onSelect={(date) => {
+                              if (date) {
+                                onDateRangeChange({
+                                  ...appointmentDateRange,
+                                  endDate: date,
+                                });
+                                setEndDatePickerOpen(false);
+                              }
+                            }}
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
+                    </div>
+                  </div>
+                </div>
+              </PopoverContent>
+            </Popover>
+
+            {/* Status Filter - Always Visible */}
+            <div className="flex-1">
+              <Select value={statusFilter} onValueChange={onStatusFilterChange}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="All Statuses" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Statuses</SelectItem>
+                  {STATUS_OPTIONS.map((status) => (
+                    <SelectItem key={status} value={status}>
+                      {status}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
-            <Select value={statusFilter} onValueChange={onStatusFilterChange}>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="All Statuses" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Statuses</SelectItem>
-                {STATUS_OPTIONS.map((status) => (
-                  <SelectItem key={status} value={status}>
-                    {status}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
           </div>
 
           {/* Mass Actions */}

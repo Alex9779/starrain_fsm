@@ -9,7 +9,8 @@ interface ScheduleState {
   loading: boolean;
 
   // Filters
-  selectedDate: Date;
+  selectedDate: Date; // For right panel (Gantt view)
+  appointmentDateRange: { startDate: Date | null; endDate: Date | null }; // For left panel appointments list
   statusFilter: string;
   viewType: "gantt" | "grid" | "maps" | "calendar";
 
@@ -22,6 +23,7 @@ interface ScheduleState {
   clearSelectedAppointments: () => void;
   setSelectedAppointment: (appointment: Appointment | null) => void;
   setSelectedDate: (date: Date) => void;
+  setAppointmentDateRange: (range: { startDate: Date | null; endDate: Date | null }) => void;
   setStatusFilter: (filter: string) => void;
   setViewType: (view: "gantt" | "grid" | "maps" | "calendar") => void;
 
@@ -36,6 +38,10 @@ export const useScheduleStore = create<ScheduleState>((set, get) => ({
   selectedAppointment: null,
   loading: false,
   selectedDate: new Date(),
+  appointmentDateRange: {
+    startDate: new Date(new Date().getFullYear(), 0, 1), // Start of year
+    endDate: new Date(), // Today
+  },
   statusFilter: "all",
   viewType: "gantt",
 
@@ -61,6 +67,7 @@ export const useScheduleStore = create<ScheduleState>((set, get) => ({
   clearSelectedAppointments: () => set({ selectedAppointments: [] }),
   setSelectedAppointment: (appointment) => set({ selectedAppointment: appointment }),
   setSelectedDate: (date) => set({ selectedDate: date }),
+  setAppointmentDateRange: (range) => set({ appointmentDateRange: range }),
   setStatusFilter: (filter) => set({ statusFilter: filter }),
   setViewType: (view) => set({ viewType: view }),
 

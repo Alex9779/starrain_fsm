@@ -1,61 +1,52 @@
-import { useState, useEffect } from "react";
 import { Appointment } from "../pages/schedule/types";
 
 export async function fetchAppointmentsWithFilter(
-  date: Date,
+  startDate: Date | null,
+  endDate: Date | null,
   status?: string
 ): Promise<Appointment[]> {
   try {
-    const dateStr = date.toISOString().split("T")[0];
-    const filters: Record<string, any> = {
-      posting_date: dateStr,
-    };
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const csrfToken = (window as any).csrf_token;
 
-    if (status) {
-      filters.status = status;
+    // Build query parameters
+    const params = new URLSearchParams();
+
+    if (startDate) {
+      params.append("start_date", startDate.toISOString().split("T")[0]);
+    }
+    if (endDate) {
+      params.append("end_date", endDate.toISOString().split("T")[0]);
     }
 
-    // Build filter query
-    const filterJson = JSON.stringify(filters);
-    const fields = JSON.stringify([
-      "name",
-      "service_order",
-      "customer",
-      "status",
-      "scheduled_start_datetime",
-      "scheduled_finish_datetime",
-      "posting_date",
-      "service_type",
-      "description",
-    ]);
+    if (status && status !== "all") {
+      params.append("status", status);
+    }
 
-    const url = `/api/resource/Service Appointment?fields=${fields}&filters=${encodeURIComponent(filterJson)}&limit_page_length=0`;
+    const url = `/api/method/beveren_fsm.field_service_management.api.service_appointment.get_appointments?${params.toString()}`;
 
     const headers = {
       Accept: "application/json",
       "Content-Type": "application/json",
+      "X-Frappe-CSRF-Token": csrfToken,
     };
 
-    const response = await fetch(url, { headers });
-    const data = await response.json();
+    const response = await fetch(url, {
+      headers,
+      credentials: "include",
+    });
 
-    if (!data.data) {
-      return [];
+    if (!response.ok) {
+      throw new Error(`Failed to fetch appointments: ${response.statusText}`);
     }
 
-    // Fetch detailed data for each appointment to get service_technicians
-    const detailedAppointments = await Promise.all(
-      data.data.map(async (app: { name: string }) => {
-        const detailResponse = await fetch(
-          `/api/resource/Service Appointment/${app.name}`,
-          { headers }
-        );
-        const detailData = await detailResponse.json();
-        return detailData.data;
-      })
-    );
+    const result = await response.json();
 
-    return detailedAppointments.map((apt: any) => ({
+    // Frappe API methods return data in result.message
+    const appointments = result.message || [];
+
+        //eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return appointments.map((apt: any) => ({
       ...apt,
       service_technicians: apt.service_technicians || [],
     }));
@@ -65,16 +56,91 @@ export async function fetchAppointmentsWithFilter(
   }
 }
 
-export async function fetchTechnicians(): Promise<any[]> {
+/**
+ * Fetch a single appointment by name
+ */
+export async function fetchAppointment(name: string): Promise<Appointment> {
   try {
+        //eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const csrfToken = (window as any).csrf_token;
+    const url = `/api/method/beveren_fsm.field_service_management.api.service_appointment.get_appointment?name=${encodeURIComponent(name)}`;
+
     const headers = {
       Accept: "application/json",
       "Content-Type": "application/json",
+      "X-Frappe-CSRF-Token": csrfToken,
+    };
+
+    const response = await fetch(url, {
+      headers,
+      credentials: "include",
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch appointment: ${response.statusText}`);
+    }
+
+    const result = await response.json();
+
+    // Frappe API methods return data in result.message
+    return result.message || null;
+  } catch (error) {
+    console.error("Error fetching appointment:", error);
+    throw error;
+  }
+}
+
+/**
+ * Get available appointment statuses
+ */
+export async function fetchAppointmentStatuses(): Promise<string[]> {
+  try {
+        //eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const csrfToken = (window as any).csrf_token;
+    const url = `/api/method/beveren_fsm.field_service_management.api.service_appointment.get_appointment_statuses`;
+
+    const headers = {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "X-Frappe-CSRF-Token": csrfToken,
+    };
+
+    const response = await fetch(url, {
+      headers,
+      credentials: "include",
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch statuses: ${response.statusText}`);
+    }
+
+    const result = await response.json();
+
+    // Frappe API methods return data in result.message
+    return result.message || [];
+  } catch (error) {
+    console.error("Error fetching appointment statuses:", error);
+    throw error;
+  }
+}
+
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function fetchTechnicians(): Promise<any[]> {
+  try {
+        //eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const csrfToken = (window as any).csrf_token;
+    const headers = {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "X-Frappe-CSRF-Token": csrfToken,
     };
 
     const response = await fetch(
       '/api/resource/Service Technician?fields=["name","full_name","employee","service_area","specialization"]&limit_page_length=0',
-      { headers }
+      {
+        headers,
+        credentials: "include",
+      }
     );
     const data = await response.json();
     return data.data || [];
@@ -89,6 +155,8 @@ export async function bulkAssignTechnicians(
   technicianIds: string[]
 ): Promise<void> {
   try {
+        //eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const csrfToken = (window as any).csrf_token;
     const payload = {
       appointment_ids: appointmentIds,
       technician_ids: technicianIds,
@@ -99,11 +167,12 @@ export async function bulkAssignTechnicians(
       {
         method: "POST",
         headers: {
-          "X-Frappe-CSRF-Token": (window as any).csrf_token,
+          "X-Frappe-CSRF-Token": csrfToken,
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         body: JSON.stringify(payload),
+        credentials: "include",
       }
     );
 
@@ -118,6 +187,8 @@ export async function bulkAssignTechnicians(
 
 export async function bulkRemoveTechnicians(appointmentIds: string[]): Promise<void> {
   try {
+        //eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const csrfToken = (window as any).csrf_token;
     const payload = {
       appointment_ids: appointmentIds,
     };
@@ -127,11 +198,12 @@ export async function bulkRemoveTechnicians(appointmentIds: string[]): Promise<v
       {
         method: "POST",
         headers: {
-          "X-Frappe-CSRF-Token": (window as any).csrf_token,
+          "X-Frappe-CSRF-Token": csrfToken,
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         body: JSON.stringify(payload),
+        credentials: "include",
       }
     );
 

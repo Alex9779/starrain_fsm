@@ -20,6 +20,8 @@
   "column_break_bczc",
   "actual_start_datetime",
   "actual_finish_datetime",
+  "description_section",
+  "description",
   "service_details_tab",
   "service_team_section",
   "service_technicians",
@@ -188,6 +190,17 @@
    "print_hide": 1,
    "read_only": 1,
    "width": "100px"
+  },
+  {
+   "fieldname": "description_section",
+   "fieldtype": "Section Break",
+   "label": "Description"
+  },
+  {
+   "fetch_from": "service_type.description",
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -198,7 +211,7 @@
    "link_fieldname": "custom_reference_service_document"
   }
  ],
- "modified": "2025-02-25 01:59:52.111164",
+ "modified": "2025-11-02 05:09:07.178919",
  "modified_by": "Administrator",
  "module": "Field Service Management",
  "name": "Service Appointment",
@@ -218,6 +231,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [

@@ -14,6 +14,7 @@ export default function SchedulePage() {
     loading,
     selectedAppointments,
     selectedDate,
+    appointmentDateRange,
     statusFilter,
     viewType,
     selectedAppointment,
@@ -21,6 +22,7 @@ export default function SchedulePage() {
     setLoading,
     setSelectedAppointments,
     setSelectedDate,
+    setAppointmentDateRange,
     setStatusFilter,
     setViewType,
     setSelectedAppointment,
@@ -31,13 +33,14 @@ export default function SchedulePage() {
 
   useEffect(() => {
     loadAppointments();
-  }, [selectedDate, statusFilter]);
+  }, [appointmentDateRange.startDate, appointmentDateRange.endDate, statusFilter]);
 
   const loadAppointments = async () => {
     try {
       setLoading(true);
       const data = await fetchAppointmentsWithFilter(
-        selectedDate,
+        appointmentDateRange.startDate,
+        appointmentDateRange.endDate,
         statusFilter !== "all" ? statusFilter : undefined
       );
       setAppointments(data);
@@ -83,7 +86,9 @@ export default function SchedulePage() {
           loading={loading}
           selectedAppointments={selectedAppointments}
           statusFilter={statusFilter}
+          appointmentDateRange={appointmentDateRange}
           onStatusFilterChange={setStatusFilter}
+          onDateRangeChange={setAppointmentDateRange}
           onAppointmentSelect={handleAppointmentSelect}
           onSelectAll={handleSelectAll}
           onAppointmentClick={setSelectedAppointment}
