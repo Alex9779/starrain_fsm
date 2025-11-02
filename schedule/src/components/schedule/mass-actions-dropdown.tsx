@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { Users, X, RefreshCw } from "lucide-react";
+import { Users, X } from "lucide-react";
 import { bulkAssignTechnicians, bulkRemoveTechnicians, fetchTechnicians } from "../../hooks/use-appointments";
 import {
   Dialog,
@@ -34,6 +34,7 @@ export function MassActionsDropdown({
   const [assignDialogOpen, setAssignDialogOpen] = useState(false);
   const [removeDialogOpen, setRemoveDialogOpen] = useState(false);
   const [selectedTechnicians, setSelectedTechnicians] = useState<Set<string>>(new Set());
+  //eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [technicians, setTechnicians] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
@@ -43,7 +44,7 @@ export function MassActionsDropdown({
       setLoading(true);
       const data = await fetchTechnicians();
       setTechnicians(data);
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "Failed to load technicians",
@@ -81,7 +82,7 @@ export function MassActionsDropdown({
       setAssignDialogOpen(false);
       setSelectedTechnicians(new Set());
       onComplete();
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "Failed to assign technicians",
@@ -99,7 +100,7 @@ export function MassActionsDropdown({
       });
       setRemoveDialogOpen(false);
       onComplete();
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "Failed to remove technicians",

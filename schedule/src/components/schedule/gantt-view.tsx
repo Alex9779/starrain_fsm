@@ -23,7 +23,7 @@ interface Technician {
 const ALL_HOURS = Array.from({ length: 24 }, (_, i) => i); // 0-23
 const DEFAULT_START_HOUR = 6; // 6am
 const DEFAULT_END_HOUR = 18; // 6pm
-const TECHNICIAN_ROW_HEIGHT = 60; // Fixed height per technician row (compact, shows 2 arrows worth)
+const TECHNICIAN_ROW_HEIGHT = 60;
 
 export function GanttView({
   appointments,
@@ -300,24 +300,20 @@ export function GanttView({
 
                       // Calculate position relative to visible start (can be negative if before visible range)
                       const adjustedStartMinutes = startMinutes - visibleStartMinutes;
-                      // Use actual end time relative to visible start - can extend beyond visible range
                       const adjustedEndMinutes = endMinutes - visibleStartMinutes;
 
                       // Vertical position - center the appointment bar in the technician row
                       const top = (TECHNICIAN_ROW_HEIGHT - 40) / 2; // Center 40px bar in 60px row
 
                       // Fixed small height - independent of time duration
-                      const height = 40; // Fixed height in pixels (2 units)
+                      const height = 40;
 
-                      // Calculate horizontal position and width using absolute pixel values
                       // Each hour is 80px wide, so we calculate based on that
                       const hourColumnWidth = 80;
 
-                      // Calculate left position in pixels (relative to visible start)
                       // If start is before visible range, left will be negative (will be clipped naturally)
                       const leftPx = (adjustedStartMinutes / 60) * hourColumnWidth;
 
-                      // Calculate width in pixels based on actual duration
                       // This allows the bar to extend beyond visible range
                       const durationHours = (adjustedEndMinutes - adjustedStartMinutes) / 60;
                       const widthPx = Math.max(durationHours * hourColumnWidth, 80); // Min 80px
