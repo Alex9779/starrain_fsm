@@ -25,10 +25,10 @@ export interface Technician {
 
 export type ViewType = "gantt" | "grid" | "maps" | "calendar";
 
-export type AppointmentStatus = 
-  | "Open" 
-  | "Scheduled" 
-  | "Dispatched" 
-  | "In Progress" 
-  | "Completed" 
+export type AppointmentStatus =
+  | "Open"
+  | "Scheduled"
+  | "Dispatched"
+  | "In Progress"
+  | "Completed"
   | "Cancelled";

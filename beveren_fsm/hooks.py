@@ -1,7 +1,7 @@
 app_name = "beveren_fsm"
 app_title = "Beveren Field Service Management"
 app_publisher = "Beveren Software"
-app_description = "Beveren Software\'s Field Service Management App"
+app_description = "Beveren Software's Field Service Management App"
 app_email = "info@beverensoftware.com"
 app_license = "mit"
 
@@ -48,15 +48,7 @@ app_license = "mit"
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 
 # bench --site fsm.local export-fixtures
-fixtures = [
-    "Service Type",
-    {
-        "dt": "Workspace",
-        "filters": {
-            "name": "Service"
-        }
-    }
-]
+fixtures = ["Service Type", {"dt": "Workspace", "filters": {"name": "Service"}}]
 
 # Svg Icons
 # ------------------
@@ -157,13 +149,13 @@ fixtures = [
 doc_events = {
 	"Sales Invoice": {
 		"on_submit": [
-            "beveren_fsm.field_service_management.fsm_utils.update_invoice_status",
-            "beveren_fsm.field_service_management.fsm_utils.update_per_billed_status"
-            ],
+			"beveren_fsm.field_service_management.fsm_utils.update_invoice_status",
+			"beveren_fsm.field_service_management.fsm_utils.update_per_billed_status",
+		],
 		"on_cancel": [
-            "beveren_fsm.field_service_management.fsm_utils.update_invoice_status",
-            "beveren_fsm.field_service_management.fsm_utils.update_per_billed_status"
-            ]
+			"beveren_fsm.field_service_management.fsm_utils.update_invoice_status",
+			"beveren_fsm.field_service_management.fsm_utils.update_per_billed_status",
+		],
 	}
 }
 
@@ -171,24 +163,22 @@ doc_events = {
 # ---------------
 
 scheduler_events = {
-# 	"all": [
-# 		"beveren_fsm.tasks.all"
-# 	],
+	# 	"all": [
+	# 		"beveren_fsm.tasks.all"
+	# 	],
 	# "daily": [
 	# 	"beveren_fsm.tasks.daily"
 	# ],
-    "daily" : [
-        "beveren_fsm.field_service_management.doctype.service_request.service_request.update_status"
-    ]
-# 	"hourly": [
-# 		"beveren_fsm.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"beveren_fsm.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"beveren_fsm.tasks.monthly"
-# 	],
+	"daily": ["beveren_fsm.field_service_management.doctype.service_request.service_request.update_status"]
+	# 	"hourly": [
+	# 		"beveren_fsm.tasks.hourly"
+	# 	],
+	# 	"weekly": [
+	# 		"beveren_fsm.tasks.weekly"
+	# 	],
+	# 	"monthly": [
+	# 		"beveren_fsm.tasks.monthly"
+	# 	],
 }
 
 # Testing
@@ -268,4 +258,6 @@ scheduler_events = {
 # }
 
 
-website_route_rules = [{'from_route': '/schedule/<path:app_path>', 'to_route': 'schedule'},]
+website_route_rules = [
+	{"from_route": "/schedule/<path:app_path>", "to_route": "schedule"},
+]

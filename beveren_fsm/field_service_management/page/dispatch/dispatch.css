@@ -97,7 +97,7 @@ html, body {
     position: relative;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
     flex-shrink: 0;
-    padding: 0 0.75rem; 
+    padding: 0 0.75rem;
 }
 
 .dispatch-sidebar.collapsed {
@@ -110,7 +110,7 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.75rem 0; 
+    padding: 0.75rem 0;
     border-bottom: 1px solid #eee;
     position: sticky;
     top: 0;
@@ -171,7 +171,7 @@ html, body {
 /* Dropdown */
 .sidebar-dropdown {
     position: absolute;
-    top: 60px; 
+    top: 60px;
     left: 0;
     right: 0;
     background-color: #fff;
@@ -333,7 +333,7 @@ html, body {
     position: relative;
     width: 100%;
 	overflow-x: auto;
-	overflow-y: hidden; 
+	overflow-y: hidden;
 }
 
 /* Timeline header, time labels, etc. */

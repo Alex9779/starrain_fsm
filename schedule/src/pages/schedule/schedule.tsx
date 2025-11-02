@@ -75,7 +75,7 @@ export default function SchedulePage() {
     <div className="flex h-screen w-full bg-background overflow-hidden">
       {/* Left Sidebar Menu */}
       <SidebarMenu />
-      
+
       {/* Left Panel - 20% */}
       <div className="w-[20%] border-r border-border flex flex-col">
         <ScheduleLeftPanel

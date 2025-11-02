@@ -3,18 +3,20 @@
 
 import frappe
 from frappe import _
-from frappe.model.mapper import get_mapped_doc
 from frappe.model.document import Document
+from frappe.model.mapper import get_mapped_doc
 
 
 class ServiceQuotation(Document):
 	def validate(self):
 		self.validate_items()
+
 	def before_submit(self):
 		if self.service_request:
-			request = frappe.get_doc('Service Request', self.service_request)
+			request = frappe.get_doc("Service Request", self.service_request)
 			request.status = "Quotation"
 			request.save()
+
 	def on_cancel(self):
 		self.cancel_linked_request()
 
@@ -25,17 +27,14 @@ class ServiceQuotation(Document):
 	def cancel_linked_request(self):
 		if not self.service_request:
 			return
-		request = frappe.get_doc('Service Request', self.service_request)
+		request = frappe.get_doc("Service Request", self.service_request)
 		request.status = "Open"
-		self. service_request = ""
+		self.service_request = ""
 		request.save()
 
+
 @frappe.whitelist()
-def make_service_quotation(
-		source_name,
-		target_doc=None, 
-		selected_items=None
-	):
+def make_service_quotation(source_name, target_doc=None, selected_items=None):
 	mapping = {
 		"Service Request": {
 			"doctype": "Service Quotation",
@@ -53,7 +52,7 @@ def make_service_quotation(
 				"preferred_date_1": "preferred_date_1",
 				"preferred_date_1": "preferred_date_1",
 				"preferred_time": "preferred_time",
-				"preference_note": "preference_note"
+				"preference_note": "preference_note",
 			},
 		}
 	}

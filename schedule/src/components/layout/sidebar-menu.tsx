@@ -26,7 +26,7 @@ export function SidebarMenu() {
       {menuItems.map((item) => {
         const Icon = item.icon;
         const isHovered = hoveredItem === item.label;
-        
+
         return (
           <div
             key={item.label}
@@ -44,7 +44,7 @@ export function SidebarMenu() {
             >
               <Icon className="h-5 w-5" />
             </button>
-            
+
             {/* Tooltip on hover */}
             {isHovered && (
               <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-popover border border-border rounded-md shadow-lg z-50 whitespace-nowrap">

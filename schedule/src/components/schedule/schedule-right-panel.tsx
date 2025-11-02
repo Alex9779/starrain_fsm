@@ -36,22 +36,21 @@ export function ScheduleRightPanel({
   onViewTypeChange,
   selectedAppointment,
   onAppointmentSelect,
-  onRefresh,
+
 }: ScheduleRightPanelProps) {
   const [datePickerOpen, setDatePickerOpen] = useState(false);
   const [technicianSearch, setTechnicianSearch] = useState("");
 
-  const isTodayDate = isToday(selectedDate);
 
   const formatDateDisplay = (date: Date): string => {
     if (isToday(date)) {
       return "Today";
     }
-    
+
     const day = date.getDate();
     const month = format(date, "MMM"); // Nov, Jan, etc.
     const year = date.getFullYear();
-    
+
     // Add ordinal suffix (st, nd, rd, th)
     const getOrdinalSuffix = (n: number): string => {
       if (n > 3 && n < 21) return "th";
@@ -62,7 +61,7 @@ export function ScheduleRightPanel({
         default: return "th";
       }
     };
-    
+
     return `${day}${getOrdinalSuffix(day)} ${month} ${year}`;
   };
 
@@ -170,7 +169,7 @@ export function ScheduleRightPanel({
               →
             </Button>
           </div>
-          
+
           {/* Technician Search - Far Right */}
           <div className="relative w-64">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />

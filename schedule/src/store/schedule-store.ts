@@ -24,7 +24,7 @@ interface ScheduleState {
   setSelectedDate: (date: Date) => void;
   setStatusFilter: (filter: string) => void;
   setViewType: (view: "gantt" | "grid" | "maps" | "calendar") => void;
-  
+
   // Helper getters
   isAppointmentSelected: (appointmentId: string) => boolean;
 }
@@ -63,7 +63,7 @@ export const useScheduleStore = create<ScheduleState>((set, get) => ({
   setSelectedDate: (date) => set({ selectedDate: date }),
   setStatusFilter: (filter) => set({ statusFilter: filter }),
   setViewType: (view) => set({ viewType: view }),
-  
+
   // Helper getters
   isAppointmentSelected: (appointmentId) => {
     return get().selectedAppointments.includes(appointmentId);

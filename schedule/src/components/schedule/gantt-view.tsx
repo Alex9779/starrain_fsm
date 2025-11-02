@@ -65,7 +65,7 @@ export function GanttView({
   // Get technicians that have appointments for this date
   const techniciansWithAppointments = useMemo(() => {
     const techMap = new Map<string, Technician>();
-    
+
     appointments.forEach((apt) => {
       apt.service_technicians?.forEach((tech) => {
         if (!techMap.has(tech.service_technician)) {
@@ -206,7 +206,7 @@ export function GanttView({
                   <ChevronLeft className="h-4 w-4" />
                 </Button>
               )}
-              
+
               {/* Time Labels */}
               <div className={cn("flex flex-1", canScrollLeft && "ml-10", canScrollRight && "mr-10")}>
                 {visibleHours.map((hour) => (
@@ -219,7 +219,7 @@ export function GanttView({
                   </div>
                 ))}
               </div>
-              
+
               {/* Right Arrow Button */}
               {canScrollRight && (
                 <Button
@@ -250,9 +250,9 @@ export function GanttView({
                         <div
                           key={hour}
                           className="absolute border-t border-border"
-                          style={{ 
-                            top: `${idx * HOUR_HEIGHT}px`, 
-                            width: "100%" 
+                          style={{
+                            top: `${idx * HOUR_HEIGHT}px`,
+                            width: "100%"
                           }}
                         />
                       ))}
@@ -261,12 +261,12 @@ export function GanttView({
                     {/* Appointments */}
                     {techAppointments.map((appointment) => {
                       const pos = getAppointmentPosition(appointment);
-                      
+
                       // Check if appointment is in visible range
                       const appointmentStartHour = appointment.scheduled_start_datetime
                         ? new Date(appointment.scheduled_start_datetime).getHours()
                         : -1;
-                      
+
                       if (
                         appointmentStartHour < visibleStartHour ||
                         appointmentStartHour > visibleEndHour

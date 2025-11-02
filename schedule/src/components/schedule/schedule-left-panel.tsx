@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Checkbox } from "../ui/checkbox";
 import { Badge } from "../ui/badge";
 import { ScrollArea } from "../ui/scroll-area";
@@ -56,9 +56,22 @@ export function ScheduleLeftPanel({
   onMassActionComplete,
 }: ScheduleLeftPanelProps) {
   const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
+  const selectAllCheckboxRef = useRef<HTMLButtonElement>(null);
 
   const allSelected = appointments.length > 0 && selectedAppointments.length === appointments.length;
   const someSelected = selectedAppointments.length > 0 && selectedAppointments.length < appointments.length;
+
+  // Handle indeterminate visual state - use CSS to show a dash when partially selected
+  useEffect(() => {
+    if (selectAllCheckboxRef.current) {
+      if (someSelected) {
+        // Set a custom attribute for styling
+        selectAllCheckboxRef.current.setAttribute('data-indeterminate', 'true');
+      } else {
+        selectAllCheckboxRef.current.removeAttribute('data-indeterminate');
+      }
+    }
+  }, [someSelected, allSelected]);
 
   const formatDate = (dateString: string) => {
     try {
@@ -139,15 +152,19 @@ export function ScheduleLeftPanel({
             {/* Select All Checkbox */}
             {appointments.length > 0 && (
               <div className="flex items-center gap-2 p-2 hover:bg-muted/50 rounded-md">
-                <Checkbox
-                  checked={allSelected}
-                  ref={(el) => {
-                    if (el) {
-                      el.indeterminate = someSelected;
-                    }
-                  }}
-                  onCheckedChange={onSelectAll}
-                />
+                <div className="relative">
+                  <Checkbox
+                    ref={selectAllCheckboxRef}
+                    checked={allSelected}
+                    onCheckedChange={onSelectAll}
+                    className={someSelected ? "data-[indeterminate=true]:bg-primary/50" : ""}
+                  />
+                  {someSelected && !allSelected && (
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <div className="w-2 h-0.5 bg-primary-foreground rounded"></div>
+                    </div>
+                  )}
+                </div>
                 <span className="text-sm text-muted-foreground">
                   {selectedAppointments.length > 0
                     ? `${selectedAppointments.length} selected`
