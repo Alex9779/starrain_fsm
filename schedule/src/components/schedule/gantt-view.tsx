@@ -2,10 +2,13 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { Button } from "../ui/button";
-import { ChevronLeft, ChevronRight, Calendar as CalendarIcon } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Appointment } from "../../pages/schedule/types";
 import { fetchTechnicians } from "../../hooks/use-appointments";
 import { format, startOfDay } from "date-fns";
+import { Input } from "../ui/input";
+import { Search } from "lucide-react";
+import { cn } from "../../lib/utils";
 
 interface GanttViewProps {
   appointments: Appointment[];
@@ -18,7 +21,9 @@ interface Technician {
   full_name: string;
 }
 
-const HOURS = Array.from({ length: 24 }, (_, i) => i);
+const ALL_HOURS = Array.from({ length: 24 }, (_, i) => i); // 0-23
+const DEFAULT_START_HOUR = 6; // 6am
+const DEFAULT_END_HOUR = 18; // 6pm
 const HOUR_HEIGHT = 60; // pixels per hour
 
 export function GanttView({
@@ -28,6 +33,9 @@ export function GanttView({
 }: GanttViewProps) {
   const [technicians, setTechnicians] = useState<Technician[]>([]);
   const [loading, setLoading] = useState(true);
+  const [visibleStartHour, setVisibleStartHour] = useState(DEFAULT_START_HOUR);
+  const [visibleEndHour, setVisibleEndHour] = useState(DEFAULT_END_HOUR);
+  const [technicianSearch, setTechnicianSearch] = useState("");
 
   useEffect(() => {
     loadTechnicians();
@@ -44,6 +52,17 @@ export function GanttView({
     }
   };
 
+  // Filter technicians by search
+  const filteredTechnicians = useMemo(() => {
+    if (!technicianSearch.trim()) return technicians;
+    const searchLower = technicianSearch.toLowerCase();
+    return technicians.filter(
+      (tech) =>
+        tech.full_name.toLowerCase().includes(searchLower) ||
+        tech.name.toLowerCase().includes(searchLower)
+    );
+  }, [technicians, technicianSearch]);
+
   // Get technicians that have appointments for this date
   const techniciansWithAppointments = useMemo(() => {
     const techMap = new Map<string, Technician>();
@@ -51,7 +70,7 @@ export function GanttView({
     appointments.forEach((apt) => {
       apt.service_technicians?.forEach((tech) => {
         if (!techMap.has(tech.service_technician)) {
-          const techData = technicians.find((t) => t.name === tech.service_technician);
+          const techData = filteredTechnicians.find((t) => t.name === tech.service_technician);
           if (techData) {
             techMap.set(tech.service_technician, techData);
           }
@@ -59,15 +78,15 @@ export function GanttView({
       });
     });
 
-    // Also include all technicians even if they don't have appointments
-    technicians.forEach((tech) => {
+    // Include filtered technicians even if they don't have appointments
+    filteredTechnicians.forEach((tech) => {
       if (!techMap.has(tech.name)) {
         techMap.set(tech.name, tech);
       }
     });
 
     return Array.from(techMap.values());
-  }, [appointments, technicians]);
+  }, [appointments, filteredTechnicians]);
 
   const getAppointmentsForTechnician = (technicianName: string) => {
     return appointments.filter(
@@ -99,12 +118,57 @@ export function GanttView({
     return { top, height, left };
   };
 
-  const dateStr = format(selectedDate, "EEEE, MMMM d, yyyy");
+  const visibleHours = ALL_HOURS.slice(visibleStartHour, visibleEndHour + 1);
+  const visibleHoursCount = visibleEndHour - visibleStartHour + 1;
+  const rowHeight = visibleHoursCount * HOUR_HEIGHT;
+
+  const canScrollLeft = visibleStartHour > 0;
+  const canScrollRight = visibleEndHour < 23;
+
+  const scrollLeft = () => {
+    if (canScrollLeft) {
+      const newStart = Math.max(0, visibleStartHour - 3);
+      const hoursToShow = visibleEndHour - newStart + 1;
+      if (hoursToShow > 12) {
+        setVisibleStartHour(newStart);
+        setVisibleEndHour(newStart + 11);
+      } else {
+        setVisibleStartHour(newStart);
+      }
+    }
+  };
+
+  const scrollRight = () => {
+    if (canScrollRight) {
+      const newEnd = Math.min(23, visibleEndHour + 3);
+      const hoursToShow = newEnd - visibleStartHour + 1;
+      if (hoursToShow > 12) {
+        setVisibleStartHour(newEnd - 11);
+        setVisibleEndHour(newEnd);
+      } else {
+        setVisibleEndHour(newEnd);
+      }
+    }
+  };
 
   return (
     <div className="flex flex-col h-full bg-background">
+      {/* Technician Search */}
+      <div className="px-4 py-3 border-b border-border">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            placeholder="Search technicians..."
+            value={technicianSearch}
+            onChange={(e) => setTechnicianSearch(e.target.value)}
+            className="pl-9"
+          />
+        </div>
+      </div>
+
       {/* Gantt Content */}
-      <div className="flex-1 overflow-auto">
+      <div className="flex-1 overflow-auto relative">
+
         <div className="flex h-full">
           {/* Technician Names Column */}
           <div className="w-48 border-r border-border bg-card sticky left-0 z-10">
@@ -116,12 +180,11 @@ export function GanttView({
                 <div className="p-4 text-sm text-muted-foreground">Loading...</div>
               ) : techniciansWithAppointments.length === 0 ? (
                 <div className="p-4 text-sm text-muted-foreground">
-                  No technicians
+                  {technicianSearch ? "No technicians found" : "No technicians"}
                 </div>
               ) : (
                 techniciansWithAppointments.map((tech) => {
                   const techAppointments = getAppointmentsForTechnician(tech.name);
-                  const rowHeight = 24 * HOUR_HEIGHT; // 24 hours
                   return (
                     <div
                       key={tech.name}
@@ -144,24 +207,50 @@ export function GanttView({
 
           {/* Timeline Grid */}
           <div className="flex-1 relative">
-            {/* Time Column Headers */}
-            <div className="sticky top-0 bg-card border-b border-border z-20 flex">
-              {HOURS.map((hour) => (
-                <div
-                  key={hour}
-                  className="flex-1 border-r border-border px-2 py-2 text-center text-xs font-medium"
-                  style={{ minWidth: "80px" }}
+            {/* Time Column Headers with Scroll Arrows */}
+            <div className="sticky top-0 bg-card border-b border-border z-20 flex relative items-center min-h-[40px]">
+              {/* Left Arrow Button */}
+              {canScrollLeft && (
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="absolute left-1 top-1/2 -translate-y-1/2 z-30 bg-background shadow-md hover:shadow-lg h-7 w-7"
+                  onClick={scrollLeft}
                 >
-                  {hour.toString().padStart(2, "0")}:00
-                </div>
-              ))}
+                  <ChevronLeft className="h-4 w-4" />
+                </Button>
+              )}
+              
+              {/* Time Labels */}
+              <div className={cn("flex flex-1", canScrollLeft && "ml-10", canScrollRight && "mr-10")}>
+                {visibleHours.map((hour) => (
+                  <div
+                    key={hour}
+                    className="flex-1 border-r border-border px-2 py-2 text-center text-xs font-medium"
+                    style={{ minWidth: "80px" }}
+                  >
+                    {hour.toString().padStart(2, "0")}:00
+                  </div>
+                ))}
+              </div>
+              
+              {/* Right Arrow Button */}
+              {canScrollRight && (
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="absolute right-1 top-1/2 -translate-y-1/2 z-30 bg-background shadow-md hover:shadow-lg h-7 w-7"
+                  onClick={scrollRight}
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </Button>
+              )}
             </div>
 
             {/* Technician Rows with Appointments */}
             <div className="relative">
               {techniciansWithAppointments.map((tech) => {
                 const techAppointments = getAppointmentsForTechnician(tech.name);
-                const rowHeight = 24 * HOUR_HEIGHT;
 
                 return (
                   <div
@@ -171,11 +260,14 @@ export function GanttView({
                   >
                     {/* Hour Grid Lines */}
                     <div className="absolute inset-0">
-                      {HOURS.map((hour) => (
+                      {visibleHours.map((hour, idx) => (
                         <div
                           key={hour}
                           className="absolute border-t border-border"
-                          style={{ top: `${hour * HOUR_HEIGHT}px`, width: "100%" }}
+                          style={{ 
+                            top: `${idx * HOUR_HEIGHT}px`, 
+                            width: "100%" 
+                          }}
                         />
                       ))}
                     </div>
@@ -183,12 +275,25 @@ export function GanttView({
                     {/* Appointments */}
                     {techAppointments.map((appointment) => {
                       const pos = getAppointmentPosition(appointment);
+                      
+                      // Check if appointment is in visible range
+                      const appointmentStartHour = appointment.scheduled_start_datetime
+                        ? new Date(appointment.scheduled_start_datetime).getHours()
+                        : -1;
+                      
+                      if (
+                        appointmentStartHour < visibleStartHour ||
+                        appointmentStartHour > visibleEndHour
+                      ) {
+                        return null;
+                      }
+
                       const statusColors: Record<string, string> = {
-                        Open: "bg-blue-500",
-                        Scheduled: "bg-blue-500",
+                        Open: "bg-primary/80",
+                        Scheduled: "bg-primary/80",
                         Dispatched: "bg-orange-500",
-                        "In Progress": "bg-orange-500",
-                        Completed: "bg-green-500",
+                        "In Progress": "bg-secondary",
+                        Completed: "bg-secondary",
                         Cancelled: "bg-gray-400",
                       };
 
@@ -208,12 +313,15 @@ export function GanttView({
                           )
                         : "";
 
+                      // Adjust position relative to visible hours
+                      const adjustedTop = pos.top - (visibleStartHour * HOUR_HEIGHT);
+
                       return (
                         <div
                           key={appointment.name}
                           className={`absolute ${statusColor} text-white text-xs rounded px-2 py-1 cursor-pointer hover:opacity-90 transition-opacity border border-white/20 shadow-sm`}
                           style={{
-                            top: `${pos.top}px`,
+                            top: `${Math.max(0, adjustedTop)}px`,
                             height: `${Math.max(pos.height, 30)}px`,
                             left: `${pos.left}px`,
                             minWidth: "120px",

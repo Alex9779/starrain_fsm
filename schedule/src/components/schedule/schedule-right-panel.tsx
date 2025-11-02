@@ -53,9 +53,50 @@ export function ScheduleRightPanel({
 
   return (
     <div className="flex flex-col h-full">
-      {/* Top Bar */}
-      <div className="border-b border-border p-4 flex items-center justify-between">
-        {/* Date Selector */}
+      {/* Section 1: View Type Switcher (Top) */}
+      <div className="border-b border-border p-4 bg-gradient-to-b from-primary/30 via-primary/15 to-primary/5">
+        <div className="flex items-center gap-2">
+          <Button
+            variant={viewType === "gantt" ? "default" : "outline"}
+            size="sm"
+            onClick={() => onViewTypeChange("gantt")}
+            className="gap-2"
+          >
+            <BarChart3 className="h-4 w-4" />
+            Gantt
+          </Button>
+          <Button
+            variant={viewType === "grid" ? "default" : "outline"}
+            size="sm"
+            onClick={() => onViewTypeChange("grid")}
+            className="gap-2"
+          >
+            <BarChart3 className="h-4 w-4" />
+            Grid
+          </Button>
+          <Button
+            variant={viewType === "maps" ? "default" : "outline"}
+            size="sm"
+            onClick={() => onViewTypeChange("maps")}
+            className="gap-2"
+          >
+            <Map className="h-4 w-4" />
+            Maps
+          </Button>
+          <Button
+            variant={viewType === "calendar" ? "default" : "outline"}
+            size="sm"
+            onClick={() => onViewTypeChange("calendar")}
+            className="gap-2"
+          >
+            <CalendarIcon2 className="h-4 w-4" />
+            Calendar
+          </Button>
+        </div>
+      </div>
+
+      {/* Section 2: Date Selection and Options */}
+      <div className="border-b border-border p-4 bg-card">
         <div className="flex items-center gap-3">
           <Button
             variant="outline"
@@ -106,49 +147,9 @@ export function ScheduleRightPanel({
             →
           </Button>
         </div>
-
-        {/* View Type Switcher */}
-        <div className="flex items-center gap-2">
-          <Button
-            variant={viewType === "gantt" ? "default" : "outline"}
-            size="sm"
-            onClick={() => onViewTypeChange("gantt")}
-            className="gap-2"
-          >
-            <BarChart3 className="h-4 w-4" />
-            Gantt
-          </Button>
-          <Button
-            variant={viewType === "grid" ? "default" : "outline"}
-            size="sm"
-            onClick={() => onViewTypeChange("grid")}
-            className="gap-2"
-          >
-            <BarChart3 className="h-4 w-4" />
-            Grid
-          </Button>
-          <Button
-            variant={viewType === "maps" ? "default" : "outline"}
-            size="sm"
-            onClick={() => onViewTypeChange("maps")}
-            className="gap-2"
-          >
-            <Map className="h-4 w-4" />
-            Maps
-          </Button>
-          <Button
-            variant={viewType === "calendar" ? "default" : "outline"}
-            size="sm"
-            onClick={() => onViewTypeChange("calendar")}
-            className="gap-2"
-          >
-            <CalendarIcon2 className="h-4 w-4" />
-            Calendar
-          </Button>
-        </div>
       </div>
 
-      {/* View Content */}
+      {/* Section 3: View Content (includes technician search and Gantt) */}
       <div className="flex-1 overflow-hidden">
         {viewType === "gantt" && (
           <GanttView

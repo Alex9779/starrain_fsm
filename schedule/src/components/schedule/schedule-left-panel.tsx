@@ -35,7 +35,7 @@ const getStatusColor = (status: AppointmentStatus): string => {
 interface ScheduleLeftPanelProps {
   appointments: Appointment[];
   loading: boolean;
-  selectedAppointments: Set<string>;
+  selectedAppointments: string[];
   statusFilter: string;
   onStatusFilterChange: (status: string) => void;
   onAppointmentSelect: (appointmentId: string, checked: boolean) => void;
@@ -57,8 +57,8 @@ export function ScheduleLeftPanel({
 }: ScheduleLeftPanelProps) {
   const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
 
-  const allSelected = appointments.length > 0 && selectedAppointments.size === appointments.length;
-  const someSelected = selectedAppointments.size > 0 && selectedAppointments.size < appointments.length;
+  const allSelected = appointments.length > 0 && selectedAppointments.length === appointments.length;
+  const someSelected = selectedAppointments.length > 0 && selectedAppointments.length < appointments.length;
 
   const formatDate = (dateString: string) => {
     try {
@@ -123,10 +123,10 @@ export function ScheduleLeftPanel({
           </div>
 
           {/* Mass Actions */}
-          {selectedAppointments.size > 0 && (
+          {selectedAppointments.length > 0 && (
             <div className="mt-3 pt-3 border-t border-border">
               <MassActionsDropdown
-                selectedAppointmentIds={Array.from(selectedAppointments)}
+                selectedAppointmentIds={selectedAppointments}
                 onComplete={onMassActionComplete}
               />
             </div>
@@ -149,8 +149,8 @@ export function ScheduleLeftPanel({
                   onCheckedChange={onSelectAll}
                 />
                 <span className="text-sm text-muted-foreground">
-                  {selectedAppointments.size > 0
-                    ? `${selectedAppointments.size} selected`
+                  {selectedAppointments.length > 0
+                    ? `${selectedAppointments.length} selected`
                     : "Select all"}
                 </span>
               </div>
@@ -178,7 +178,7 @@ export function ScheduleLeftPanel({
 
             {!loading &&
               appointments.map((appointment) => {
-                const isSelected = selectedAppointments.has(appointment.name);
+                const isSelected = selectedAppointments.includes(appointment.name);
                 return (
                   <div
                     key={appointment.name}

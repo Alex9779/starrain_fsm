@@ -1,0 +1,71 @@
+import { create } from "zustand";
+import { Appointment } from "../pages/schedule/types";
+
+interface ScheduleState {
+  // Appointments
+  appointments: Appointment[];
+  selectedAppointments: string[];
+  selectedAppointment: Appointment | null;
+  loading: boolean;
+
+  // Filters
+  selectedDate: Date;
+  statusFilter: string;
+  viewType: "gantt" | "grid" | "maps" | "calendar";
+
+  // Actions
+  setAppointments: (appointments: Appointment[]) => void;
+  setLoading: (loading: boolean) => void;
+  setSelectedAppointments: (selectedAppointments: string[]) => void;
+  toggleAppointmentSelection: (appointmentId: string) => void;
+  selectAllAppointments: (appointmentIds: string[]) => void;
+  clearSelectedAppointments: () => void;
+  setSelectedAppointment: (appointment: Appointment | null) => void;
+  setSelectedDate: (date: Date) => void;
+  setStatusFilter: (filter: string) => void;
+  setViewType: (view: "gantt" | "grid" | "maps" | "calendar") => void;
+  
+  // Helper getters
+  isAppointmentSelected: (appointmentId: string) => boolean;
+}
+
+export const useScheduleStore = create<ScheduleState>((set, get) => ({
+  // Initial state
+  appointments: [],
+  selectedAppointments: [],
+  selectedAppointment: null,
+  loading: false,
+  selectedDate: new Date(),
+  statusFilter: "all",
+  viewType: "gantt",
+
+  // Actions
+  setAppointments: (appointments) => set({ appointments }),
+  setLoading: (loading) => set({ loading }),
+  setSelectedAppointments: (selectedAppointments) => set({ selectedAppointments }),
+  toggleAppointmentSelection: (appointmentId) =>
+    set((state) => {
+      const isSelected = state.selectedAppointments.includes(appointmentId);
+      if (isSelected) {
+        return {
+          selectedAppointments: state.selectedAppointments.filter(id => id !== appointmentId),
+        };
+      } else {
+        return {
+          selectedAppointments: [...state.selectedAppointments, appointmentId],
+        };
+      }
+    }),
+  selectAllAppointments: (appointmentIds) =>
+    set({ selectedAppointments: appointmentIds }),
+  clearSelectedAppointments: () => set({ selectedAppointments: [] }),
+  setSelectedAppointment: (appointment) => set({ selectedAppointment: appointment }),
+  setSelectedDate: (date) => set({ selectedDate: date }),
+  setStatusFilter: (filter) => set({ statusFilter: filter }),
+  setViewType: (view) => set({ viewType: view }),
+  
+  // Helper getters
+  isAppointmentSelected: (appointmentId) => {
+    return get().selectedAppointments.includes(appointmentId);
+  },
+}));

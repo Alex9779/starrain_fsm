@@ -1,20 +1,33 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { ScheduleLeftPanel } from "../../components/schedule/schedule-left-panel";
 import { ScheduleRightPanel } from "../../components/schedule/schedule-right-panel";
-import { Appointment } from "./types";
+import { SidebarMenu } from "../../components/layout/sidebar-menu";
+import { useScheduleStore } from "../../store";
 import { fetchAppointmentsWithFilter } from "../../hooks/use-appointments";
 import { Toaster } from "../../components/ui/sonner";
+import { useEffect } from "react";
 
 export default function SchedulePage() {
-  const [appointments, setAppointments] = useState<Appointment[]>([]);
-  const [selectedAppointments, setSelectedAppointments] = useState<Set<string>>(new Set());
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-  const [statusFilter, setStatusFilter] = useState<string>("all");
-  const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [viewType, setViewType] = useState<"gantt" | "grid" | "maps" | "calendar">("gantt");
+  const {
+    appointments,
+    loading,
+    selectedAppointments,
+    selectedDate,
+    statusFilter,
+    viewType,
+    selectedAppointment,
+    setAppointments,
+    setLoading,
+    setSelectedAppointments,
+    setSelectedDate,
+    setStatusFilter,
+    setViewType,
+    setSelectedAppointment,
+    toggleAppointmentSelection,
+    selectAllAppointments,
+    clearSelectedAppointments,
+  } = useScheduleStore();
 
   useEffect(() => {
     loadAppointments();
@@ -36,36 +49,35 @@ export default function SchedulePage() {
   };
 
   const handleAppointmentSelect = (appointmentId: string, checked: boolean) => {
-    const newSelected = new Set(selectedAppointments);
     if (checked) {
-      newSelected.add(appointmentId);
+      if (!selectedAppointments.includes(appointmentId)) {
+        setSelectedAppointments([...selectedAppointments, appointmentId]);
+      }
     } else {
-      newSelected.delete(appointmentId);
+      setSelectedAppointments(selectedAppointments.filter(id => id !== appointmentId));
     }
-    setSelectedAppointments(newSelected);
   };
 
   const handleSelectAll = (checked: boolean) => {
     if (checked) {
-      setSelectedAppointments(new Set(appointments.map(apt => apt.name)));
+      selectAllAppointments(appointments.map(apt => apt.name));
     } else {
-      setSelectedAppointments(new Set());
+      clearSelectedAppointments();
     }
   };
 
-  const handleAppointmentClick = (appointment: Appointment) => {
-    setSelectedAppointment(appointment);
-  };
-
   const handleMassActionComplete = () => {
-    setSelectedAppointments(new Set());
+    clearSelectedAppointments();
     loadAppointments();
   };
 
   return (
     <div className="flex h-screen w-full bg-background overflow-hidden">
-      {/* Left Panel - 25% */}
-      <div className="w-[25%] border-r border-border flex flex-col">
+      {/* Left Sidebar Menu */}
+      <SidebarMenu />
+      
+      {/* Left Panel - 20% */}
+      <div className="w-[20%] border-r border-border flex flex-col">
         <ScheduleLeftPanel
           appointments={appointments}
           loading={loading}
@@ -74,7 +86,7 @@ export default function SchedulePage() {
           onStatusFilterChange={setStatusFilter}
           onAppointmentSelect={handleAppointmentSelect}
           onSelectAll={handleSelectAll}
-          onAppointmentClick={handleAppointmentClick}
+          onAppointmentClick={setSelectedAppointment}
           onMassActionComplete={handleMassActionComplete}
         />
       </div>
