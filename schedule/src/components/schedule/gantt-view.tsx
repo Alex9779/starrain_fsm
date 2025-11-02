@@ -6,14 +6,13 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Appointment } from "../../pages/schedule/types";
 import { fetchTechnicians } from "../../hooks/use-appointments";
 import { format, startOfDay } from "date-fns";
-import { Input } from "../ui/input";
-import { Search } from "lucide-react";
 import { cn } from "../../lib/utils";
 
 interface GanttViewProps {
   appointments: Appointment[];
   selectedDate: Date;
   onAppointmentClick?: (appointment: Appointment) => void;
+  technicianSearch?: string;
 }
 
 interface Technician {
@@ -30,12 +29,12 @@ export function GanttView({
   appointments,
   selectedDate,
   onAppointmentClick,
+  technicianSearch = "",
 }: GanttViewProps) {
   const [technicians, setTechnicians] = useState<Technician[]>([]);
   const [loading, setLoading] = useState(true);
   const [visibleStartHour, setVisibleStartHour] = useState(DEFAULT_START_HOUR);
   const [visibleEndHour, setVisibleEndHour] = useState(DEFAULT_END_HOUR);
-  const [technicianSearch, setTechnicianSearch] = useState("");
 
   useEffect(() => {
     loadTechnicians();
@@ -153,19 +152,6 @@ export function GanttView({
 
   return (
     <div className="flex flex-col h-full bg-background">
-      {/* Technician Search */}
-      <div className="px-4 py-3 border-b border-border">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input
-            placeholder="Search technicians..."
-            value={technicianSearch}
-            onChange={(e) => setTechnicianSearch(e.target.value)}
-            className="pl-9"
-          />
-        </div>
-      </div>
-
       {/* Gantt Content */}
       <div className="flex-1 overflow-auto relative">
 
