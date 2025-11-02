@@ -41,13 +41,20 @@ class ServiceAppointment(Document):
 			pluck="parent",
 		)
 
-		filters = {
-			"name": ["!=", self.name],
-			"name": ["in", child_parents],
-			"status": ["not in", ["Closed", "Cancelled"]],
-			"scheduled_start_datetime": ["<", self.scheduled_finish_datetime],
-			"scheduled_finish_datetime": [">", self.scheduled_start_datetime],
-		}
+		# filters = {
+		# 	"name": ["!=", self.name],
+		# 	"name": ["in", child_parents],
+		# 	"status": ["not in", ["Closed", "Cancelled"]],
+		# 	"scheduled_start_datetime": ["<", self.scheduled_finish_datetime],
+		# 	"scheduled_finish_datetime": [">", self.scheduled_start_datetime],
+		# }
+		filters = [
+			["name", "!=", self.name],
+			["name", "in", child_parents],
+			["status", "not in", ["Closed", "Cancelled"]],
+			["scheduled_start_datetime", "<", self.scheduled_finish_datetime],
+			["scheduled_finish_datetime", ">", self.scheduled_start_datetime],
+		]
 
 		overlapping_appointments = frappe.get_all("Service Appointment", filters=filters)
 		overlapping_appointments = [d.name for d in overlapping_appointments if d.name != self.name]
@@ -113,7 +120,6 @@ def make_appointment_from_order(source_name, target_doc=None, selected_items=Non
 				"project": "project",
 				"currency": "currency",
 				"serial_no": "serial_no",
-				"preferred_date_1": "preferred_date_1",
 				"preferred_date_1": "preferred_date_1",
 				"preferred_time": "preferred_time",
 				"preference_note": "preference_note",

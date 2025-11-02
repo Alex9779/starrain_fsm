@@ -4,8 +4,8 @@ import frappe
 
 
 @frappe.whitelist()
-def create_service_invoice(doctype, docname, customer, items=[]):
-	items = json.loads(items)
+def create_service_invoice(doctype, docname, customer, items=None):
+	items = json.loads(items) if items else []
 	invoice = frappe.new_doc("Sales Invoice")
 	invoice.customer = customer
 	invoice.due_date = frappe.utils.nowdate()

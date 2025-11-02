@@ -41,10 +41,10 @@ def get_contact_details(customer_contact):
 	if full_name:
 		details += "Name: " + full_name
 	if email_id:
-		details += (details and "\n" or "") + "Email: " + email_id
+		details += ("\n" if details else "") + "Email: " + email_id
 	if mobile_no:
-		details += (details and "\n" or "") + "Mobile: " + mobile_no
+		details += ("\n" if details else "") + "Mobile: " + mobile_no
 	if phone:
-		details += (details and "\n" or "") + "Phone: " + phone
+		details += ("\n" if details else "") + "Phone: " + phone
 
 	return {"details": details}

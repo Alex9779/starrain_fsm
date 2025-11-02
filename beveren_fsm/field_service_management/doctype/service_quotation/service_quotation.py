@@ -50,7 +50,6 @@ def make_service_quotation(source_name, target_doc=None, selected_items=None):
 				"currency": "currency",
 				"serial_no": "serial_no",
 				"preferred_date_1": "preferred_date_1",
-				"preferred_date_1": "preferred_date_1",
 				"preferred_time": "preferred_time",
 				"preference_note": "preference_note",
 			},
