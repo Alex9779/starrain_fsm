@@ -18,27 +18,11 @@ def get_appointments(
 	fields=None,
 	limit_page_length=0,
 ):
-	"""
-	Fetch service appointments with optional filters
+	filters = {"docstatus": ["!=", 2]}
 
-	Args:
-		posting_date: Filter by specific posting date (YYYY-MM-DD)
-		status: Filter by appointment status
-		start_date: Start date for date range filter (YYYY-MM-DD)
-		end_date: End date for date range filter (YYYY-MM-DD)
-		fields: List of fields to return (JSON string or list)
-		limit_page_length: Maximum number of records to return (0 = unlimited)
-
-	Returns:
-		List of appointment dictionaries with all fields including service_technicians
-	"""
-	filters = {"docstatus": ["!=", 2]}  # Exclude cancelled documents
-
-	# Apply status filter
 	if status and status != "all":
 		filters["status"] = status
 
-	# Apply date range filter (takes priority over posting_date)
 	if start_date and end_date:
 		filters["posting_date"] = ["between", [getdate(start_date), getdate(end_date)]]
 	elif start_date:
@@ -46,11 +30,9 @@ def get_appointments(
 	elif end_date:
 		filters["posting_date"] = ["<=", getdate(end_date)]
 	elif posting_date:
-		# Only use posting_date if no date range is provided
 		posting_date = getdate(posting_date)
 		filters["posting_date"] = posting_date
 
-	# Default fields if not specified
 	default_fields = [
 		"name",
 		"service_order",
@@ -72,8 +54,7 @@ def get_appointments(
 		requested_fields = fields
 	else:
 		requested_fields = default_fields
-	print("Filters:", filters)
-	# Fetch appointments
+
 	appointments = frappe.get_all(
 		"Service Appointment",
 		filters=filters,
@@ -85,16 +66,12 @@ def get_appointments(
 	# Enrich each appointment with full details including child tables
 	enriched_appointments = []
 	for appointment in appointments:
-		# Get full document to access child tables
 		appointment_doc = frappe.get_doc("Service Appointment", appointment.name)
 
-		# Build appointment dictionary with requested fields
-		# Use as_dict to handle datetime conversions automatically
 		doc_dict = appointment_doc.as_dict(convert_dates_to_str=True)
 
 		appointment_data = {field: doc_dict.get(field) for field in requested_fields if field in doc_dict}
 
-		# Always include service_technicians child table
 		appointment_data["service_technicians"] = [
 			{
 				"service_technician": tech.service_technician,
@@ -142,10 +119,8 @@ def get_appointment(name):
 	except frappe.DoesNotExistError:
 		frappe.throw(f"Service Appointment {name} not found", frappe.DoesNotExistError)
 
-	# Convert document to dictionary with date/datetime formatting
 	appointment_data = appointment_doc.as_dict(convert_dates_to_str=True)
 
-	# Format service_technicians child table
 	appointment_data["service_technicians"] = [
 		{
 			"service_technician": tech.service_technician,
@@ -184,17 +159,13 @@ def get_appointment_statuses():
 	status_field = meta.get_field("status")
 
 	if status_field and status_field.options:
-		# Parse options (can be a select string or JSON)
 		options = status_field.options.strip()
 		if options.startswith("[") and options.endswith("]"):
-			# JSON array
 			try:
 				return json.loads(options)
 			except json.JSONDecodeError:
 				pass
-		# Split by newline or comma
 		statuses = [s.strip() for s in options.replace("\n", ",").split(",") if s.strip()]
 		return statuses
 
-	# Default statuses if not found in meta
 	return ["Open", "Scheduled", "Dispatched", "In Progress", "Completed", "Cancelled"]

@@ -267,12 +267,12 @@ export function GanttView({
                       }
 
                       const statusColors: Record<string, string> = {
-                        Open: "bg-primary/80",
-                        Scheduled: "bg-primary/80",
-                        Dispatched: "bg-orange-500",
-                        "In Progress": "bg-secondary",
-                        Completed: "bg-secondary",
-                        Cancelled: "bg-gray-400",
+                        Open: "bg-primary/70",
+                        Scheduled: "bg-primary/70",
+                        Dispatched: "bg-purple-500/70",
+                        "In Progress": "bg-orange-500/70",
+                        Completed: "bg-green-500/70",
+                        Cancelled: "bg-gray-400/70",
                       };
 
                       const statusColor =
@@ -295,10 +295,13 @@ export function GanttView({
                       const startMinutes = (appointmentStart.getTime() - dayStart.getTime()) / (1000 * 60);
                       const endMinutes = (appointmentEnd.getTime() - dayStart.getTime()) / (1000 * 60);
 
-                      // Adjust for visible hours offset
+                      // Adjust for visible hours offset - calculate position relative to visible start
                       const visibleStartMinutes = visibleStartHour * 60;
-                      const adjustedStartMinutes = Math.max(0, startMinutes - visibleStartMinutes);
-                      const adjustedEndMinutes = Math.max(0, endMinutes - visibleStartMinutes);
+
+                      // Calculate position relative to visible start (can be negative if before visible range)
+                      const adjustedStartMinutes = startMinutes - visibleStartMinutes;
+                      // Use actual end time relative to visible start - can extend beyond visible range
+                      const adjustedEndMinutes = endMinutes - visibleStartMinutes;
 
                       // Vertical position - center the appointment bar in the technician row
                       const top = (TECHNICIAN_ROW_HEIGHT - 40) / 2; // Center 40px bar in 60px row
@@ -306,18 +309,21 @@ export function GanttView({
                       // Fixed small height - independent of time duration
                       const height = 40; // Fixed height in pixels (2 units)
 
-                      // Calculate horizontal position and width based on time
-                      // Each visible hour column takes equal width
-                      const totalVisibleMinutes = visibleHoursCount * 60;
-                      const startPositionPercent = (adjustedStartMinutes / totalVisibleMinutes) * 100;
-
-                      // Calculate width in pixels - each hour column is about 80px wide
+                      // Calculate horizontal position and width using absolute pixel values
+                      // Each hour is 80px wide, so we calculate based on that
                       const hourColumnWidth = 80;
+
+                      // Calculate left position in pixels (relative to visible start)
+                      // If start is before visible range, left will be negative (will be clipped naturally)
+                      const leftPx = (adjustedStartMinutes / 60) * hourColumnWidth;
+
+                      // Calculate width in pixels based on actual duration
+                      // This allows the bar to extend beyond visible range
                       const durationHours = (adjustedEndMinutes - adjustedStartMinutes) / 60;
                       const widthPx = Math.max(durationHours * hourColumnWidth, 80); // Min 80px
 
-                      const left = `calc(${startPositionPercent}% + 2px)`; // Position based on start time
-                      const width = `${widthPx}px`; // Width based on duration
+                      const left = `${leftPx}px`;
+                      const width = `${widthPx}px`;
 
                       return (
                         <div
@@ -330,11 +336,11 @@ export function GanttView({
                             width: width,
                             minWidth: "80px",
                           }}
-                          title={`${appointment.service_order || appointment.name} (${startTime} - ${endTime})`}
+                          title={`${appointment.service_type || appointment.service_order || appointment.name} (${startTime} - ${endTime})`}
                           onClick={() => onAppointmentClick?.(appointment)}
                         >
                           <div className="font-medium truncate text-[11px] leading-tight">
-                            {appointment.service_order || appointment.name}
+                            {appointment.service_type || appointment.service_order || appointment.name}
                           </div>
                           <div className="text-[10px] opacity-90 mt-0.5">
                             {startTime} - {endTime}
