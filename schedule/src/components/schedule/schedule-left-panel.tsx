@@ -316,6 +316,25 @@ export function ScheduleLeftPanel({
                       ${isSelected ? "bg-primary/5 border-primary" : "hover:bg-muted/50"}
                     `}
                     onClick={() => handleAppointmentClick(appointment)}
+                    draggable
+                    onDragStart={(e) => {
+                      // Package minimal data for drop target: id, duration, current start
+                      const start = appointment.scheduled_start_datetime
+                        ? new Date(appointment.scheduled_start_datetime).toISOString()
+                        : null;
+                      const end = appointment.scheduled_finish_datetime
+                        ? new Date(appointment.scheduled_finish_datetime).toISOString()
+                        : null;
+                      const durationMin = start && end ? Math.max(0, Math.round((new Date(end).getTime() - new Date(start).getTime()) / 60000)) : 60;
+                      e.dataTransfer.setData(
+                        "application/json",
+                        JSON.stringify({
+                          type: "appointment",
+                          id: appointment.name,
+                          durationMinutes: durationMin,
+                        })
+                      );
+                    }}
                   >
                     <div className="flex items-start gap-3">
                       <Checkbox

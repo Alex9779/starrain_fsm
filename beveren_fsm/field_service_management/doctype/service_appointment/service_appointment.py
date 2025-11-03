@@ -67,6 +67,7 @@ class ServiceAppointment(Document):
 			self_tech_ids = {d.service_technician for d in self.service_technicians}
 			first = None
 			first_overlap_techs = []
+
 			for cand in conflicting:
 				cand_doc = frappe.get_doc("Service Appointment", cand.name)
 				cand_tech_ids = {d.service_technician for d in cand_doc.get("service_technicians")}
@@ -91,6 +92,7 @@ class ServiceAppointment(Document):
 				end=first.scheduled_finish_datetime,
 				techs=tech_list,
 			)
+
 			frappe.throw(msg)
 			return msg
 		overlapping_appointments = frappe.get_all("Service Appointment", filters=filters)

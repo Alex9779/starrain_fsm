@@ -204,8 +204,9 @@ export async function bulkAssignTechnicians(
       };
 
       const msg = parseFrappeErrorMessage(text);
+
       const normalized = msg.toLowerCase().includes("overlap")
-        ? "There is an overlap with another appointment. Please adjust the scheduled dates or technicians."
+        ? msg
         : msg || "Failed to assign technicians";
       throw new Error(normalized);
     }

@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { Button } from "../ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Appointment } from "../../pages/schedule/types";
-import { fetchTechnicians } from "../../hooks/use-appointments";
+import { fetchTechnicians, reallocateAppointment } from "../../hooks/use-appointments";
+import { toast } from "../ui/use-toast";
 import { format, startOfDay } from "date-fns";
 import { cn } from "../../lib/utils";
 
@@ -144,6 +145,62 @@ export function GanttView({
     }
   };
 
+  const timelineRef = useRef<HTMLDivElement>(null);
+
+  const hourColumnWidth = 80; // keep in sync with rendering
+
+  const toFrappeDateTime = (date: Date) => {
+    const pad = (n: number) => String(n).padStart(2, "0");
+    const y = date.getFullYear();
+    const m = pad(date.getMonth() + 1);
+    const d = pad(date.getDate());
+    const hh = pad(date.getHours());
+    const mm = pad(date.getMinutes());
+    return `${y}-${m}-${d} ${hh}:${mm}:00`;
+  };
+
+  const handleDropOnTech = async (e: React.DragEvent, tech: Technician) => {
+    try {
+      e.preventDefault();
+      const raw = e.dataTransfer.getData("application/json");
+      if (!raw) return;
+      const data = JSON.parse(raw);
+      if (data.type !== "appointment" || !data.id) return;
+
+      // Compute start time from pointer position within timeline grid
+      const timeline = timelineRef.current;
+      if (!timeline) return;
+      const rect = timeline.getBoundingClientRect();
+      const x = e.clientX - rect.left; // px from left of timeline
+      const hoursFromVisibleStart = x / hourColumnWidth;
+      const minutesFromVisibleStart = Math.max(0, Math.round(hoursFromVisibleStart * 60));
+      const absoluteMinutes = visibleStartHour * 60 + minutesFromVisibleStart;
+
+      // Snap to nearest 15 minutes
+      const snappedMinutes = Math.round(absoluteMinutes / 15) * 15;
+      const start = new Date(selectedDate);
+      start.setHours(0, 0, 0, 0);
+      start.setMinutes(snappedMinutes);
+
+      const duration = Number(data.durationMinutes) || 60;
+      const finish = new Date(start.getTime() + duration * 60000);
+
+      await reallocateAppointment({
+        name: data.id,
+        scheduled_start_datetime: toFrappeDateTime(start),
+        scheduled_finish_datetime: toFrappeDateTime(finish),
+        service_technicians: [{ service_technician: tech.name, full_name: tech.full_name }],
+        reschedule: true,
+      });
+      toast({ title: "Reassigned", description: `Appointment moved to ${tech.full_name}` });
+      // simple refresh
+      window.location.reload();
+    } catch (err) {
+      const message = (err as Error)?.message || "Failed to reassign appointment";
+      toast({ title: "Schedule Conflict", description: message, variant: message.toLowerCase().includes("overlap") ? "warning" : "destructive" });
+    }
+  };
+
   return (
     <div className="flex flex-col h-full bg-background">
       {/* Gantt Content */}
@@ -179,7 +236,9 @@ export function GanttView({
           </div>
 
           {/* Timeline Grid */}
-          <div className="flex-1 relative">
+          <div className="flex-1 relative" ref={timelineRef}
+            onDragOver={(e) => e.preventDefault()}
+          >
             {/* Time Column Headers with Scroll Arrows */}
             <div className="sticky top-0 bg-card border-b border-border z-20 flex relative items-center h-[40px]">
               {/* Left Arrow Button */}
@@ -230,6 +289,8 @@ export function GanttView({
                     key={tech.name}
                     className="relative border-b-2 border-border"
                     style={{ height: `${TECHNICIAN_ROW_HEIGHT}px` }}
+                    onDragOver={(e) => e.preventDefault()}
+                    onDrop={(e) => handleDropOnTech(e, tech)}
                   >
                     {/* Hour Grid Lines - Scaled to fit row height */}
                     <div className="absolute inset-0">
@@ -307,14 +368,8 @@ export function GanttView({
                       // Vertical position - center the appointment bar in the technician row
                       const top = (TECHNICIAN_ROW_HEIGHT - 40) / 2; // Center 40px bar in 60px row
 
-                      // Fixed small height - independent of time duration
-                      const height = 40;
 
-                      // Each hour is 80px wide, so we calculate based on that
-                      const hourColumnWidth = 80;
 
-                      // If start is before visible range, left will be negative (will be clipped naturally)
-                      const leftPx = (adjustedStartMinutes / 60) * hourColumnWidth;
 
                       const height = 40; // Fixed height in pixels (2 units)
 
