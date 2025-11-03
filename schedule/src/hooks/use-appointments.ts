@@ -155,6 +155,7 @@ export async function bulkAssignTechnicians(
   technicianIds: string[]
 ): Promise<void> {
   try {
+
     //eslint-disable-next-line @typescript-eslint/no-explicit-any
     const csrfToken = (window as any).csrf_token;
     const payload = {

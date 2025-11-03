@@ -93,6 +93,14 @@ class ServiceAppointment(Document):
 			)
 			frappe.throw(msg)
 			return msg
+		overlapping_appointments = frappe.get_all("Service Appointment", filters=filters)
+		overlapping_appointments = [d.name for d in overlapping_appointments if d.name != self.name]
+		if overlapping_appointments:
+			print("\n\n\n OVERLAP ERROR\n\n", overlapping_appointments, "\n\n")
+			error_message = _("There is an overlap with another appointment")
+			print("\n\n\n OVERLAP ERROR\n\n", error_message, "\n\n")
+			frappe.throw(error_message)
+			return error_message  # Return for consistency
 
 	def set_scheduled_status(self):
 		if self.scheduled_start_datetime and self.scheduled_finish_datetime:
