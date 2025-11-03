@@ -133,3 +133,110 @@ def update_appointment_from_api(
 
 	appointment.save()
 	return appointment.name
+
+
+@frappe.whitelist()
+def bulk_remove_technicians(appointment_ids=None):
+	"""Remove all technicians from the given Service Appointments.
+
+	Args:
+		appointment_ids (list|str): List of Service Appointment names or a JSON string list
+	"""
+
+	# Extract from form_dict if not provided directly
+	if appointment_ids is None:
+		appointment_ids = frappe.form_dict.get("appointment_ids")
+
+	# Accept both JSON string and list
+	if isinstance(appointment_ids, str):
+		try:
+			appointment_ids = frappe.parse_json(appointment_ids)
+		except Exception:
+			pass
+
+	if not isinstance(appointment_ids, list | tuple) or not appointment_ids:
+		raise frappe.ValidationError("No appointment IDs provided")
+
+	updated = []
+	for name in appointment_ids:
+		appointment = frappe.get_doc("Service Appointment", name)
+		# Clear technicians
+		appointment.service_technicians = []
+		appointment.save()
+		updated.append(name)
+
+	return {"updated": updated}
+
+
+@frappe.whitelist()
+def bulk_assign_technicians(appointment_ids=None, technician_ids=None):
+	"""Assign technicians to the given Service Appointments (replaces existing).
+
+	Args:
+		appointment_ids (list|str): List of Service Appointment names or JSON string list
+		technician_ids (list|str): List of Service Technician names or JSON string list
+	"""
+	# Extract from form_dict if not provided directly
+	if appointment_ids is None:
+		appointment_ids = frappe.form_dict.get("appointment_ids")
+	if technician_ids is None:
+		technician_ids = frappe.form_dict.get("technician_ids")
+
+	# Normalize inputs
+	if isinstance(appointment_ids, str):
+		try:
+			appointment_ids = frappe.parse_json(appointment_ids)
+		except Exception:
+			pass
+	if isinstance(technician_ids, str):
+		try:
+			technician_ids = frappe.parse_json(technician_ids)
+		except Exception:
+			pass
+
+	if not isinstance(appointment_ids, list | tuple) or not appointment_ids:
+		raise frappe.ValidationError("No appointment IDs provided")
+
+	if not isinstance(appointment_ids, list | tuple) or not appointment_ids:
+		raise frappe.ValidationError("No appointment IDs provided")
+
+	# Fetch technicians and map to full_name
+	tech_docs = frappe.get_all(
+		"Service Technician",
+		filters={"name": ["in", technician_ids]},
+		fields=["name", "full_name"],
+		limit_page_length=0,
+	)
+	tech_map = {t["name"]: t for t in tech_docs}
+
+	updated = []
+	for name in appointment_ids:
+		try:
+			appointment = frappe.get_doc("Service Appointment", name)
+			# Replace technicians
+			appointment.service_technicians = []
+			for tech_id in technician_ids:
+				tech = tech_map.get(tech_id)
+				if not tech:
+					continue
+				appointment.append(
+					"service_technicians",
+					{
+						"service_technician": tech["name"],
+						"full_name": tech.get("full_name"),
+					},
+				)
+			appointment.save()
+			updated.append(name)
+		except Exception as e:
+			# Immediately return on first failure (e.g., overlap)
+			frappe.local.response["http_status_code"] = 417
+			return {
+				"updated": updated,
+				"error": {
+					"appointment": name,
+					"message": str(e),
+				},
+			}
+
+	return {"updated": updated}

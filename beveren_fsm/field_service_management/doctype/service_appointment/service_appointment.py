@@ -56,14 +56,43 @@ class ServiceAppointment(Document):
 			["scheduled_finish_datetime", ">", self.scheduled_start_datetime],
 		]
 
-		overlapping_appointments = frappe.get_all("Service Appointment", filters=filters)
-		overlapping_appointments = [d.name for d in overlapping_appointments if d.name != self.name]
-		if overlapping_appointments:
-			print("\n\n\n OVERLAP ERROR\n\n", overlapping_appointments, "\n\n")
-			error_message = _("There is an overlap with another appointment")
-			print("\n\n\n OVERLAP ERROR\n\n", error_message, "\n\n")
-			frappe.throw(error_message)
-			return error_message  # Return for consistency
+		overlapping_basic = frappe.get_all(
+			"Service Appointment",
+			filters=filters,
+			fields=["name", "scheduled_start_datetime", "scheduled_finish_datetime"],
+		)
+		conflicting = [d for d in overlapping_basic if d.name != self.name]
+		if conflicting:
+			# Build a more specific error mentioning the first conflicting appointment and overlapping technicians
+			self_tech_ids = {d.service_technician for d in self.service_technicians}
+			first = None
+			first_overlap_techs = []
+			for cand in conflicting:
+				cand_doc = frappe.get_doc("Service Appointment", cand.name)
+				cand_tech_ids = {d.service_technician for d in cand_doc.get("service_technicians")}
+				common = list(self_tech_ids.intersection(cand_tech_ids))
+				if common:
+					first = cand
+					# Map tech ids to full names where possible
+					id_to_name = {
+						d.service_technician: getattr(d, "full_name", d.service_technician)
+						for d in cand_doc.get("service_technicians")
+					}
+					first_overlap_techs = [id_to_name.get(tid, tid) for tid in common]
+					break
+			# Fallback: if we didn't find intersecting technicians (shouldn't happen), still throw a basic error
+			if not first:
+				frappe.throw(_("There is an overlap with another appointment"))
+				return
+			tech_list = ", ".join(first_overlap_techs) if first_overlap_techs else _("assigned technicians")
+			msg = _("Overlap with appointment {apt} ({start} - {end}) for technician(s): {techs}").format(
+				apt=first.name,
+				start=first.scheduled_start_datetime,
+				end=first.scheduled_finish_datetime,
+				techs=tech_list,
+			)
+			frappe.throw(msg)
+			return msg
 
 	def set_scheduled_status(self):
 		if self.scheduled_start_datetime and self.scheduled_finish_datetime:

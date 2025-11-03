@@ -21,6 +21,7 @@ import {
 import { Checkbox } from "../ui/checkbox";
 import { ScrollArea } from "../ui/scroll-area";
 import { useToast } from "../ui/use-toast";
+import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 
 interface MassActionsDropdownProps {
   selectedAppointmentIds: string[];
@@ -37,6 +38,7 @@ export function MassActionsDropdown({
   //eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [technicians, setTechnicians] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
+  const [assignError, setAssignError] = useState<string | null>(null);
   const { toast } = useToast();
 
   const loadTechnicians = async () => {
@@ -57,10 +59,12 @@ export function MassActionsDropdown({
 
   const handleAssignClick = () => {
     loadTechnicians();
+    setAssignError(null);
     setAssignDialogOpen(true);
   };
 
   const handleAssign = async () => {
+    setAssignError(null);
     if (selectedTechnicians.size === 0) {
       toast({
         title: "Error",
@@ -82,12 +86,9 @@ export function MassActionsDropdown({
       setAssignDialogOpen(false);
       setSelectedTechnicians(new Set());
       onComplete();
-    } catch {
-      toast({
-        title: "Error",
-        description: "Failed to assign technicians",
-        variant: "destructive",
-      });
+    } catch (e) {
+      const message = (e as Error).message || "Failed to assign technicians";
+      setAssignError(message);
     }
   };
 
@@ -138,6 +139,12 @@ export function MassActionsDropdown({
               Select technicians to assign to {selectedAppointmentIds.length} appointment(s)
             </DialogDescription>
           </DialogHeader>
+          {assignError && (
+            <Alert variant="destructive">
+              <AlertTitle>Assignment Failed</AlertTitle>
+              <AlertDescription>{assignError}</AlertDescription>
+            </Alert>
+          )}
           <ScrollArea className="max-h-[300px]">
             <div className="space-y-2 p-2">
               {loading ? (

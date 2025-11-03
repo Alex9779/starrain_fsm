@@ -155,7 +155,7 @@ export async function bulkAssignTechnicians(
   technicianIds: string[]
 ): Promise<void> {
   try {
-        //eslint-disable-next-line @typescript-eslint/no-explicit-any
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
     const csrfToken = (window as any).csrf_token;
     const payload = {
       appointment_ids: appointmentIds,
@@ -177,7 +177,36 @@ export async function bulkAssignTechnicians(
     );
 
     if (!response.ok) {
-      throw new Error("Failed to assign technicians");
+      const text = await response.text();
+
+      const parseFrappeErrorMessage = (raw: string): string => {
+        try {
+          const data = JSON.parse(raw);
+          if (data.error && data.error.message) return data.error.message;
+          if (Array.isArray(data.errors) && data.errors[0]?.message) return data.errors[0].message;
+          if (data._server_messages) {
+            const msgs = typeof data._server_messages === "string" ? JSON.parse(data._server_messages) : data._server_messages;
+            if (Array.isArray(msgs) && msgs[0]) {
+              try {
+                const first = JSON.parse(msgs[0]);
+                if (first.message) return first.message;
+              } catch {
+                // ignore JSON parse errors
+              }
+            }
+          }
+          if (data.exception) return data.exception;
+        } catch {
+          // ignore JSON parse errors
+        }
+        return raw;
+      };
+
+      const msg = parseFrappeErrorMessage(text);
+      const normalized = msg.toLowerCase().includes("overlap")
+        ? "There is an overlap with another appointment. Please adjust the scheduled dates or technicians."
+        : msg || "Failed to assign technicians";
+      throw new Error(normalized);
     }
   } catch (error) {
     console.error("Error assigning technicians:", error);
@@ -192,7 +221,7 @@ export async function bulkRemoveTechnicians(appointmentIds: string[]): Promise<v
     const payload = {
       appointment_ids: appointmentIds,
     };
-
+    console.log("Removing technicians with payload:", payload);
     const response = await fetch(
       "/api/method/beveren_fsm.field_service_management.api.schedule.bulk_remove_technicians",
       {
@@ -212,6 +241,114 @@ export async function bulkRemoveTechnicians(appointmentIds: string[]): Promise<v
     }
   } catch (error) {
     console.error("Error removing technicians:", error);
+    throw error;
+  }
+}
+
+export interface ReallocateTechnicianInput {
+  service_technician: string;
+  full_name: string;
+}
+
+export async function reallocateAppointment(params: {
+  name: string;
+  scheduled_start_datetime: string;
+  scheduled_finish_datetime: string;
+  service_technicians: ReallocateTechnicianInput[];
+  reschedule?: boolean;
+}): Promise<string> {
+  try {
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const csrfToken = (window as any).csrf_token;
+
+    // Fetch the appointment to get its items (required by the API)
+    const appointment = await fetchAppointment(params.name);
+
+    // Extract items from the appointment
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const items = (appointment as any).items || [];
+
+    const payload = {
+      name: params.name,
+      scheduled_start_datetime: params.scheduled_start_datetime,
+      scheduled_finish_datetime: params.scheduled_finish_datetime,
+      service_technicians: params.service_technicians,
+      items: items,
+      changed_status: null,
+      reschedule: params.reschedule ?? true,
+      edit_item_list: false,
+      edit_technician_list: true,
+    };
+
+    const response = await fetch(
+      "/api/method/beveren_fsm.field_service_management.api.schedule.update_appointment_from_api",
+      {
+        method: "POST",
+        headers: {
+          "X-Frappe-CSRF-Token": csrfToken,
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+        credentials: "include",
+      }
+    );
+
+    if (!response.ok) {
+      const text = await response.text();
+      try {
+        // Try to parse the error response
+        const errorData = JSON.parse(text);
+
+        // Check for overlap validation error in exception message
+        if (errorData.exception && errorData.exception.includes("overlap")) {
+          throw new Error("There is an overlap with another appointment. Please adjust the scheduled dates or technicians.");
+        }
+
+        // Check for server messages (Frappe format: array of JSON strings)
+        if (errorData._server_messages) {
+          let serverMessages: string[];
+          // _server_messages might be a string representation of an array, or already an array
+          if (typeof errorData._server_messages === "string") {
+            serverMessages = JSON.parse(errorData._server_messages);
+          } else {
+            serverMessages = errorData._server_messages;
+          }
+
+          if (serverMessages.length > 0) {
+            // Each element is a JSON string, parse it
+            const messageObj = JSON.parse(serverMessages[0]);
+            const messageText = messageObj.message || messageObj.title || "";
+
+            // Check if it's an overlap error
+            if (messageText.toLowerCase().includes("overlap")) {
+              throw new Error("There is an overlap with another appointment. Please adjust the scheduled dates or technicians.");
+            }
+
+            throw new Error(messageText || "Validation error occurred. Please check the details.");
+          }
+        }
+
+        // Fallback to exception message or generic error
+        throw new Error(errorData.exception || `Failed to reallocate appointment: ${text}`);
+      } catch (parseError) {
+        // If parsing fails, check if the text itself contains overlap message
+        if (text.toLowerCase().includes("overlap")) {
+          throw new Error("There is an overlap with another appointment. Please adjust the scheduled dates or technicians.");
+        }
+        // If it's already an Error, rethrow it
+        if (parseError instanceof Error) {
+          throw parseError;
+        }
+        throw new Error(`Failed to reallocate appointment: ${text}`);
+      }
+    }
+
+    const result = await response.json();
+    // Frappe usually returns message with doc name
+    return result.message;
+  } catch (error) {
+    console.error("Error reallocating appointment:", error);
     throw error;
   }
 }
