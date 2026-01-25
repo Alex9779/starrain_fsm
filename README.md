@@ -8,7 +8,7 @@
 </div>
 
 <div align="center">
-  <p><strong>An ERPNExt Field Service Management App for Service Businesses</strong></p>
+  <p><strong>An ERPNext Field Service Management App for Service Businesses</strong></p>
   <img src="./docs/screenshots/FSM_Hero_Image.png" alt="Hero Image" width="100%" />
   <p>
     <a href="https://beverensoftware.com/">Website</a> •
