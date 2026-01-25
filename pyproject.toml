@@ -3,7 +3,7 @@ name = "beveren_fsm"
 authors = [
     { name = "Beveren Software", email = "info@beverensoftware.com"}
 ]
-description = "Beveren Software's Field Service Management App"
+description = "Beveren Field Service Management"
 requires-python = ">=3.10"
 readme = "README.md"
 dynamic = ["version"]
