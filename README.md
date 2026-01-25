@@ -1,7 +1,14 @@
-# Beveren FSM (Field Service Management)
+<div align="center" markdown="1">
+
+<!-- <img src=".github/klik-logo.svg" alt="KLiK PoS logo" width="80"/> -->
+<h1>Beveren FSM (Field Service Management)</h1>
+
+[![CI](https://github.com/Beveren-Software-Inc/beveren_fsm/actions/workflows/ci.yaml/badge.svg?branch=develop)](https://github.com/Beveren-Software-Inc/beveren_fsm/actions/workflows/ci.yaml) <br>
+
+</div>
 
 <div align="center">
-  <p><strong>Modern Field Service Management for Service Businesses</strong></p>
+  <p><strong>An ERPNExt Field Service Management App for Service Businesses</strong></p>
   <img src="./docs/screenshots/FSM_Hero_Image.png" alt="Hero Image" width="100%" />
   <p>
     <a href="https://beverensoftware.com/">Website</a> •
