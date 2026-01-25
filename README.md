@@ -5,7 +5,8 @@
   <img src="./docs/screenshots/FSM_Hero_Image.png" alt="Hero Image" width="100%" />
   <p>
     <a href="https://beverensoftware.com/">Website</a> •
-    <a href="https://github.com/Beveren-Software-Inc/beveren_fsm">GitHub</a>
+    <a href="https://github.com/Beveren-Software-Inc/beveren_fsm">GitHub</a>  •
+    <a href="https://www.linkedin.com/company/beveren-software">LinkedIn</a>
   </p>
 </div>
 
@@ -48,6 +49,28 @@ Once the job is completed, the Service Order is closed and invoices can be gener
 Service Request → Service Quotation (Optional) → Service Order → 
 Service Appointments → Work Execution → Invoice
 ```
+
+## Screenshots
+
+### Service Request Management
+<img src="./docs/screenshots/Service_Request.png" alt="Service Request" width="100%" />
+
+Create and track service requests from customers with all essential details.
+
+### Service Order Processing
+<img src="./docs/screenshots/Service_Order.png" alt="Service Order" width="100%" />
+
+Centralized service order management for tracking and executing work.
+
+### Service Appointments & Scheduling
+<img src="./docs/screenshots/Service_Appointment.png" alt="Service Appointment" width="100%" />
+
+Schedule and assign appointments to technicians with real-time updates.
+
+### Dispatch Schedule View
+<img src="./docs/screenshots/PilotView-Schedule.png" alt="Dispatch Schedule" width="100%" />
+
+Visual dispatch board for efficient technician and job assignment.
 
 ## Key Features
 
@@ -180,8 +203,3 @@ For questions or support, please reach out:
   </a>
   <p><sub>Built with ❤️ by Beveren Software</sub></p>
 </div>
-
-For questions or support, contact the team at info@beverensoftware.com
-.
-
-<div align="center"> <a href="https://beverensoftware.com" target="_blank"> <img src="./docs/screenshots/beveren-logo.png" alt="Beveren Software" height="28"/> </a> </div>
