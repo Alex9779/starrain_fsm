@@ -1,4 +1,4 @@
-# Beveren FSM
+# Beveren FSM (Field Service Management)
 
 <div align="center">
   <p><strong>Modern Field Service Management for Service Businesses</strong></p>
