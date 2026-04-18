@@ -7,22 +7,21 @@
  "engine": "InnoDB",
  "field_order": [
   "section_break_ky2r",
+  "customer",
   "title",
-  "naming_series",
   "status",
   "service_quotation",
   "service_request",
   "type",
-  "customer",
-  "service_area",
-  "column_break_llgp",
-  "posting_date",
-  "due_date",
-  "column_break_ralr",
   "priority",
+  "service_area",
   "company",
   "amended_from",
   "product_location",
+  "column_break_llgp",
+  "naming_series",
+  "posting_date",
+  "due_date",
   "accounting_dimensions_section",
   "cost_center",
   "column_break_ekul",
@@ -115,10 +114,6 @@
   },
   {
    "fieldname": "column_break_llgp",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "column_break_ralr",
    "fieldtype": "Column Break"
   },
   {

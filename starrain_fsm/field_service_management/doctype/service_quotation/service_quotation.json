@@ -7,19 +7,18 @@
  "engine": "InnoDB",
  "field_order": [
   "overview",
-  "naming_series",
   "quotation_to",
   "party_name",
   "service_request",
-  "status",
   "customer_group",
-  "column_break_kzwu",
-  "posting_date",
-  "due_date",
-  "column_break_cazs",
   "company",
   "type",
   "priority",
+  "column_break_kzwu",
+  "naming_series",
+  "status",
+  "posting_date",
+  "due_date",
   "accounting_dimensions_section",
   "cost_center",
   "column_break_digf",
@@ -259,8 +258,7 @@
   },
   {
    "fieldname": "overview",
-   "fieldtype": "Section Break",
-   "label": "Overview"
+   "fieldtype": "Section Break"
   },
   {
    "default": "Today",
@@ -303,10 +301,6 @@
   },
   {
    "fieldname": "column_break_digf",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "column_break_cazs",
    "fieldtype": "Column Break"
   },
   {
