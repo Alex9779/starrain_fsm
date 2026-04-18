@@ -34,9 +34,6 @@ frappe.ui.form.on("Service Order", {
     // set posting date
     frm.trigger("set_posting_date");
 
-    if (frm.doc.customer_address) frm.trigger("customer_address");
-    if (frm.doc.customer_contact) frm.trigger("customer_contact");
-
     // Hide either quotation or request
     if (frm.doc.service_request) frm.toggle_enable("service_quotation", 0);
     if (frm.doc.service_quotation) frm.toggle_enable("service_request", 0);
@@ -175,13 +172,10 @@ frappe.ui.form.on("Service Order", {
           "starrain_fsm.field_service_management.utils.address_util.get_address_details",
         args: { customer_address: frm.doc.customer_address },
         callback: function (r) {
-          frm.fields_dict["address_details"].$wrapper.html(
-            r.message["details"] || ""
-          );
+          let details = r.message["details"] || "";
+          frm.set_value("address_details", details);
         },
       });
-    } else {
-      frm.fields_dict["address_details"].$wrapper.html("");
     }
   },
   customer_contact: function (frm) {
@@ -191,13 +185,10 @@ frappe.ui.form.on("Service Order", {
           "starrain_fsm.field_service_management.utils.address_util.get_contact_details",
         args: { customer_contact: frm.doc.customer_contact },
         callback: function (r) {
-          frm.fields_dict["contact_details"].$wrapper.html(
-            r.message["details"] || ""
-          );
+          let details = r.message["details"] || "";
+          frm.set_value("contact_details", details);
         },
       });
-    } else {
-      frm.fields_dict["contact_details"].$wrapper.html("");
     }
   },
   set_enable_invoicing: (frm) => {

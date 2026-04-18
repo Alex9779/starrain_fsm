@@ -70,9 +70,6 @@ frappe.ui.form.on("Service Quotation", {
 
     frm.trigger("set_label");
     frm.trigger("set_dynamic_field_label");
-
-    if (frm.doc.service_address) frm.trigger("service_address");
-    if (frm.doc.customer_contact) frm.trigger("customer_contact");
     frm.trigger("disable_creating_order");
 
     frm.set_query("project", function (doc) {
@@ -163,13 +160,10 @@ frappe.ui.form.on("Service Quotation", {
           "starrain_fsm.field_service_management.utils.address_util.get_address_details",
         args: { customer_address: frm.doc.service_address },
         callback: function (r) {
-          frm.fields_dict["address_details"].$wrapper.html(
-            r.message["details"] || ""
-          );
+          let details = r.message["details"] || "";
+          frm.set_value("address_details", details);
         },
       });
-    } else {
-      frm.fields_dict["address_details"].$wrapper.html("");
     }
   },
 
@@ -180,13 +174,10 @@ frappe.ui.form.on("Service Quotation", {
           "starrain_fsm.field_service_management.utils.address_util.get_contact_details",
         args: { customer_contact: frm.doc.customer_contact },
         callback: function (r) {
-          frm.fields_dict["contact_details"].$wrapper.html(
-            r.message["details"] || ""
-          );
+          let details = r.message["details"] || "";
+          frm.set_value("contact_details", details);
         },
       });
-    } else {
-      frm.fields_dict["contact_details"].$wrapper.html("");
     }
   },
 
