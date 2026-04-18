@@ -42,14 +42,14 @@
   "amc_contract",
   "warranty_expiry_date",
   "amc_expiry_date",
-  "reference_section",
-  "company",
   "accounting_dimensions_section",
   "cost_center",
   "column_break_digf",
   "project",
   "currency_and_price_list_section",
   "currency",
+  "reference_section",
+  "company",
   "amended_from"
  ],
  "fields": [
@@ -145,6 +145,7 @@
    "reqd": 1
   },
   {
+   "collapsible": 1,
    "fieldname": "reference_section",
    "fieldtype": "Section Break",
    "label": "Reference"
