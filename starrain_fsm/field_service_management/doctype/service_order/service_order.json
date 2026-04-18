@@ -559,7 +559,7 @@
    "in_standard_filter": 1,
    "label": "Status",
    "no_copy": 1,
-   "options": "Open\nScheduled\nDispatched\nIn Progress\nReview\nCompleted",
+   "options": "Open\nScheduled\nCompleted",
    "read_only": 1,
    "reqd": 1
   },
@@ -829,10 +829,6 @@
   {
    "link_doctype": "Service Appointment",
    "link_fieldname": "service_order"
-  },
-  {
-   "link_doctype": "Sales Invoice",
-   "link_fieldname": "custom_reference_service_document"
   }
  ],
  "modified": "2025-11-18 05:19:20.178318",

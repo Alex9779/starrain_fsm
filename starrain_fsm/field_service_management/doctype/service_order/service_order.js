@@ -56,49 +56,18 @@ frappe.ui.form.on("Service Order", {
     // 	);
     // }
     if (frm.doc.docstatus === 1 && !frm.is_dirty()) {
-      const isReviewOrCompleted =
-        frm.doc.status === "Review" || frm.doc.status === "Completed";
+      if (frm.doc.status === "Open") {
+        frm.add_custom_button(
+          __("Service Appointment"),
+          () => {
+            frm.trigger("make_appointment_from_order");
+          },
+          __("Create")
+        );
+        cur_frm.page.set_inner_btn_group_as_primary(__("Create"));
+      }
 
-      if (!isReviewOrCompleted) {
-        if (
-          ![
-            "Scheduled",
-            "Dispatched",
-            "In Progress",
-            "Completed",
-            "Review",
-          ].includes(frm.doc.status)
-        ) {
-          frm.add_custom_button(
-            __("Service Appointment"),
-            () => {
-              frm.trigger("make_appointment_from_order");
-            },
-            __("Create")
-          );
-        }
-        // Enable Invoice on Condition
-        let items = frm.doc.items || [];
-        let non_invoiced_items = [];
-        items.forEach((item) => {
-          let invoiced_qty = item.invoiced_qty || 0;
-          let remaining_qty = item.qty - invoiced_qty;
-          if (remaining_qty > 0) {
-            non_invoiced_items.push({
-              item_code: item.item_code,
-            });
-          }
-        });
-
-        if (non_invoiced_items.length) {
-          frm.add_custom_button(
-            __("Sales Invoice"),
-            () => {
-              frm.trigger("create_service_invoice");
-            },
-            __("Create")
-          );
-        }
+      if (frm.doc.status === "Review") {
         frm.add_custom_button(
           __("Stock Entry"),
           () => frm.events.create_stock_entry(frm),
@@ -125,22 +94,14 @@ frappe.ui.form.on("Service Order", {
           __("Create")
         );
         cur_frm.page.set_inner_btn_group_as_primary(__("Create"));
-      } else {
-        frm.clear_custom_buttons();
+      }
+
+      if (!["Open", "Review"].includes(frm.doc.status)) {
         frm.trigger("hide_create_icon_buttons");
       }
     }
 
-    // Complete Button
-    if (frm.doc.status == "Review") {
-      frm
-        .add_custom_button(__("Complete"), function () {
-          frm.set_value("status", "Completed");
-          frm.save("Update");
-        })
-        .removeClass("btn-default")
-        .addClass("btn-success");
-    }
+    
   },
   set_posting_date: function (frm) {
     if (!frm.doc.posting_date) {
@@ -214,20 +175,13 @@ frappe.ui.form.on("Service Order", {
   },
   disable_items_edit: (frm) => {
     //when appointment is going on, if anything add in appointment
-    let is_not_allowed = ![
-      "Scheduled",
-      "Dispatched",
-      "In Progress",
-      "Completed",
-    ].includes(frm.doc.status);
+    let is_not_allowed = !["Scheduled", "Completed"].includes(frm.doc.status);
     frm.toggle_enable(["items", "service_technicians"], is_not_allowed);
   },
   disable_creating_appointment: (frm) => {
-    if (
-      !["Scheduled", "Dispatched", "In Progress", "Completed"].includes(
-        frm.doc.status
-      )
-    ) {
+    if (![
+      "Scheduled", "Completed",
+    ].includes(frm.doc.status)) {
       return;
     } else {
       $('.open-notification[title="Open Service Appointment"]').hide();
