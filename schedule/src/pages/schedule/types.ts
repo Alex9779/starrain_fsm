@@ -2,7 +2,7 @@ export interface Appointment {
   name: string;
   service_order?: string;
   customer?: string;
-  status: "Open" | "Scheduled" | "Dispatched" | "Completed" | "Cancelled";
+  status: "Open" | "Scheduled" | "Completed" | "Cancelled";
   scheduled_start_datetime: string;
   scheduled_finish_datetime: string;
   posting_date: string;
@@ -39,7 +39,6 @@ export type AppointmentStatus =
   | "On Hold"
   | "Closed"
   | "Scheduled"
-  | "Dispatched"
   | "Completed"
   | "Cancelled";
 

@@ -25,30 +25,6 @@ frappe.ui.form.on("Service Appointment", {
     if (frm.doc.docstatus == 1 && !frm.is_dirty()) {
       if (frm.doc.status == "Scheduled") {
         frm
-          .add_custom_button(__("Dispatch"), function () {
-            frappe.confirm(
-              "Are you sure you want to Dispatch?",
-              () => {
-                frm.set_value("status", "Dispatched");
-                frm.save("Update");
-              },
-              () => {
-                return;
-              }
-            );
-          })
-          .removeClass("btn-default")
-          .addClass("btn-primary");
-        // Reschedule
-        frm
-          .add_custom_button(__("Reschedule"), function () {
-            frm.trigger("schedule_appointment");
-          })
-          .removeClass("btn-default")
-          .addClass("btn-info");
-      }
-      if (frm.doc.status == "Dispatched") {
-        frm
           .add_custom_button(__("Complete"), function () {
             if (!frm.doc.actual_start_datetime) {
               frappe.throw(__("Please enter the Actual Start Datetime before completing."));
@@ -68,6 +44,12 @@ frappe.ui.form.on("Service Appointment", {
           })
           .removeClass("btn-default")
           .addClass("btn-success");
+        frm
+          .add_custom_button(__("Reschedule"), function () {
+            frm.trigger("schedule_appointment");
+          })
+          .removeClass("btn-default")
+          .addClass("btn-info");
       }
       // ENable Invoice on COndition
       let items = frm.doc.items || [];
@@ -116,7 +98,7 @@ frappe.ui.form.on("Service Appointment", {
     }
   },
   handle_actual_time_fields: (frm) => {
-    const editable = frm.doc.docstatus == 1 && frm.doc.status == "Dispatched";
+    const editable = frm.doc.docstatus == 1 && frm.doc.status == "Scheduled";
     frm.set_df_property("actual_start_datetime", "read_only", editable ? 0 : 1);
     frm.set_df_property("actual_finish_datetime", "read_only", editable ? 0 : 1);
   },
@@ -321,126 +303,6 @@ frappe.ui.form.on("Service Appointment", {
       prompt_title,
       primary_action_label
     );
-  },
-  dispatch_appointment: (frm) => {
-    const dialog = new frappe.ui.Dialog({
-      title: __("Dispatch"),
-      fields: [
-        {
-          fieldname: "service_technician_item",
-          fieldtype: "Table",
-          label: __("Service Crew"),
-          options: "Service Technician Item",
-          in_place_edit: true,
-          reqd: 1,
-          fields: [
-            {
-              fieldname: "service_technician",
-              label: __("Service Technician"),
-              fieldtype: "Link",
-              options: "Service Technician",
-              reqd: 1,
-              in_list_view: 1,
-            },
-          ],
-        },
-      ],
-      primary_action: (values) => {
-        // Dispatch
-        let items = values.service_technician_item;
-        let new_row = frm.add_child("service_technicians");
-        items.forEach((item) => {
-          frappe.model.set_value(
-            new_row.doctype,
-            new_row.name,
-            "service_technician",
-            item.service_technician
-          );
-        });
-        frm.set_value("status", "Dispatched");
-        frm.save("Update");
-
-        dialog.hide();
-      },
-      primary_action_label: __("Dispatch"),
-    });
-    dialog.show();
-  },
-  schedule_and_dispatch_appointment: (frm) => {
-    const dialog = new frappe.ui.Dialog({
-      title: __("Schedule and Dispatch"),
-      fields: [
-        {
-          label: "Scheduled Start Datetime",
-          fieldname: "scheduled_start_datetime",
-          fieldtype: "Datetime",
-        },
-        {
-          fieldname: "column_break_appointment",
-          fieldtype: "Column Break",
-        },
-        {
-          label: "Scheduled Finish Datetime",
-          fieldname: "scheduled_finish_datetime",
-          fieldtype: "Datetime",
-        },
-        {
-          fieldname: "section_break_appointment",
-          fieldtype: "Section Break",
-        },
-        {
-          fieldname: "service_technician_item",
-          fieldtype: "Table",
-          label: __("Service Crew"),
-          options: "Service Technician Item",
-          in_place_edit: true,
-          reqd: 1,
-          fields: [
-            {
-              fieldname: "service_technician",
-              label: __("Service Technician"),
-              fieldtype: "Link",
-              options: "Service Technician",
-              reqd: 1,
-              in_list_view: 1,
-            },
-          ],
-        },
-      ],
-      primary_action: (values) => {
-        // Schedule
-        frappe.model.set_value(
-          frm.doctype,
-          frm.docname,
-          "scheduled_start_datetime",
-          values.scheduled_start_datetime
-        );
-        frappe.model.set_value(
-          frm.doctype,
-          frm.docname,
-          "scheduled_finish_datetime",
-          values.scheduled_finish_datetime
-        );
-
-        // Dispatch
-        let items = values.service_technician_item;
-        let new_row = frm.add_child("service_technicians");
-        items.forEach((item) => {
-          frappe.model.set_value(
-            new_row.doctype,
-            new_row.name,
-            "service_technician",
-            item.service_technician
-          );
-        });
-        frm.set_value("status", "Dispatched");
-        frm.save("Update");
-
-        dialog.hide();
-      },
-      primary_action_label: __("Schedule and Dispatch"),
-    });
-    dialog.show();
   },
 });
 

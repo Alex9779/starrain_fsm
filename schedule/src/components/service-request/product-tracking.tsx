@@ -16,7 +16,6 @@ import { format } from "date-fns";
 const STATUS_OPTIONS = [
   "Open",
   "Scheduled",
-  "Dispatched",
   "Review",
   "Completed",
   "Cancelled",
@@ -25,7 +24,6 @@ const STATUS_OPTIONS = [
 const statusColors: Record<string, string> = {
   Open: "bg-cyan-100 text-cyan-800 border-cyan-300",
   Scheduled: "bg-blue-100 text-blue-800 border-blue-300",
-  Dispatched: "bg-purple-100 text-purple-800 border-purple-300",
   Review: "bg-pink-100 text-pink-800 border-pink-300",
   Completed: "bg-green-100 text-green-800 border-green-300",
   Cancelled: "bg-gray-200 text-gray-700 border-gray-300",

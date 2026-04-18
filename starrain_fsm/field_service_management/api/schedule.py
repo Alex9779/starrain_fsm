@@ -75,9 +75,6 @@ def create_appointment_from_api(
 	appointment.insert()
 	appointment.submit()
 
-	if changed_status == "Dispatched":
-		appointment.status = "Dispatched"
-		appointment.save()
 	return appointment.name
 
 

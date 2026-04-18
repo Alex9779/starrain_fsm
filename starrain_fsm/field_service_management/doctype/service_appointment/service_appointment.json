@@ -100,7 +100,7 @@
    "in_standard_filter": 1,
    "label": "Status",
    "no_copy": 1,
-   "options": "Open\nScheduled\nDispatched\nCompleted\nCancelled",
+   "options": "Open\nScheduled\nCompleted\nCancelled",
    "read_only": 1
   },
   {

@@ -124,7 +124,6 @@ class ServiceAppointment(Document):
 		order = frappe.get_doc("Service Order", self.service_order)
 		status_mapping = {
 			"Scheduled": "Scheduled",
-			"Dispatched": "Dispatched",
 			"Completed": "Review",
 		}
 
