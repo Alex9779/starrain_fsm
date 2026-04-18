@@ -4,7 +4,7 @@ frappe.views.calendar["Service Appointment"] = {
 		end: "scheduled_finish_datetime",
 		id: "name",
 		title: "name",
-		allDay: "allDay",
+		allDay: 0,
 		progress: "per_billed",
 		secondary_status: "status",
 	},
