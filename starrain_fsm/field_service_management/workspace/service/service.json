@@ -88,20 +88,6 @@
  "sequence_id": 14.0,
  "shortcuts": [
   {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Calendar and Grid",
-   "type": "URL",
-   "url": "/schedule"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Schedule",
-   "type": "URL",
-   "url": "/schedule"
-  },
-  {
    "color": "Green",
    "doc_view": "List",
    "label": "Service Quotation",
