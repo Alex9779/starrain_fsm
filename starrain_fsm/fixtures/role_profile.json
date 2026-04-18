@@ -13,5 +13,20 @@
     "role": "Service Manager"
    }
   ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2026-04-18 00:00:00.000000",
+  "name": "Service Technician",
+  "role_profile": "Service Technician",
+  "roles": [
+   {
+    "parent": "Service Technician",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Service Technician"
+   }
+  ]
  }
 ]
