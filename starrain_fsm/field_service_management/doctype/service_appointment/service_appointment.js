@@ -51,29 +51,31 @@ frappe.ui.form.on("Service Appointment", {
           .removeClass("btn-default")
           .addClass("btn-info");
       }
-      // ENable Invoice on COndition
-      let items = frm.doc.items || [];
-      let non_invoiced_items = [];
-      items.forEach((item) => {
-        let invoiced_qty = item.invoiced_qty || 0;
-        let remaining_qty = item.qty - invoiced_qty;
-        if (remaining_qty > 0) {
-          non_invoiced_items.push({
-            item_code: item.item_code,
-          });
-        }
-      });
+      // Enable Invoice only for Completed appointments
+      if (frm.doc.status == "Completed") {
+        let items = frm.doc.items || [];
+        let non_invoiced_items = [];
+        items.forEach((item) => {
+          let invoiced_qty = item.invoiced_qty || 0;
+          let remaining_qty = item.qty - invoiced_qty;
+          if (remaining_qty > 0) {
+            non_invoiced_items.push({
+              item_code: item.item_code,
+            });
+          }
+        });
 
-      if (non_invoiced_items.length) {
-        frm.add_custom_button(
-          __("Sales Invoice"),
-          () => {
-            frm.trigger("invoice_appointment");
-          },
-          __("Create")
-        );
+        if (non_invoiced_items.length) {
+          frm.add_custom_button(
+            __("Sales Invoice"),
+            () => {
+              frm.trigger("invoice_appointment");
+            },
+            __("Create")
+          );
+        }
+        cur_frm.page.set_inner_btn_group_as_primary(__("Create"));
       }
-      cur_frm.page.set_inner_btn_group_as_primary(__("Create"));
     }
   },
   disable_invoicing: (frm) => {
