@@ -36,7 +36,8 @@
    "fieldname": "naming_series",
    "fieldtype": "Select",
    "label": "Series",
-   "options": "REP-SHIP-.YYYY.-"
+   "options": "REP-SHIP-.YYYY.-",
+   "reqd": 1
   },
   {
    "fieldname": "supplier",

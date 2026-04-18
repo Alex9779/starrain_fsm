@@ -178,7 +178,8 @@
    "fieldtype": "Select",
    "label": "Series",
    "no_copy": 1,
-   "options": "REP-ORD-.YYYY.-"
+   "options": "REP-ORD-.YYYY.-",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
