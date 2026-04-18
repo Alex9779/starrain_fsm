@@ -11,6 +11,12 @@
     "parentfield": "roles",
     "parenttype": "Role Profile",
     "role": "Service Manager"
+   },
+   {
+    "parent": "Service Manager",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Sales User"
    }
   ]
  },
@@ -26,6 +32,12 @@
     "parentfield": "roles",
     "parenttype": "Role Profile",
     "role": "Service Technician"
+   },
+   {
+    "parent": "Service Technician",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Sales User"
    }
   ]
  }
