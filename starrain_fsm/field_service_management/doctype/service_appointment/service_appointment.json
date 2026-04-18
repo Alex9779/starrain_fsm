@@ -20,6 +20,12 @@
   "column_break_bczc",
   "actual_start_datetime",
   "actual_finish_datetime",
+  "contact_details_section",
+  "customer_address",
+  "address_details",
+  "column_break_contact",
+  "customer_contact",
+  "contact_details",
   "services_section",
   "items",
   "amended_from",
@@ -42,6 +48,39 @@
    "label": "Customer",
    "options": "Customer",
    "reqd": 1
+  },
+  {
+   "fieldname": "contact_details_section",
+   "fieldtype": "Section Break",
+   "label": "Service Address & Contact"
+  },
+  {
+   "fieldname": "customer_address",
+   "fieldtype": "Link",
+   "label": "Service Address",
+   "options": "Address"
+  },
+  {
+   "fieldname": "address_details",
+   "fieldtype": "Small Text",
+   "label": "Address Details",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_contact",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customer_contact",
+   "fieldtype": "Link",
+   "label": "Contact Person",
+   "options": "Contact"
+  },
+  {
+   "fieldname": "contact_details",
+   "fieldtype": "Small Text",
+   "label": "Contact Details",
+   "read_only": 1
   },
   {
    "fieldname": "services_section",

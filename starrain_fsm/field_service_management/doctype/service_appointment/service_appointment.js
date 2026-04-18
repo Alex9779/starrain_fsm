@@ -109,6 +109,46 @@ frappe.ui.form.on("Service Appointment", {
     let is_not_allowed = !["Completed"].includes(frm.doc.status);
     frm.toggle_enable(["items", "service_technicians"], is_not_allowed);
   },
+  customer: function (frm) {
+    frm.set_query("customer_address", function (doc) {
+      return {
+        filters: { link_doctype: "Customer", link_name: doc.customer },
+      };
+    });
+    frm.set_query("customer_contact", function (doc) {
+      return {
+        filters: { link_doctype: "Customer", link_name: doc.customer },
+      };
+    });
+  },
+  customer_address: function (frm) {
+    if (frm.doc.customer_address) {
+      frappe.call({
+        method:
+          "starrain_fsm.field_service_management.utils.address_util.get_address_details",
+        args: { customer_address: frm.doc.customer_address },
+        callback: function (r) {
+          frm.set_value("address_details", r.message["details"] || "");
+        },
+      });
+    } else {
+      frm.set_value("address_details", "");
+    }
+  },
+  customer_contact: function (frm) {
+    if (frm.doc.customer_contact) {
+      frappe.call({
+        method:
+          "starrain_fsm.field_service_management.utils.address_util.get_contact_details",
+        args: { customer_contact: frm.doc.customer_contact },
+        callback: function (r) {
+          frm.set_value("contact_details", r.message["details"] || "");
+        },
+      });
+    } else {
+      frm.set_value("contact_details", "");
+    }
+  },
   disable_schedule_fields_on_submit: (frm) => {
     if (frm.doc.docstatus == 1) {
       frm.set_df_property("scheduled_start_datetime", "read_only", 1);

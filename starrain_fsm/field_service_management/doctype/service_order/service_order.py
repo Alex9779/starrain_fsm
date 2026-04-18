@@ -118,6 +118,10 @@ class ServiceOrder(Document):
 		appointment = frappe.new_doc("Service Appointment")
 		appointment.service_order = service_order
 		appointment.customer = self.customer
+		appointment.customer_address = self.customer_address
+		appointment.address_details = self.address_details
+		appointment.customer_contact = self.customer_contact
+		appointment.contact_details = self.contact_details
 
 		for item in self.items:
 			appointment.append(
