@@ -184,8 +184,7 @@
   },
   {
    "fieldname": "overview",
-   "fieldtype": "Section Break",
-   "label": "Overview"
+   "fieldtype": "Section Break"
   },
   {
    "default": "Today",
