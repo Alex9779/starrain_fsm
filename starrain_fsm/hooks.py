@@ -314,6 +314,4 @@ scheduler_events = {
 # }
 
 
-website_route_rules = [
-	{"from_route": "/schedule/<path:app_path>", "to_route": "schedule"},
-]
+website_route_rules = []
