@@ -220,9 +220,8 @@
   },
   {
    "fieldname": "address_details",
-   "fieldtype": "Small Text",
-   "label": "Address Details",
-   "read_only": 1
+   "fieldtype": "HTML",
+   "label": "Address Details"
   },
   {
    "fieldname": "customer_addresses_contacts_section",
@@ -230,11 +229,9 @@
    "label": "Service Address & Contact"
   },
   {
-   "fetch_from": "contact_person.lead_name",
    "fieldname": "contact_details",
-   "fieldtype": "Small Text",
-   "label": "Contact Details",
-   "read_only": 1
+   "fieldtype": "HTML",
+   "label": "Contact Details"
   },
   {
    "fieldname": "customer_contact",

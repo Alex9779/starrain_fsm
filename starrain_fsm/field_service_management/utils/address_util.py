@@ -11,17 +11,17 @@ def get_address_details(customer_address):
 		for field in ["address_line1", "address_line2", "city", "county", "state", "country", "pincode"]
 		if address_doc.get(field)
 	]
-	address = ", ".join(address_parts)
-	email_id = address_doc.email_id
-	phone = address_doc.phone
 
-	details = address
-	if email_id:
-		details += "\nEmail: " + email_id
-	if phone:
-		details += "\nPhone: " + phone
+	lines = []
+	if address_parts:
+		lines.append("<p>" + "<br>".join(address_parts) + "</p>")
+	if address_doc.phone:
+		lines.append(f"<p><b>Phone:</b> {address_doc.phone}</p>")
+	if address_doc.email_id:
+		lines.append(f"<p><b>Email:</b> {address_doc.email_id}</p>")
 
-	return {"details": details}
+	html = '<div class="address-box">' + "".join(lines) + "</div>"
+	return {"details": html}
 
 
 @frappe.whitelist()
@@ -33,18 +33,16 @@ def get_contact_details(customer_contact):
 		if contact_doc.get(field)
 	]
 	full_name = " ".join(full_name_parts)
-	email_id = contact_doc.email_id
-	mobile_no = contact_doc.mobile_no
-	phone = contact_doc.phone
 
-	details = ""
+	lines = []
 	if full_name:
-		details += "Name: " + full_name
-	if email_id:
-		details += ("\n" if details else "") + "Email: " + email_id
-	if mobile_no:
-		details += ("\n" if details else "") + "Mobile: " + mobile_no
-	if phone:
-		details += ("\n" if details else "") + "Phone: " + phone
+		lines.append(f"<p><b>{full_name}</b></p>")
+	if contact_doc.mobile_no:
+		lines.append(f"<p><b>Mobile:</b> {contact_doc.mobile_no}</p>")
+	if contact_doc.phone:
+		lines.append(f"<p><b>Phone:</b> {contact_doc.phone}</p>")
+	if contact_doc.email_id:
+		lines.append(f"<p><b>Email:</b> {contact_doc.email_id}</p>")
 
-	return {"details": details}
+	html = '<div class="address-box">' + "".join(lines) + "</div>"
+	return {"details": html}
