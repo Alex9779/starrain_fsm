@@ -125,7 +125,6 @@ class ServiceAppointment(Document):
 		status_mapping = {
 			"Scheduled": "Scheduled",
 			"Dispatched": "Dispatched",
-			"In Progress": "In Progress",
 			"Completed": "Review",
 		}
 

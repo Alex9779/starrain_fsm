@@ -31,7 +31,6 @@ const getStatusColor = (status: string): string => {
     Open: "bg-blue-100 text-blue-800 border-blue-300",
     Scheduled: "bg-blue-100 text-blue-800 border-blue-300",
     Dispatched: "bg-orange-100 text-orange-800 border-orange-300",
-    "In Progress": "bg-orange-100 text-orange-800 border-orange-300",
     Completed: "bg-green-100 text-green-800 border-green-300",
     Cancelled: "bg-gray-100 text-gray-800 border-gray-300",
   };

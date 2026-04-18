@@ -20,6 +20,7 @@ frappe.ui.form.on("Service Appointment", {
     frm.trigger("disable_invoicing");
     frm.trigger("disable_items_and_techs_edit");
     frm.trigger("disable_schedule_fields_on_submit");
+    frm.trigger("handle_actual_time_fields");
 
     if (frm.doc.docstatus == 1 && !frm.is_dirty()) {
       if (frm.doc.status == "Scheduled") {
@@ -48,17 +49,22 @@ frappe.ui.form.on("Service Appointment", {
       }
       if (frm.doc.status == "Dispatched") {
         frm
-          .add_custom_button(__("Start Work"), function () {
-            frm.trigger("start_work");
-          })
-          .removeClass("btn-default")
-          .addClass("btn-info")
-          .addClass("text-white");
-      }
-      if (frm.doc.status == "In Progress") {
-        frm
           .add_custom_button(__("Complete"), function () {
-            frm.trigger("complete_work");
+            if (!frm.doc.actual_start_datetime) {
+              frappe.throw(__("Please enter the Actual Start Datetime before completing."));
+              return;
+            }
+            if (!frm.doc.actual_finish_datetime) {
+              frappe.throw(__("Please enter the Actual Finish Datetime before completing."));
+              return;
+            }
+            frappe.confirm(
+              __("Are you sure you want to complete this appointment?"),
+              () => {
+                frm.set_value("status", "Completed");
+                frm.save("Update");
+              }
+            );
           })
           .removeClass("btn-default")
           .addClass("btn-success");
@@ -108,6 +114,11 @@ frappe.ui.form.on("Service Appointment", {
       $('.open-notification[title="Open Sales Invoice"]').hide();
       $('.icon-btn[data-doctype="Sales Invoice"]').hide();
     }
+  },
+  handle_actual_time_fields: (frm) => {
+    const editable = frm.doc.docstatus == 1 && frm.doc.status == "Dispatched";
+    frm.set_df_property("actual_start_datetime", "read_only", editable ? 0 : 1);
+    frm.set_df_property("actual_finish_datetime", "read_only", editable ? 0 : 1);
   },
   disable_items_and_techs_edit: (frm) => {
     //when appointment is complete
@@ -431,147 +442,5 @@ frappe.ui.form.on("Service Appointment", {
     });
     dialog.show();
   },
-  start_work(frm) {
-    frm.events.prompt_movement(frm, {
-      title: __("Start Work"),
-      success_status: "In Progress",
-      success_callback: () => {
-        frm.set_value("actual_start_datetime", frappe.datetime.now_datetime());
-      },
-    });
-  },
-  complete_work(frm) {
-    frm.events.prompt_movement(frm, {
-      title: __("Complete Appointment"),
-      success_status: "Completed",
-      success_callback: () => {
-        frm.set_value("actual_finish_datetime", frappe.datetime.now_datetime());
-      },
-    });
-  },
-  prompt_movement(frm, config) {
-    if (!frm.doc.service_order) {
-      frappe.throw(
-        __(
-          "This appointment is not linked to a Service Order. Product movement cannot be recorded."
-        )
-      );
-    }
-
-    const dialog = new frappe.ui.Dialog({
-      title: config.title || __("Update Movement"),
-      fields: [
-        {
-          fieldname: "product_location",
-          fieldtype: "Link",
-          label: __("Product Location"),
-          options: "Product Location",
-          reqd: 1,
-        },
-        {
-          fieldname: "movement_date",
-          fieldtype: "Date",
-          label: __("Movement Date"),
-          default: frappe.datetime.get_today(),
-          reqd: 1,
-        },
-        {
-          fieldname: "notes",
-          fieldtype: "Small Text",
-          label: __("Notes"),
-        },
-      ],
-      primary_action_label: __("Confirm"),
-      primary_action(values) {
-        const productLocation =
-          values.product_location || values.movement_type || null;
-        if (!productLocation) {
-          frappe.msgprint(__("Please select a Product Location."));
-          return;
-        }
-
-        dialog.disable_primary_action();
-
-        frm.events
-          .record_product_movement_from_appointment(frm, {
-            ...values,
-            product_location: productLocation,
-          })
-          .then(() => {
-            if (typeof config.success_callback === "function") {
-              config.success_callback();
-            }
-            if (config.success_status) {
-              frm.set_value("status", config.success_status);
-            }
-            frm
-              .save("Update")
-              .then(() => {
-                frappe.show_alert(
-                  __("Appointment updated and product movement recorded.")
-                );
-              })
-              .catch(() => {
-                frappe.msgprint(
-                  __(
-                    "Appointment was updated locally, but saving failed. Please try again."
-                  )
-                );
-              });
-            dialog.hide();
-          })
-          .catch(() => {
-            dialog.enable_primary_action();
-          });
-      },
-      secondary_action_label: __("Cancel"),
-      secondary_action() {
-        dialog.hide();
-      },
-    });
-
-    dialog.show();
-  },
-  record_product_movement_from_appointment(frm, values) {
-    if (!frm.doc.service_order) {
-      frappe.msgprint(
-        __("Service Order link is missing. Cannot record product movement.")
-      );
-      return Promise.reject();
-    }
-
-    const productLocation =
-      values.product_location || values.movement_type || null;
-    if (!productLocation) {
-      frappe.msgprint(__("Product location is required to record movement."));
-      return Promise.reject();
-    }
-
-    const args = {
-      service_order: frm.doc.service_order,
-      product_location: productLocation,
-      movement_type: productLocation,
-      movement_date: values.movement_date,
-      linked_document_type: "Service Appointment",
-      linked_document: frm.doc.name,
-    };
-
-    return frappe
-      .call({
-        method:
-          "starrain_fsm.field_service_management.doctype.service_order.service_order.record_product_movement",
-        args,
-      })
-      .catch((error) => {
-        console.error(error);
-        frappe.msgprint({
-          title: __("Product Movement"),
-          indicator: "red",
-          message: __(
-            "Unable to record product movement. Please review the Service Request manually."
-          ),
-        });
-        throw error;
-      });
-  },
 });
+

@@ -81,7 +81,6 @@
    "reqd": 1
   },
   {
-   "depends_on": "eval:doc.actual_start_datetime",
    "fieldname": "column_break_bczc",
    "fieldtype": "Column Break",
    "label": "Actual Working Time"
@@ -101,7 +100,7 @@
    "in_standard_filter": 1,
    "label": "Status",
    "no_copy": 1,
-   "options": "Open\nScheduled\nDispatched\nIn Progress\nCompleted\nCancelled",
+   "options": "Open\nScheduled\nDispatched\nCompleted\nCancelled",
    "read_only": 1
   },
   {
@@ -138,8 +137,7 @@
    "allow_on_submit": 1,
    "fieldname": "actual_finish_datetime",
    "fieldtype": "Datetime",
-   "label": "Actual Finish Datetime",
-   "read_only": 1
+   "label": "Actual Finish Datetime"
   },
   {
    "fieldname": "scheduled_time_column",
@@ -150,8 +148,7 @@
    "allow_on_submit": 1,
    "fieldname": "actual_start_datetime",
    "fieldtype": "Datetime",
-   "label": "Actual Start Datetime",
-   "read_only": 1
+   "label": "Actual Start Datetime"
   },
   {
    "fieldname": "naming_series",
