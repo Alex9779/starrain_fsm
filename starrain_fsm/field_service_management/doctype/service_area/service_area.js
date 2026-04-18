@@ -105,7 +105,7 @@ function setup_location_autocomplete(frm) {
     // Use backend API to avoid connection/CORS issues
     frappe.call({
       method:
-        "beveren_fsm.field_service_management.api.geocoding.search_places",
+        "starrain_fsm.field_service_management.api.geocoding.search_places",
       args: {
         query: q,
         limit: 7,

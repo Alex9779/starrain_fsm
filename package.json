@@ -1,5 +1,5 @@
 {
-  "name": "beveren_fsm",
+  "name": "starrain_fsm",
   "version": "1.0.0",
   "description": "Beveren Field Service Management",
   "main": "index.js",

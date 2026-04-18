@@ -17,7 +17,7 @@ export default defineConfig({
 		}
 	},
 	build: {
-		outDir: '../beveren_fsm/public/schedule',
+		outDir: '../starrain_fsm/public/schedule',
 		emptyOutDir: true,
 		target: 'es2015',
 	},

@@ -23,7 +23,7 @@ export async function fetchAppointmentsWithFilter(
       params.append("status", status);
     }
 
-    const url = `/api/method/beveren_fsm.field_service_management.api.service_appointment.get_appointments?${params.toString()}`;
+    const url = `/api/method/starrain_fsm.field_service_management.api.service_appointment.get_appointments?${params.toString()}`;
 
     const headers = {
       Accept: "application/json",
@@ -65,7 +65,7 @@ export async function fetchAppointment(name: string): Promise<Appointment> {
   try {
         //eslint-disable-next-line @typescript-eslint/no-explicit-any
     const csrfToken = (window as any).csrf_token;
-    const url = `/api/method/beveren_fsm.field_service_management.api.service_appointment.get_appointment?name=${encodeURIComponent(name)}`;
+    const url = `/api/method/starrain_fsm.field_service_management.api.service_appointment.get_appointment?name=${encodeURIComponent(name)}`;
 
     const headers = {
       Accept: "application/json",
@@ -99,7 +99,7 @@ export async function fetchAppointmentStatuses(): Promise<string[]> {
   try {
         //eslint-disable-next-line @typescript-eslint/no-explicit-any
     const csrfToken = (window as any).csrf_token;
-    const url = `/api/method/beveren_fsm.field_service_management.api.service_appointment.get_appointment_statuses`;
+    const url = `/api/method/starrain_fsm.field_service_management.api.service_appointment.get_appointment_statuses`;
 
     const headers = {
       Accept: "application/json",
@@ -232,7 +232,7 @@ export async function fetchAvailableServiceOrders(): Promise<any[]> {
   //eslint-disable-next-line @typescript-eslint/no-explicit-any
   const csrfToken = (window as any).csrf_token;
   const resp = await fetch(
-    "/api/method/beveren_fsm.field_service_management.api.schedule.get_unassigned_service_orders",
+    "/api/method/starrain_fsm.field_service_management.api.schedule.get_unassigned_service_orders",
     {
       headers: {
         Accept: "application/json",
@@ -317,7 +317,7 @@ export async function createAppointment(params: {
   };
 
   const resp = await fetch(
-    "/api/method/beveren_fsm.field_service_management.api.schedule.create_appointment_from_api",
+    "/api/method/starrain_fsm.field_service_management.api.schedule.create_appointment_from_api",
     {
       method: "POST",
       headers: {
@@ -350,7 +350,7 @@ export async function fetchPaidInvoicesForAppointment(
     params.append("paid_only", "1");
 
     const resp = await fetch(
-      `/api/method/beveren_fsm.field_service_management.api.service_appointment.get_invoices_for_appointment?${params.toString()}`,
+      `/api/method/starrain_fsm.field_service_management.api.service_appointment.get_invoices_for_appointment?${params.toString()}`,
       {
         headers: {
           Accept: "application/json",
@@ -383,7 +383,7 @@ export async function bulkAssignTechnicians(
     };
 
     const response = await fetch(
-      "/api/method/beveren_fsm.field_service_management.api.schedule.bulk_assign_technicians",
+      "/api/method/starrain_fsm.field_service_management.api.schedule.bulk_assign_technicians",
       {
         method: "POST",
         headers: {
@@ -444,7 +444,7 @@ export async function bulkRemoveTechnicians(appointmentIds: string[]): Promise<v
     };
     console.log("Removing technicians with payload:", payload);
     const response = await fetch(
-      "/api/method/beveren_fsm.field_service_management.api.schedule.bulk_remove_technicians",
+      "/api/method/starrain_fsm.field_service_management.api.schedule.bulk_remove_technicians",
       {
         method: "POST",
         headers: {
@@ -502,7 +502,7 @@ export async function reallocateAppointment(params: {
     };
 
     const response = await fetch(
-      "/api/method/beveren_fsm.field_service_management.api.schedule.update_appointment_from_api",
+      "/api/method/starrain_fsm.field_service_management.api.schedule.update_appointment_from_api",
       {
         method: "POST",
         headers: {

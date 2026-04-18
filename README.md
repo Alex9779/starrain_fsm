@@ -3,7 +3,7 @@
 <!-- <img src=".github/klik-logo.svg" alt="KLiK PoS logo" width="80"/> -->
 <h1>Beveren FSM (Field Service Management)</h1>
 
-[![CI](https://github.com/Beveren-Software-Inc/beveren_fsm/actions/workflows/ci.yaml/badge.svg?branch=develop)](https://github.com/Beveren-Software-Inc/beveren_fsm/actions/workflows/ci.yaml) <br>
+[![CI](https://github.com/Beveren-Software-Inc/starrain_fsm/actions/workflows/ci.yaml/badge.svg?branch=develop)](https://github.com/Beveren-Software-Inc/starrain_fsm/actions/workflows/ci.yaml) <br>
 
 </div>
 
@@ -12,7 +12,7 @@
   <img src="./docs/screenshots/FSM_Hero_Image.png" alt="Hero Image" width="100%" />
   <p>
     <a href="https://beverensoftware.com/">Website</a> •
-    <a href="https://github.com/Beveren-Software-Inc/beveren_fsm">GitHub</a>  •
+    <a href="https://github.com/Beveren-Software-Inc/starrain_fsm">GitHub</a>  •
     <a href="https://www.linkedin.com/company/beveren-software">LinkedIn</a>
   </p>
 </div>
@@ -112,8 +112,8 @@ Try Beveren FSM on [Frappe Cloud](https://frappecloud.com) for hassle-free deplo
 
 ```bash
 cd $PATH_TO_YOUR_BENCH
-bench get-app https://github.com/Beveren-Software-Inc/beveren_fsm --branch develop
-bench install-app beveren_fsm
+bench get-app https://github.com/Beveren-Software-Inc/starrain_fsm --branch develop
+bench install-app starrain_fsm
 ```
 
 **Step 2: Start your Bench**
@@ -142,8 +142,8 @@ Open your browser and navigate to `http://your-site:8000`
 **1. Clone the repository:**
 
 ```bash
-git clone https://github.com/Beveren-Software-Inc/beveren_fsm_spa.git
-cd beveren_fsm_spa
+git clone https://github.com/Beveren-Software-Inc/starrain_fsm_spa.git
+cd starrain_fsm_spa
 ```
 
 **2. Install dependencies:**
@@ -190,7 +190,7 @@ We welcome contributions! Here's how to get started:
 This app uses **pre-commit** for code formatting and linting:
 
 ```bash
-cd apps/beveren_fsm
+cd apps/starrain_fsm
 pre-commit install
 ```
 
@@ -200,7 +200,7 @@ For questions or support, please reach out:
 
 - 📧 **Email**: [info@beverensoftware.com](mailto:info@beverensoftware.com)
 - 🌐 **Website**: [beverensoftware.com](https://beverensoftware.com)
-- 📚 **Documentation**: [GitHub Repo](https://github.com/Beveren-Software-Inc/beveren_fsm)
+- 📚 **Documentation**: [GitHub Repo](https://github.com/Beveren-Software-Inc/starrain_fsm)
 
 ---
 

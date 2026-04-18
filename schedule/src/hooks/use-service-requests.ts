@@ -36,7 +36,7 @@ export async function fetchServiceOrdersForTracking(
       params.append("limit_page_length", String(filters.limit));
     }
 
-    const url = `/api/method/beveren_fsm.field_service_management.api.service_order.get_service_orders_for_tracking?${
+    const url = `/api/method/starrain_fsm.field_service_management.api.service_order.get_service_orders_for_tracking?${
       params.toString()
     }`;
 

@@ -31,7 +31,7 @@ export function SettingsView({ onBack }: SettingsViewProps) {
         const csrfToken = (window as any).csrf_token;
 
         // Fetch user details from backend API
-        const response = await fetch(`/api/method/beveren_fsm.field_service_management.api.user.get_current_user`, {
+        const response = await fetch(`/api/method/starrain_fsm.field_service_management.api.user.get_current_user`, {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
@@ -121,7 +121,7 @@ export function SettingsView({ onBack }: SettingsViewProps) {
         const formData = new URLSearchParams();
         formData.append("language", language);
 
-        const response = await fetch(`/api/method/beveren_fsm.field_service_management.api.user.update_user_language`, {
+        const response = await fetch(`/api/method/starrain_fsm.field_service_management.api.user.update_user_language`, {
           method: "POST",
           headers: {
             Accept: "application/json",

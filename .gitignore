@@ -16,5 +16,5 @@ dist-ssr
 .venv
 .vscode
 
-beveren_fsm/public/schedule
-beveren_fsm/www/schedule.html
+starrain_fsm/public/schedule
+starrain_fsm/www/schedule.html

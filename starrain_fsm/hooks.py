@@ -1,4 +1,4 @@
-app_name = "beveren_fsm"
+app_name = "starrain_fsm"
 app_title = "Beveren Field Service Management"
 app_publisher = "Beveren Software"
 app_description = "Beveren Software's Field Service Management App"
@@ -13,11 +13,11 @@ app_license = "mit"
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [
 # 	{
-# 		"name": "beveren_fsm",
-# 		"logo": "/assets/beveren_fsm/logo.png",
+# 		"name": "starrain_fsm",
+# 		"logo": "/assets/starrain_fsm/logo.png",
 # 		"title": "Field Service Management",
-# 		"route": "/beveren_fsm",
-# 		"has_permission": "beveren_fsm.api.permission.has_app_permission"
+# 		"route": "/starrain_fsm",
+# 		"has_permission": "starrain_fsm.api.permission.has_app_permission"
 # 	}
 # ]
 
@@ -56,15 +56,15 @@ fixtures = [
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/beveren_fsm/css/beveren_fsm.css"
-# app_include_js = "/assets/beveren_fsm/js/beveren_fsm.js"
+# app_include_css = "/assets/starrain_fsm/css/starrain_fsm.css"
+# app_include_js = "/assets/starrain_fsm/js/starrain_fsm.js"
 
 # include js, css files in header of web template
-# web_include_css = "/assets/beveren_fsm/css/beveren_fsm.css"
-# web_include_js = "/assets/beveren_fsm/js/beveren_fsm.js"
+# web_include_css = "/assets/starrain_fsm/css/starrain_fsm.css"
+# web_include_js = "/assets/starrain_fsm/js/starrain_fsm.js"
 
 # include custom scss in every website theme (without file extension ".scss")
-# website_theme_scss = "beveren_fsm/public/scss/website"
+# website_theme_scss = "starrain_fsm/public/scss/website"
 
 # include js, css files in header of web form
 # webform_include_js = {"doctype": "public/js/doctype.js"}
@@ -84,7 +84,7 @@ fixtures = [
 # Svg Icons
 # ------------------
 # include app icons in desk
-# app_include_icons = "beveren_fsm/public/icons.svg"
+# app_include_icons = "starrain_fsm/public/icons.svg"
 
 # Home Pages
 # ----------
@@ -108,43 +108,43 @@ fixtures = [
 
 # add methods and filters to jinja environment
 # jinja = {
-# 	"methods": "beveren_fsm.utils.jinja_methods",
-# 	"filters": "beveren_fsm.utils.jinja_filters"
+# 	"methods": "starrain_fsm.utils.jinja_methods",
+# 	"filters": "starrain_fsm.utils.jinja_filters"
 # }
 
 # Installation
 # ------------
 
-# before_install = "beveren_fsm.install.before_install"
-# after_install = "beveren_fsm.install.after_install"
+# before_install = "starrain_fsm.install.before_install"
+# after_install = "starrain_fsm.install.after_install"
 
 # Uninstallation
 # ------------
 
-# before_uninstall = "beveren_fsm.uninstall.before_uninstall"
-# after_uninstall = "beveren_fsm.uninstall.after_uninstall"
+# before_uninstall = "starrain_fsm.uninstall.before_uninstall"
+# after_uninstall = "starrain_fsm.uninstall.after_uninstall"
 
 # Integration Setup
 # ------------------
 # To set up dependencies/integrations with other apps
 # Name of the app being installed is passed as an argument
 
-# before_app_install = "beveren_fsm.utils.before_app_install"
-# after_app_install = "beveren_fsm.utils.after_app_install"
+# before_app_install = "starrain_fsm.utils.before_app_install"
+# after_app_install = "starrain_fsm.utils.after_app_install"
 
 # Integration Cleanup
 # -------------------
 # To clean up dependencies/integrations with other apps
 # Name of the app being uninstalled is passed as an argument
 
-# before_app_uninstall = "beveren_fsm.utils.before_app_uninstall"
-# after_app_uninstall = "beveren_fsm.utils.after_app_uninstall"
+# before_app_uninstall = "starrain_fsm.utils.before_app_uninstall"
+# after_app_uninstall = "starrain_fsm.utils.after_app_uninstall"
 
 # Desk Notifications
 # ------------------
 # See frappe.core.notifications.get_notification_config
 
-# notification_config = "beveren_fsm.notifications.get_notification_config"
+# notification_config = "starrain_fsm.notifications.get_notification_config"
 
 # Permissions
 # -----------
@@ -180,37 +180,37 @@ fixtures = [
 doc_events = {
 	"Sales Invoice": {
 		"on_submit": [
-			"beveren_fsm.field_service_management.fsm_utils.update_invoice_status",
-			"beveren_fsm.field_service_management.fsm_utils.update_per_billed_status",
+			"starrain_fsm.field_service_management.fsm_utils.update_invoice_status",
+			"starrain_fsm.field_service_management.fsm_utils.update_per_billed_status",
 		],
 		"on_cancel": [
-			"beveren_fsm.field_service_management.fsm_utils.update_invoice_status",
-			"beveren_fsm.field_service_management.fsm_utils.update_per_billed_status",
+			"starrain_fsm.field_service_management.fsm_utils.update_invoice_status",
+			"starrain_fsm.field_service_management.fsm_utils.update_per_billed_status",
 		],
 	},
 	"Delivery Note": {
 		"on_submit": [
-			"beveren_fsm.field_service_management.doctype.service_order.service_order.update_product_movement_on_submit",
+			"starrain_fsm.field_service_management.doctype.service_order.service_order.update_product_movement_on_submit",
 		],
 	},
 	"Purchase Order": {
 		"on_submit": [
-			"beveren_fsm.field_service_management.doctype.service_order.service_order.update_product_movement_on_submit",
+			"starrain_fsm.field_service_management.doctype.service_order.service_order.update_product_movement_on_submit",
 		],
 	},
 	"Purchase Receipt": {
 		"on_submit": [
-			"beveren_fsm.field_service_management.doctype.service_order.service_order.update_product_movement_on_submit",
+			"starrain_fsm.field_service_management.doctype.service_order.service_order.update_product_movement_on_submit",
 		],
 	},
 	"Purchase Invoice": {
 		"on_submit": [
-			"beveren_fsm.field_service_management.doctype.service_order.service_order.update_product_movement_on_submit",
+			"starrain_fsm.field_service_management.doctype.service_order.service_order.update_product_movement_on_submit",
 		],
 	},
 	"Stock Entry": {
 		"on_submit": [
-			"beveren_fsm.field_service_management.doctype.service_order.service_order.update_product_movement_on_submit",
+			"starrain_fsm.field_service_management.doctype.service_order.service_order.update_product_movement_on_submit",
 		],
 	},
 }
@@ -220,40 +220,40 @@ doc_events = {
 
 scheduler_events = {
 	# 	"all": [
-	# 		"beveren_fsm.tasks.all"
+	# 		"starrain_fsm.tasks.all"
 	# 	],
 	# "daily": [
-	# 	"beveren_fsm.tasks.daily"
+	# 	"starrain_fsm.tasks.daily"
 	# ],
-	"daily": ["beveren_fsm.field_service_management.doctype.service_request.service_request.update_status"]
+	"daily": ["starrain_fsm.field_service_management.doctype.service_request.service_request.update_status"]
 	# 	"hourly": [
-	# 		"beveren_fsm.tasks.hourly"
+	# 		"starrain_fsm.tasks.hourly"
 	# 	],
 	# 	"weekly": [
-	# 		"beveren_fsm.tasks.weekly"
+	# 		"starrain_fsm.tasks.weekly"
 	# 	],
 	# 	"monthly": [
-	# 		"beveren_fsm.tasks.monthly"
+	# 		"starrain_fsm.tasks.monthly"
 	# 	],
 }
 
 # Testing
 # -------
 
-# before_tests = "beveren_fsm.install.before_tests"
+# before_tests = "starrain_fsm.install.before_tests"
 
 # Overriding Methods
 # ------------------------------
 #
 # override_whitelisted_methods = {
-# 	"frappe.desk.doctype.event.event.get_events": "beveren_fsm.event.get_events"
+# 	"frappe.desk.doctype.event.event.get_events": "starrain_fsm.event.get_events"
 # }
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
 # along with any modifications made in other Frappe apps
 # override_doctype_dashboards = {
-# 	"Task": "beveren_fsm.task.get_dashboard_data"
+# 	"Task": "starrain_fsm.task.get_dashboard_data"
 # }
 
 # exempt linked doctypes from being automatically cancelled
@@ -267,13 +267,13 @@ scheduler_events = {
 
 # Request Events
 # ----------------
-# before_request = ["beveren_fsm.utils.before_request"]
-# after_request = ["beveren_fsm.utils.after_request"]
+# before_request = ["starrain_fsm.utils.before_request"]
+# after_request = ["starrain_fsm.utils.after_request"]
 
 # Job Events
 # ----------
-# before_job = ["beveren_fsm.utils.before_job"]
-# after_job = ["beveren_fsm.utils.after_job"]
+# before_job = ["starrain_fsm.utils.before_job"]
+# after_job = ["starrain_fsm.utils.after_job"]
 
 # User Data Protection
 # --------------------
@@ -303,7 +303,7 @@ scheduler_events = {
 # --------------------------------
 
 # auth_hooks = [
-# 	"beveren_fsm.auth.validate"
+# 	"starrain_fsm.auth.validate"
 # ]
 
 # Automatically update python controller files with type annotations for this app.

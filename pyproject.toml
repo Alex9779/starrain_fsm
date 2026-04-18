@@ -1,5 +1,5 @@
 [project]
-name = "beveren_fsm"
+name = "starrain_fsm"
 authors = [
     { name = "Beveren Software", email = "info@beverensoftware.com"}
 ]

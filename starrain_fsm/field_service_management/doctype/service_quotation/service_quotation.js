@@ -2,7 +2,7 @@
 // License: GNU General Public License v3. See license.txt
 
 // Ensure this namespace exists
-frappe.provide("beveren_fsm.field_service_management");
+frappe.provide("starrain_fsm.field_service_management");
 
 cur_frm.cscript.tax_table = "Sales Taxes and Charges";
 
@@ -123,7 +123,7 @@ frappe.ui.form.on("Service Quotation", {
   make_order_from_quote: (frm) => {
     frappe.model.open_mapped_doc({
       method:
-        "beveren_fsm.field_service_management.doctype.service_order.service_order.make_order_from_quote",
+        "starrain_fsm.field_service_management.doctype.service_order.service_order.make_order_from_quote",
       frm: frm,
     });
   },
@@ -157,7 +157,7 @@ frappe.ui.form.on("Service Quotation", {
     if (frm.doc.service_address) {
       frappe.call({
         method:
-          "beveren_fsm.field_service_management.utils.address_util.get_address_details",
+          "starrain_fsm.field_service_management.utils.address_util.get_address_details",
         args: { customer_address: frm.doc.service_address },
         callback: function (r) {
           let details = r.message["details"] || "";
@@ -171,7 +171,7 @@ frappe.ui.form.on("Service Quotation", {
     if (frm.doc.customer_contact) {
       frappe.call({
         method:
-          "beveren_fsm.field_service_management.utils.address_util.get_contact_details",
+          "starrain_fsm.field_service_management.utils.address_util.get_contact_details",
         args: { customer_contact: frm.doc.customer_contact },
         callback: function (r) {
           let details = r.message["details"] || "";
@@ -205,7 +205,7 @@ frappe.ui.form.on("Service Quotation", {
   },
 });
 
-beveren_fsm.field_service_management.ServiceQuotationController = class ServiceQuotationController extends (
+starrain_fsm.field_service_management.ServiceQuotationController = class ServiceQuotationController extends (
   erpnext.selling.SellingController
 ) {
   onload(doc, dt, dn) {
@@ -286,7 +286,7 @@ beveren_fsm.field_service_management.ServiceQuotationController = class ServiceQ
 };
 
 cur_frm.script_manager.make(
-  beveren_fsm.field_service_management.ServiceQuotationController
+  starrain_fsm.field_service_management.ServiceQuotationController
 );
 
 frappe.ui.form.on(

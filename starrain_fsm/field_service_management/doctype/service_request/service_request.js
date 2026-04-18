@@ -101,7 +101,7 @@ frappe.ui.form.on("Service Request", {
     if (frm.doc.customer_address) {
       frappe.call({
         method:
-          "beveren_fsm.field_service_management.utils.address_util.get_address_details",
+          "starrain_fsm.field_service_management.utils.address_util.get_address_details",
         args: { customer_address: frm.doc.customer_address },
         callback: function (r) {
           let details = r.message["details"] || "";
@@ -114,7 +114,7 @@ frappe.ui.form.on("Service Request", {
     if (frm.doc.customer_contact) {
       frappe.call({
         method:
-          "beveren_fsm.field_service_management.utils.address_util.get_contact_details",
+          "starrain_fsm.field_service_management.utils.address_util.get_contact_details",
         args: { customer_contact: frm.doc.customer_contact },
         callback: function (r) {
           let details = r.message["details"] || "";
@@ -143,14 +143,14 @@ frappe.ui.form.on("Service Request", {
   make_service_quotation: (frm) => {
     frappe.model.open_mapped_doc({
       method:
-        "beveren_fsm.field_service_management.doctype.service_quotation.service_quotation.make_service_quotation",
+        "starrain_fsm.field_service_management.doctype.service_quotation.service_quotation.make_service_quotation",
       frm: frm,
     });
   },
   make_order_from_request: (frm) => {
     frappe.model.open_mapped_doc({
       method:
-        "beveren_fsm.field_service_management.doctype.service_order.service_order.make_order_from_request",
+        "starrain_fsm.field_service_management.doctype.service_order.service_order.make_order_from_request",
       frm: frm,
       args: {
         source_doctype: frm.doc.doctype,

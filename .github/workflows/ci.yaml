@@ -8,7 +8,7 @@ on:
   pull_request:
 
 concurrency:
-  group: main-beveren_fsm-${{ github.event.number }}
+  group: main-starrain_fsm-${{ github.event.number }}
   cancel-in-progress: true
 
 jobs:
@@ -110,11 +110,11 @@ jobs:
         working-directory: /home/runner/frappe-bench
         run: |
           bench get-app erpnext
-          bench get-app beveren_fsm $GITHUB_WORKSPACE
+          bench get-app starrain_fsm $GITHUB_WORKSPACE
           bench setup requirements --dev
           bench new-site --db-root-password root --admin-password admin test_site
           bench --site test_site install-app erpnext
-          bench --site test_site install-app beveren_fsm
+          bench --site test_site install-app starrain_fsm
           bench build
         env:
           CI: 'Yes'
@@ -123,6 +123,6 @@ jobs:
         working-directory: /home/runner/frappe-bench
         run: |
           bench --site test_site set-config allow_tests true
-          bench --site test_site run-tests --app beveren_fsm || echo "No tests found"
+          bench --site test_site run-tests --app starrain_fsm || echo "No tests found"
         env:
           TYPE: server

@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/assets/beveren_fsm/schedule/ && yarn copy-html-entry",
+    "build": "vite build --base=/assets/starrain_fsm/schedule/ && yarn copy-html-entry",
     "lint": "eslint .",
     "preview": "vite preview",
-    "copy-html-entry": "cp ../beveren_fsm/public/schedule/index.html ../beveren_fsm/www/schedule.html"
+    "copy-html-entry": "cp ../starrain_fsm/public/schedule/index.html ../starrain_fsm/www/schedule.html"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

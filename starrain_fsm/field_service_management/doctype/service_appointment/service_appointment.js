@@ -225,7 +225,7 @@ frappe.ui.form.on("Service Appointment", {
         tableField.grid.refresh();
         frappe.call({
           method:
-            "beveren_fsm.field_service_management.fsm_utils.create_service_invoice",
+            "starrain_fsm.field_service_management.fsm_utils.create_service_invoice",
           args: {
             doctype: frm.doc.doctype,
             docname: frm.doc.name,
@@ -559,7 +559,7 @@ frappe.ui.form.on("Service Appointment", {
     return frappe
       .call({
         method:
-          "beveren_fsm.field_service_management.doctype.service_order.service_order.record_product_movement",
+          "starrain_fsm.field_service_management.doctype.service_order.service_order.record_product_movement",
         args,
       })
       .catch((error) => {

@@ -78,7 +78,7 @@
     
     function create_appointment(selected_date, service_order, scheduledStartDatetime, scheduledFinishDatetime, technician, dispatch, callback) {
         frappe.call({
-            method: "beveren_fsm.field_service_management.page.dispatch.dispatch.create_service_appointment",
+            method: "starrain_fsm.field_service_management.page.dispatch.dispatch.create_service_appointment",
             args: {
                 selected_date,
                 service_order,
@@ -99,7 +99,7 @@
 
     function update_appointment(appointment_id, selected_date, service_order, scheduledStartDatetime, scheduledFinishDatetime, technician) {
         frappe.call({
-            method: "beveren_fsm.field_service_management.page.dispatch.dispatch.update_service_appointment",
+            method: "starrain_fsm.field_service_management.page.dispatch.dispatch.update_service_appointment",
             args: {
                 appointment_id,
                 selected_date,
@@ -600,7 +600,7 @@
     function loadSchedule(selected_date) {
         currentSelectedDate = selected_date;
         frappe.call({
-            method: "beveren_fsm.field_service_management.page.dispatch.dispatch.get_schedule_data",
+            method: "starrain_fsm.field_service_management.page.dispatch.dispatch.get_schedule_data",
             args: { selected_date: selected_date, all_dates: false },
             no_cache: 1,
             callback: function(r) {

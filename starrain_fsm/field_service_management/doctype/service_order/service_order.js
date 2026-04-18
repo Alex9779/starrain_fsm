@@ -1,5 +1,5 @@
 // Ensure this namespace exists
-frappe.provide("beveren_fsm.field_service_management");
+frappe.provide("starrain_fsm.field_service_management");
 
 cur_frm.cscript.tax_table = "Sales Taxes and Charges";
 erpnext.accounts.taxes.setup_tax_validations(
@@ -169,7 +169,7 @@ frappe.ui.form.on("Service Order", {
     if (frm.doc.customer_address) {
       frappe.call({
         method:
-          "beveren_fsm.field_service_management.utils.address_util.get_address_details",
+          "starrain_fsm.field_service_management.utils.address_util.get_address_details",
         args: { customer_address: frm.doc.customer_address },
         callback: function (r) {
           let details = r.message["details"] || "";
@@ -182,7 +182,7 @@ frappe.ui.form.on("Service Order", {
     if (frm.doc.customer_contact) {
       frappe.call({
         method:
-          "beveren_fsm.field_service_management.utils.address_util.get_contact_details",
+          "starrain_fsm.field_service_management.utils.address_util.get_contact_details",
         args: { customer_contact: frm.doc.customer_contact },
         callback: function (r) {
           let details = r.message["details"] || "";
@@ -253,7 +253,7 @@ frappe.ui.form.on("Service Order", {
   make_appointment_from_order: (frm) => {
     frappe.model.open_mapped_doc({
       method:
-        "beveren_fsm.field_service_management.doctype.service_appointment.service_appointment.make_appointment_from_order",
+        "starrain_fsm.field_service_management.doctype.service_appointment.service_appointment.make_appointment_from_order",
       frm: frm,
     });
   },
@@ -361,7 +361,7 @@ frappe.ui.form.on("Service Order", {
         tableField.grid.refresh();
         frappe.call({
           method:
-            "beveren_fsm.field_service_management.fsm_utils.create_service_invoice",
+            "starrain_fsm.field_service_management.fsm_utils.create_service_invoice",
           args: {
             doctype: frm.doc.doctype,
             docname: frm.doc.name,
@@ -405,35 +405,35 @@ frappe.ui.form.on("Service Order", {
     frm.events.open_logistics_dialog(frm, {
       doc_type: "Stock Entry",
       method:
-        "beveren_fsm.field_service_management.doctype.service_order.service_order.make_stock_entry",
+        "starrain_fsm.field_service_management.doctype.service_order.service_order.make_stock_entry",
     });
   },
   create_delivery_note(frm) {
     frm.events.open_logistics_dialog(frm, {
       doc_type: "Delivery Note",
       method:
-        "beveren_fsm.field_service_management.doctype.service_order.service_order.make_delivery_note",
+        "starrain_fsm.field_service_management.doctype.service_order.service_order.make_delivery_note",
     });
   },
   create_purchase_receipt(frm) {
     frm.events.open_logistics_dialog(frm, {
       doc_type: "Purchase Receipt",
       method:
-        "beveren_fsm.field_service_management.doctype.service_order.service_order.make_purchase_receipt",
+        "starrain_fsm.field_service_management.doctype.service_order.service_order.make_purchase_receipt",
     });
   },
   create_purchase_order(frm) {
     frm.events.open_logistics_dialog(frm, {
       doc_type: "Purchase Order",
       method:
-        "beveren_fsm.field_service_management.doctype.service_order.service_order.make_purchase_order",
+        "starrain_fsm.field_service_management.doctype.service_order.service_order.make_purchase_order",
     });
   },
   create_purchase_invoice(frm) {
     frm.events.open_logistics_dialog(frm, {
       doc_type: "Purchase Invoice",
       method:
-        "beveren_fsm.field_service_management.doctype.service_order.service_order.make_purchase_invoice",
+        "starrain_fsm.field_service_management.doctype.service_order.service_order.make_purchase_invoice",
     });
   },
   open_logistics_dialog(frm, config) {
@@ -1137,7 +1137,7 @@ frappe.ui.form.on("Service Order", {
 
             frappe.call({
               method:
-                "beveren_fsm.field_service_management.doctype.service_order.service_order.record_product_movement",
+                "starrain_fsm.field_service_management.doctype.service_order.service_order.record_product_movement",
               args: movementArgs,
               callback: () => {
                 frappe.show_alert({
@@ -1287,7 +1287,7 @@ frappe.ui.form.on("Service Order", {
   },
 });
 
-beveren_fsm.field_service_management.ServiceOrderController = class ServiceOrderController extends (
+starrain_fsm.field_service_management.ServiceOrderController = class ServiceOrderController extends (
   erpnext.selling.SellingController
 ) {
   onload(doc, dt, dn) {
@@ -1308,7 +1308,7 @@ beveren_fsm.field_service_management.ServiceOrderController = class ServiceOrder
 };
 
 cur_frm.script_manager.make(
-  beveren_fsm.field_service_management.ServiceOrderController
+  starrain_fsm.field_service_management.ServiceOrderController
 );
 frappe.ui.form.on("Service Order Item", {
   item_code(frm, cdt, cdn) {
