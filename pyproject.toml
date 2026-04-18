@@ -1,9 +1,7 @@
 [project]
 name = "starrain_fsm"
-authors = [
-    { name = "Beveren Software", email = "info@beverensoftware.com"}
-]
-description = "Beveren Field Service Management"
+authors = [{ name = "ALITECS Alexander Leisentritt", email = "info@alitecs.de" }]
+description = "Star Rain Field Service Management"
 requires-python = ">=3.10"
 readme = "README.md"
 dynamic = ["version"]
