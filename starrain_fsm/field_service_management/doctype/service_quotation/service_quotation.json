@@ -698,7 +698,8 @@
    "fieldname": "customer_contact",
    "fieldtype": "Link",
    "label": "Service Contact",
-   "options": "Contact"
+   "options": "Contact",
+   "reqd": 1
   },
   {
    "fieldname": "amended_from",
@@ -715,7 +716,8 @@
    "fieldtype": "Link",
    "label": "Service Address",
    "options": "Address",
-   "print_hide": 1
+   "print_hide": 1,
+   "reqd": 1
   },
   {
    "fieldname": "address_details",
