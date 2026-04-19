@@ -137,6 +137,8 @@ frappe.ui.form.on("Service Order", {
           frm.set_value("address_details", details);
         },
       });
+    } else {
+      frm.set_value("address_details", "");
     }
   },
   customer_contact: function (frm) {
@@ -150,6 +152,8 @@ frappe.ui.form.on("Service Order", {
           frm.set_value("contact_details", details);
         },
       });
+    } else {
+      frm.set_value("contact_details", "");
     }
   },
   set_enable_invoicing: (frm) => {
