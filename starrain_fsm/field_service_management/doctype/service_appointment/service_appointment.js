@@ -314,6 +314,7 @@ frappe.ui.form.on("Service Appointment", {
           label: "Scheduled Start Datetime",
           fieldname: "scheduled_start_datetime",
           fieldtype: "Datetime",
+          default: frm.doc.scheduled_start_datetime,
         },
         {
           fieldname: "column_break_appointment",
@@ -323,10 +324,39 @@ frappe.ui.form.on("Service Appointment", {
           label: "Scheduled Finish Datetime",
           fieldname: "scheduled_finish_datetime",
           fieldtype: "Datetime",
+          default: frm.doc.scheduled_finish_datetime,
+        },
+        {
+          fieldname: "section_break_address",
+          fieldtype: "Section Break",
+          label: "Service Address & Contact",
+        },
+        {
+          label: "Service Address",
+          fieldname: "customer_address",
+          fieldtype: "Link",
+          options: "Address",
+          default: frm.doc.customer_address,
+          get_query: () => ({
+            filters: { link_doctype: "Customer", link_name: frm.doc.customer },
+          }),
+        },
+        {
+          fieldname: "column_break_contact",
+          fieldtype: "Column Break",
+        },
+        {
+          label: "Contact Person",
+          fieldname: "customer_contact",
+          fieldtype: "Link",
+          options: "Contact",
+          default: frm.doc.customer_contact,
+          get_query: () => ({
+            filters: { link_doctype: "Customer", link_name: frm.doc.customer },
+          }),
         },
       ],
       (values) => {
-        // Schedule
         frappe.model.set_value(
           frm.doctype,
           frm.docname,
@@ -339,6 +369,12 @@ frappe.ui.form.on("Service Appointment", {
           "scheduled_finish_datetime",
           values.scheduled_finish_datetime
         );
+        if (values.customer_address) {
+          frm.set_value("customer_address", values.customer_address);
+        }
+        if (values.customer_contact) {
+          frm.set_value("customer_contact", values.customer_contact);
+        }
         frm.set_value("status", "Scheduled");
         frm.save("Update");
       },
