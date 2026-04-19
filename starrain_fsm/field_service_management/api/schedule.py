@@ -203,9 +203,6 @@ def bulk_assign_technicians(appointment_ids=None, technician_ids=None):
 	if not isinstance(appointment_ids, list | tuple) or not appointment_ids:
 		raise frappe.ValidationError("No appointment IDs provided")
 
-	if not isinstance(appointment_ids, list | tuple) or not appointment_ids:
-		raise frappe.ValidationError("No appointment IDs provided")
-
 	# Fetch technicians and map to full_name
 	tech_docs = frappe.get_all(
 		"Service Technician",

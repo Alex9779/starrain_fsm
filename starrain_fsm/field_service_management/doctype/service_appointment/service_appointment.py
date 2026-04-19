@@ -41,13 +41,6 @@ class ServiceAppointment(Document):
 			pluck="parent",
 		)
 
-		# filters = {
-		# 	"name": ["!=", self.name],
-		# 	"name": ["in", child_parents],
-		# 	"status": ["not in", ["Closed", "Cancelled"]],
-		# 	"scheduled_start_datetime": ["<", self.scheduled_finish_datetime],
-		# 	"scheduled_finish_datetime": [">", self.scheduled_start_datetime],
-		# }
 		filters = [
 			["name", "!=", self.name],
 			["name", "in", child_parents],
@@ -61,7 +54,7 @@ class ServiceAppointment(Document):
 			filters=filters,
 			fields=["name", "scheduled_start_datetime", "scheduled_finish_datetime"],
 		)
-		conflicting = [d for d in overlapping_basic if d.name != self.name]
+		conflicting = overlapping_basic
 		if conflicting:
 			# Build a more specific error mentioning the first conflicting appointment and overlapping technicians
 			self_tech_ids = {d.service_technician for d in self.service_technicians}
@@ -94,15 +87,6 @@ class ServiceAppointment(Document):
 			)
 
 			frappe.throw(msg)
-			return msg
-		overlapping_appointments = frappe.get_all("Service Appointment", filters=filters)
-		overlapping_appointments = [d.name for d in overlapping_appointments if d.name != self.name]
-		if overlapping_appointments:
-			print("\n\n\n OVERLAP ERROR\n\n", overlapping_appointments, "\n\n")
-			error_message = _("There is an overlap with another appointment")
-			print("\n\n\n OVERLAP ERROR\n\n", error_message, "\n\n")
-			frappe.throw(error_message)
-			return error_message  # Return for consistency
 
 	def set_scheduled_status(self):
 		if self.scheduled_start_datetime and self.scheduled_finish_datetime:
