@@ -1,0 +1,1342 @@
+# German translations for Beveren Field Service Management.
+# Copyright (C) 2026 ALITECS Alexander Leisentritt
+# This file is distributed under the same license as the Beveren Field Service Management project.
+# Alexander Leisentritt <info@alitecs.de>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Star Rain Field Service Management VERSION\n"
+"Report-Msgid-Bugs-To: info@alitecs.de\n"
+"POT-Creation-Date: 2026-04-19 00:00+0000\n"
+"PO-Revision-Date: 2026-04-19 00:00+0000\n"
+"Last-Translator: Alexander Leisentritt <info@alitecs.de>\n"
+"Language-Team: ALITECS <info@alitecs.de>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.16.0\n"
+
+#. Name of a DocType
+#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
+msgid "AMC Contract"
+msgstr "AMC-Vertrag"
+
+#. Label of a Currency field in DocType 'AMC Contract'
+#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
+msgid "AMC Expiry Date"
+msgstr "AMC-Ablaufdatum"
+
+#. Label of a Date field in DocType 'Service Request'
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+msgid "AMC Expiry Date"
+msgstr "AMC-Ablaufdatum"
+
+#. Label of a Percent field in DocType 'Service Appointment'
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+msgid "% Amount Billed"
+msgstr "% fakturierter Betrag"
+
+#. Label of a Percent field in DocType 'Service Order'
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+msgid "% Amount Billed"
+msgstr "% fakturierter Betrag"
+
+#. Label of a Percent field in DocType 'Service Quotation'
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+msgid "% Amount Billed"
+msgstr "% fakturierter Betrag"
+
+#. Description of the '% Amount Billed' (Percent) field in DocType 'Service Appointment'
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+msgid "% of items and parts billed against this Service Appointment"
+msgstr "% der gegen diesen Servicetermin fakturierten Artikel und Teile"
+
+#. Description of the '% Amount Billed' (Percent) field in DocType 'Service Order'
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+msgid "% of items and parts billed against this Service Order"
+msgstr "% der gegen diesen Serviceauftrag fakturierten Artikel und Teile"
+
+#. Description of the '% Amount Billed' (Percent) field in DocType 'Service Quotation'
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+msgid "% of Parts and Services billed against this Service Quotation"
+msgstr "% der gegen dieses Serviceangebot fakturierten Teile und Dienstleistungen"
+
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.py:138
+msgid "A Service Appointment ({0}) already exists for this Service Order."
+msgstr "Ein Servicetermin ({0}) existiert bereits für diesen Serviceauftrag."
+
+#. Label of a Datetime field in DocType 'Service Appointment'
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+msgid "Actual Finish Datetime"
+msgstr "Tatsächliche Endzeit"
+
+#. Label of a Datetime field in DocType 'Service Appointment'
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+msgid "Actual Start Datetime"
+msgstr "Tatsächliche Startzeit"
+
+#. Label of a Duration field in DocType 'Service Appointment'
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+msgid "Actual Working Time"
+msgstr "Tatsächliche Arbeitszeit"
+
+#. Option for the 'Preferred Time' (Select) field
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Afternoon"
+msgstr "Nachmittags"
+
+#. Option for the 'Margin Type' (Select) field
+#: starrain_fsm/field_service_management/doctype/service_order_item/service_order_item.json
+#: starrain_fsm/field_service_management/doctype/service_quotation_item/service_quotation_item.json
+msgid "Amount"
+msgstr "Betrag"
+
+#. Label of a Currency field / column label in dialog
+#: starrain_fsm/field_service_management/doctype/service_order_item/service_order_item.json
+#: starrain_fsm/field_service_management/doctype/service_quotation_item/service_quotation_item.json
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js
+msgid "Amount"
+msgstr "Betrag"
+
+#. Option for the 'Preferred Time' (Select) field
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Anytime"
+msgstr "Jederzeit"
+
+#. Label of a Section Break field in DocType 'Service Appointment'
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+msgid "Appointment Preference"
+msgstr "Terminpräferenz"
+
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:38
+msgid "Are you sure you want to complete this appointment?"
+msgstr "Soll dieser Termin wirklich abgeschlossen werden?"
+
+#. Label of a button in DocType 'Service Appointment'
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:28
+msgid "Complete"
+msgstr "Abschließen"
+
+#. Label of a button in DocType 'Service Order'
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1200
+msgid "Confirm"
+msgstr "Bestätigen"
+
+#. Title of a dialog in DocType 'Service Order'
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1187
+msgid "Confirm Submission"
+msgstr "Einreichung bestätigen"
+
+#. Label of a button in DocType 'Service Order'
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1206
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#. Option for the 'Status' (Select) field in DocType 'Service Appointment'
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+msgid "Cancelled"
+msgstr "Storniert"
+
+#. Option for the 'Status' (Select) field in DocType 'Service Quotation'
+#. Option for the 'Status' (Select) field in DocType 'Service Request'
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Closed"
+msgstr "Geschlossen"
+
+#. Button label in DocType 'Service Quotation'
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:60
+msgid "Close"
+msgstr "Schließen"
+
+#. Button label in DocType 'Service Request'
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:52
+msgid "Close"
+msgstr "Schließen"
+
+#. Option for the 'Status' (Select) field in DocType 'Service Appointment'
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+msgid "Completed"
+msgstr "Abgeschlossen"
+
+#. Label of a button group
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:74
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:65
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:106
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:73
+msgid "Create"
+msgstr "Erstellen"
+
+#. Primary action label in dialog
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:278
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:333
+msgid "Create Invoice"
+msgstr "Rechnung erstellen"
+
+#. Title of a dialog in DocType 'Service Order'
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:849
+msgid "Create {0}"
+msgstr "{0} erstellen"
+
+#. Option for the 'Status' (Select) field
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Converted"
+msgstr "Umgewandelt"
+
+#. Primary action label in dialog
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:851
+msgid "Continue"
+msgstr "Weiter"
+
+#. Label of a Link field in Service Order logistics dialog
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:832
+msgid "Cost Center"
+msgstr "Kostenstelle"
+
+#. Label of a Date field in DocType 'AMC Contract'
+#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
+msgid "Contract End Date"
+msgstr "Vertragsende"
+
+#. Label of a Int field in DocType 'AMC Contract'
+#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
+msgid "Contract Period(Months)"
+msgstr "Vertragslaufzeit (Monate)"
+
+#. Label of a Date field in DocType 'AMC Contract'
+#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
+msgid "Contract Start Date"
+msgstr "Vertragsbeginn"
+
+#. Label of a Link field in DocType 'Service Order'
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+msgid "Current Product Location"
+msgstr "Aktueller Produktstandort"
+
+#. Label of a Link field in DocType 'Service Request'
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Current Product Location"
+msgstr "Aktueller Produktstandort"
+
+#. Label of a Section Break field in DocType 'Field Service Management Settings'
+#: starrain_fsm/field_service_management/doctype/field_service_management_settings/field_service_management_settings.json
+msgid "Default Due Date After"
+msgstr "Standard-Fälligkeitsdatum nach"
+
+#. Description of the 'Default Due Date After' field
+#: starrain_fsm/field_service_management/doctype/field_service_management_settings/field_service_management_settings.json
+msgid "Default time(in Days) between Posting Date and Due Date"
+msgstr "Standardzeitraum (in Tagen) zwischen Buchungsdatum und Fälligkeitsdatum"
+
+#. Label of a Link field in DocType 'Service Order'
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:77
+msgid "Delivery Note"
+msgstr "Lieferschein"
+
+#. Option for the 'Status' (Select) field in DocType 'Repair Order'
+#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
+msgid "Dispatched"
+msgstr "Versendet"
+
+#. Option for the 'Status' (Select) field
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Due Soon"
+msgstr "Bald fällig"
+
+#. Option for the 'Preferred Time' (Select) field
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Evening"
+msgstr "Abends"
+
+#. Label of a Link field in Service Order logistics dialog
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:839
+msgid "Expense Account"
+msgstr "Aufwandskonto"
+
+#. Name of a DocType
+#: starrain_fsm/field_service_management/doctype/field_service_management_settings/field_service_management_settings.json
+msgid "Field Service Management Settings"
+msgstr "Einstellungen Außendienstverwaltung"
+
+#. Description for the 'For Production' field
+#: starrain_fsm/field_service_management/doctype/service_order_item/service_order_item.json
+#: starrain_fsm/field_service_management/doctype/service_quotation_item/service_quotation_item.json
+msgid "For Production"
+msgstr "Für die Produktion"
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.py:233
+msgid "Generated from Service Order {0}"
+msgstr "Generiert aus Serviceauftrag {0}"
+
+#. Option for the 'Priority' (Select) field
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "High"
+msgstr "Hoch"
+
+#. Option for the 'Priority' (Select) field
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Critical"
+msgstr "Kritisch"
+
+#. Label of a Section Break field in DocType 'Service Order'
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+msgid "Service & SpareParts Breakdown"
+msgstr "Dienstleistungen & Ersatzteile Aufschlüsselung"
+
+#. Label of a Check field in DocType 'Service Order'
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+msgid "Is Over Budget"
+msgstr "Budget überschritten"
+
+#. Button label in Service Order logistics dialog
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:565
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:635
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:705
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:777
+msgid "Include"
+msgstr "Einbeziehen"
+
+#. Description of the 'In Words' field
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+msgid "In Words will be visible once you save the Sales Order."
+msgstr "Der Betrag in Worten wird nach dem Speichern des Verkaufsauftrags angezeigt."
+
+#. Option for the 'Invoice Status' (Select) field
+#: starrain_fsm/field_service_management/doctype/service_order_item/service_order_item.json
+#: starrain_fsm/field_service_management/doctype/service_quotation_item/service_quotation_item.json
+msgid "Invoiced"
+msgstr "Fakturiert"
+
+#. Label of a Select field
+#: starrain_fsm/field_service_management/doctype/service_order_item/service_order_item.json
+#: starrain_fsm/field_service_management/doctype/service_quotation_item/service_quotation_item.json
+msgid "Invoice Status"
+msgstr "Rechnungsstatus"
+
+#. Label of a Check field
+#: starrain_fsm/field_service_management/doctype/service_order_item/service_order_item.json
+#: starrain_fsm/field_service_management/doctype/service_quotation_item/service_quotation_item.json
+msgid "Is Billable"
+msgstr "Abrechenbar"
+
+#. Column label in dialogs
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:572
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:642
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:712
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:784
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:213
+msgid "Item Code"
+msgstr "Artikelnummer"
+
+#. Column label in Service Order logistics dialog
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:580
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:650
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:720
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:792
+msgid "Item Name"
+msgstr "Artikelname"
+
+#. Label of a Table field in logistics dialog
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:627
+msgid "Items to Deliver"
+msgstr "Zu liefernde Artikel"
+
+#. Label of a Table field in logistics dialog
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:769
+msgid "Items to Purchase"
+msgstr "Zu bestellende Artikel"
+
+#. Label of a Table field in logistics dialog
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:697
+msgid "Items to Receive"
+msgstr "Zu empfangende Artikel"
+
+#. Label of a Table field in logistics dialog
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:557
+msgid "Items to Transfer"
+msgstr "Zu übertragende Artikel"
+
+#. Label of a Date field
+#: starrain_fsm/field_service_management/doctype/product_movement/product_movement.json
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:547
+msgid "Latest Movement"
+msgstr "Letzte Bewegung"
+
+#. Option for the 'Status' (Select) field in DocType 'Service Quotation'
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+msgid "Lost"
+msgstr "Verloren"
+
+#. Label of the lost reason field
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:191
+msgid "Lost Reason"
+msgstr "Verlustgrund"
+
+#. Option for the 'Priority' (Select) field
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Low"
+msgstr "Niedrig"
+
+#. Label of a Select field
+#: starrain_fsm/field_service_management/doctype/service_order_item/service_order_item.json
+#: starrain_fsm/field_service_management/doctype/service_quotation_item/service_quotation_item.json
+msgid "Margin Type"
+msgstr "Margentyp"
+
+#. Column label in logistics dialogs
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:294
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:600
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:663
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:733
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:805
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:239
+msgid "Max Quantity"
+msgstr "Maximale Menge"
+
+#. Option for the 'Priority' (Select) field
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Medium"
+msgstr "Mittel"
+
+#. Label of a Date field in logistics dialog
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:547
+msgid "Movement Date"
+msgstr "Bewegungsdatum"
+
+#. Option for the 'Preferred Time' (Select) field
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Morning"
+msgstr "Morgens"
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:464
+msgid "No deliverable items are available."
+msgstr "Keine lieferbaren Artikel vorhanden."
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:518
+msgid "No items are available for purchasing."
+msgstr "Keine Artikel zum Bestellen vorhanden."
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:472
+msgid "No items are available to receive."
+msgstr "Keine empfangbaren Artikel vorhanden."
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.py:406
+msgid "No items selected for delivery."
+msgstr "Keine Artikel für die Lieferung ausgewählt."
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.py:549
+msgid "No items selected for the Purchase Invoice."
+msgstr "Keine Artikel für die Eingangsrechnung ausgewählt."
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.py:719
+msgid "No items selected for the Purchase Order."
+msgstr "Keine Artikel für die Bestellung ausgewählt."
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.py:549
+msgid "No items selected for the Purchase Receipt."
+msgstr "Keine Artikel für den Wareneingang ausgewählt."
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.py:456
+msgid "No items were selected for delivery."
+msgstr "Es wurden keine Artikel für die Lieferung ausgewählt."
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.py:958
+msgid "No items were selected for the Purchase Invoice."
+msgstr "Es wurden keine Artikel für die Eingangsrechnung ausgewählt."
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.py:784
+msgid "No items were selected for the Purchase Order."
+msgstr "Es wurden keine Artikel für die Bestellung ausgewählt."
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.py:613
+msgid "No items were selected for the Purchase Receipt."
+msgstr "Es wurden keine Artikel für den Wareneingang ausgewählt."
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:456
+msgid "No stock items are available to transfer."
+msgstr "Keine Lagerartikel zum Übertragen vorhanden."
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.py:261
+msgid "No stock items available to transfer."
+msgstr "Keine Lagerartikel zum Übertragen vorhanden."
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.py:322
+msgid "No stock items were selected for transfer."
+msgstr "Es wurden keine Lagerartikel für den Transfer ausgewählt."
+
+#. Option for the 'Invoice Status' (Select) field
+#: starrain_fsm/field_service_management/doctype/service_order_item/service_order_item.json
+#: starrain_fsm/field_service_management/doctype/service_quotation_item/service_quotation_item.json
+msgid "Not Invoiced"
+msgstr "Nicht fakturiert"
+
+#. Option for the 'Status' (Select) field
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
+#: starrain_fsm/field_service_management/doctype/repair_shipment/repair_shipment.json
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Open"
+msgstr "Offen"
+
+#. Option for the 'Status' (Select) field
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "On Hold"
+msgstr "Pausiert"
+
+#. Button label in DocType 'Service Quotation'
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:40
+msgid "Hold"
+msgstr "Pausieren"
+
+#. Button label in DocType 'Service Request'
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:32
+msgid "Hold"
+msgstr "Pausieren"
+
+#. Option for the 'Service Category' (Select) field in DocType 'Service Request'
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Onsite"
+msgstr "Vor Ort"
+
+#. Option for the 'Status' (Select) field in DocType 'Service Quotation'
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+msgid "Ordered"
+msgstr "Bestellt"
+
+#. Option for the 'Status' (Select) field
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Overdue"
+msgstr "Überfällig"
+
+#. Option for the 'Warranty / AMC Status' (Select) field
+#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
+#: starrain_fsm/field_service_management/doctype/repair_shipment_items/repair_shipment_items.json
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Out of AMC"
+msgstr "Außerhalb des AMC-Vertrags"
+
+#. Option for the 'Warranty / AMC Status' (Select) field
+#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
+#: starrain_fsm/field_service_management/doctype/repair_shipment_items/repair_shipment_items.json
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Out of Warranty"
+msgstr "Außerhalb der Garantie"
+
+#. Option for the 'Invoice Status' (Select) field in DocType 'Service Order Item'
+#: starrain_fsm/field_service_management/doctype/service_order_item/service_order_item.json
+msgid "Partly Invoiced"
+msgstr "Teilweise fakturiert"
+
+#. Option for the 'Repair Status' (Select) field in DocType 'Repair Order'
+#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
+msgid "Pending"
+msgstr "Ausstehend"
+
+#. Option for the 'Margin Type' (Select) field
+#: starrain_fsm/field_service_management/doctype/service_order_item/service_order_item.json
+#: starrain_fsm/field_service_management/doctype/service_quotation_item/service_quotation_item.json
+msgid "Percentage"
+msgstr "Prozentsatz"
+
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:34
+msgid "Please enter the Actual Finish Datetime before completing."
+msgstr "Bitte die tatsächliche Endzeit eingeben, bevor der Termin abgeschlossen wird."
+
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:30
+msgid "Please enter the Actual Start Datetime before completing."
+msgstr "Bitte die tatsächliche Startzeit eingeben, bevor der Termin abgeschlossen wird."
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:396
+msgid "Please save the Service Order before creating logistics documents."
+msgstr "Bitte den Serviceauftrag speichern, bevor Logistikdokumente erstellt werden."
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:856
+msgid "Please select a Product Location."
+msgstr "Bitte einen Produktstandort auswählen."
+
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:274
+msgid "Please select a value for {0} quotation_to {1}"
+msgstr "Bitte einen Wert für {0} (Angebot an) {1} auswählen"
+
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.py:30
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.py:59
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.py:25
+msgid "Please add at least one item"
+msgstr "Bitte mindestens einen Artikel hinzufügen"
+
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.py:34
+msgid "Please add at least one technician"
+msgstr "Bitte mindestens einen Techniker hinzufügen"
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.py:974
+msgid "Please set an Expense Account for item {0}."
+msgstr "Bitte ein Aufwandskonto für Artikel {0} festlegen."
+
+#. Label of a Section Break field in DocType 'Service Request'
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Preference Note"
+msgstr "Präferenznotiz"
+
+#. Label of a Data field in DocType 'Service Request'
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Preferred Date 1"
+msgstr "Bevorzugtes Datum 1"
+
+#. Label of a Data field in DocType 'Service Request'
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Preferred Date 2"
+msgstr "Bevorzugtes Datum 2"
+
+#. Label of a Select field
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+msgid "Preferred Time"
+msgstr "Bevorzugte Uhrzeit"
+
+#. Name of a DocType
+#: starrain_fsm/field_service_management/doctype/product_location/product_location.json
+msgid "Product Location"
+msgstr "Produktstandort"
+
+#. Name of a DocType
+#: starrain_fsm/field_service_management/doctype/product_movement/product_movement.json
+msgid "Product Movement"
+msgstr "Produktbewegung"
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1104
+msgid "Product Movement"
+msgstr "Produktbewegung"
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1098
+msgid "Product movement logged on Service Request."
+msgstr "Produktbewegung auf Serviceanfrage protokolliert."
+
+#. Label of a Link field in logistics dialog
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:539
+msgid "Product Movement Type"
+msgstr "Produktbewegungstyp"
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.py:1019
+msgid "Product location is required"
+msgstr "Produktstandort ist erforderlich"
+
+#. Label of a Link field in DocType 'Product Movement'
+#: starrain_fsm/field_service_management/doctype/product_movement/product_movement.json
+msgid "Product Tracker"
+msgstr "Produktverfolgung"
+
+#. Label of a Data field in DocType 'Product Movement'
+#: starrain_fsm/field_service_management/doctype/product_movement/product_movement.json
+msgid "Product Tracking"
+msgstr "Produktnachverfolgung"
+
+#. Label of a Data field in DocType 'Service Technician Skill'
+#: starrain_fsm/field_service_management/doctype/service_technician_skill/service_technician_skill.json
+#: starrain_fsm/field_service_management/doctype/service_technician_skill_item/service_technician_skill_item.json
+msgid "Proficiency"
+msgstr "Kenntnisstand"
+
+#. Label of a Link field in DocType 'Service Order'
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:87
+msgid "Purchase Order"
+msgstr "Bestellung"
+
+#. Label of a Link field in DocType 'Service Order'
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:92
+msgid "Purchase Invoice"
+msgstr "Eingangsrechnung"
+
+#. Label of a Link field in DocType 'Service Order'
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:82
+msgid "Purchase Receipt"
+msgstr "Wareneingang"
+
+#. Label of a Float field in dialogs
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:281
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:677
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:747
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:812
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:226
+msgid "Rate"
+msgstr "Preis"
+
+#. Description of the 'Conversion Rate' field in DocType 'Service Order'
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+msgid "Rate at which Price list currency is converted to company's base currency"
+msgstr "Kurs, zu dem die Preislistenwährung in die Basiswährung des Unternehmens umgerechnet wird"
+
+#. Description of the 'Currency Conversion Rate' field in DocType 'Service Quotation'
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+msgid "Rate at which customer's currency is converted to company's base currency"
+msgstr "Kurs, zu dem die Kundenwährung in die Basiswährung des Unternehmens umgerechnet wird"
+
+#. Secondary action label in invoice dialog
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:295
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:350
+msgid "Refresh Amount"
+msgstr "Betrag aktualisieren"
+
+#. Option for the 'Repair Status' (Select) field in DocType 'Repair Order'
+#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
+msgid "Rejected"
+msgstr "Abgelehnt"
+
+#. Option for the 'Repair Status' (Select) field in DocType 'Repair Order'
+#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
+msgid "Repaired"
+msgstr "Repariert"
+
+#. Label of a Section Break field in DocType 'Repair Order'
+#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
+msgid "Repair Details"
+msgstr "Reparaturdetails"
+
+#. Label of a Link field in DocType 'Repair Order'
+#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
+msgid "Repair Item"
+msgstr "Reparaturartikel"
+
+#. Name of a DocType
+#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
+msgid "Repair Order"
+msgstr "Reparaturauftrag"
+
+#. Label of a Link field in DocType 'Repair Shipment Items'
+#: starrain_fsm/field_service_management/doctype/repair_shipment_items/repair_shipment_items.json
+msgid "Repair Order"
+msgstr "Reparaturauftrag"
+
+#. Name of a DocType
+#: starrain_fsm/field_service_management/doctype/repair_shipment/repair_shipment.json
+msgid "Repair Shipment"
+msgstr "Reparatursendung"
+
+#. Name of a DocType
+#: starrain_fsm/field_service_management/doctype/repair_shipment_items/repair_shipment_items.json
+msgid "Repair Shipment Items"
+msgstr "Reparatursendungsartikel"
+
+#. Label of a Select field in DocType 'Repair Order'
+#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
+msgid "Repair Status"
+msgstr "Reparaturstatus"
+
+#. Label of a Link field in DocType 'Service Request'
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Repair Vendor"
+msgstr "Reparaturlieferant"
+
+#. Option for the 'Repair Status' (Select) field in DocType 'Repair Order'
+#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
+msgid "Replaced"
+msgstr "Ersetzt"
+
+#. Button label in DocType 'Service Quotation'
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:31
+msgid "Resume"
+msgstr "Fortsetzen"
+
+#. Button label in DocType 'Service Request'
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:23
+msgid "Resume"
+msgstr "Fortsetzen"
+
+#. Button label in DocType 'Service Quotation'
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:50
+msgid "Reopen"
+msgstr "Wiedereröffnen"
+
+#. Button label in DocType 'Service Request'
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:42
+msgid "Reopen"
+msgstr "Wiedereröffnen"
+
+#. Button label in DocType 'Service Appointment'
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:48
+msgid "Reschedule"
+msgstr "Neu planen"
+
+#. Option for the 'Status' (Select) field in DocType 'Repair Order'
+#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
+msgid "Returned"
+msgstr "Zurückgegeben"
+
+#. Label of a Link field in DocType 'Service Appointment'
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:70
+msgid "Sales Invoice"
+msgstr "Verkaufsrechnung"
+
+#. Option for the 'Status' (Select) field
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+msgid "Scheduled"
+msgstr "Geplant"
+
+#. Label of a Datetime field in DocType 'Service Appointment'
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+msgid "Scheduled Finish Datetime"
+msgstr "Geplante Endzeit"
+
+#. Label of a Datetime field in DocType 'Service Appointment'
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+msgid "Scheduled Start Datetime"
+msgstr "Geplante Startzeit"
+
+#. Label of a Section Break field in DocType 'Service Appointment'
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+msgid "Scheduling and Working Time"
+msgstr "Planung und Arbeitszeit"
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:886
+msgid "Select at least one item to transfer."
+msgstr "Bitte mindestens einen Artikel zum Übertragen auswählen."
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:930
+msgid "Select at least one item to deliver."
+msgstr "Bitte mindestens einen Artikel zum Liefern auswählen."
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:976
+msgid "Select at least one item to receive."
+msgstr "Bitte mindestens einen Artikel zum Empfangen auswählen."
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1029
+msgid "Select at least one item to purchase."
+msgstr "Bitte mindestens einen Artikel zum Bestellen auswählen."
+
+#. Column label in logistics dialog
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:587
+msgid "Serial No"
+msgstr "Seriennummer"
+
+#. Name of a DocType
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+msgid "Service Appointment"
+msgstr "Servicetermin"
+
+#. Label of a button in DocType 'Service Order'
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:61
+msgid "Service Appointment"
+msgstr "Servicetermin"
+
+#. Label of a Link field in DocType 'Service Appointment'
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+msgid "Service Address"
+msgstr "Serviceadresse"
+
+#. Label of a Currency field in DocType 'AMC Contract'
+#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
+msgid "Service Budget"
+msgstr "Servicebudget"
+
+#. Label of a Select field in DocType 'Service Request'
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Service Category"
+msgstr "Servicekategorie"
+
+#. Label of a Link field in DocType 'Service Appointment'
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+msgid "Service Contact"
+msgstr "Servicekontakt"
+
+#. Label of a Table field in DocType 'Service Appointment'
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+msgid "Service Crew"
+msgstr "Serviceteam"
+
+#. Name of a DocType
+#: starrain_fsm/field_service_management/doctype/service_items/service_items.json
+msgid "Service Items"
+msgstr "Serviceartikel"
+
+#. Label of a Currency field in DocType 'AMC Contract'
+#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
+msgid "Service Item Budget"
+msgstr "Serviceartielbudget"
+
+#. Name of a DocType
+#: starrain_fsm/field_service_management/doctype/service_notes/service_notes.json
+msgid "Service Notes"
+msgstr "Servicenotizen"
+
+#. Name of a DocType
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+msgid "Service Order"
+msgstr "Serviceauftrag"
+
+#. Label of a button in DocType 'Service Quotation'
+#. Label of a button in DocType 'Service Request'
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:102
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:76
+msgid "Service Order"
+msgstr "Serviceauftrag"
+
+#. Name of a DocType
+#: starrain_fsm/field_service_management/doctype/service_order_item/service_order_item.json
+msgid "Service Order Item"
+msgstr "Serviceauftragsposition"
+
+#. Name of a DocType
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+msgid "Service Quotation"
+msgstr "Serviceangebot"
+
+#. Label of a button in DocType 'Service Request'
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:69
+msgid "Service Quotation"
+msgstr "Serviceangebot"
+
+#. Name of a DocType
+#: starrain_fsm/field_service_management/doctype/service_quotation_item/service_quotation_item.json
+msgid "Service Quotation Item"
+msgstr "Serviceangebotposition"
+
+#. Name of a DocType
+#: starrain_fsm/field_service_management/doctype/service_report/service_report.json
+msgid "Service Report"
+msgstr "Servicebericht"
+
+#. Name of a DocType
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Service Request"
+msgstr "Serviceanfrage"
+
+#. Name of a DocType
+#: starrain_fsm/field_service_management/doctype/service_specialization/service_specialization.json
+msgid "Service Specialization"
+msgstr "Servicefachgebiet"
+
+#. Name of a DocType
+#: starrain_fsm/field_service_management/doctype/service_technician/service_technician.json
+msgid "Service Technician"
+msgstr "Servicetechniker"
+
+#. Name of a DocType
+#: starrain_fsm/field_service_management/doctype/service_technician_item/service_technician_item.json
+msgid "Service Technician Item"
+msgstr "Servicetechnikereintrag"
+
+#. Name of a DocType
+#: starrain_fsm/field_service_management/doctype/service_technician_skill/service_technician_skill.json
+msgid "Service Technician Skill"
+msgstr "Servicetechnikerfähigkeit"
+
+#. Name of a DocType
+#: starrain_fsm/field_service_management/doctype/service_technician_skill_item/service_technician_skill_item.json
+msgid "Service Technician Skill Item"
+msgstr "Servicetechnikerfähigkeitseintrag"
+
+#. Label of a Table field in DocType 'Service Appointment'
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+msgid "Service Technician(s)"
+msgstr "Servicetechniker"
+
+#. Label of a Table field in DocType 'Service Appointment'
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+msgid "Service Technicians"
+msgstr "Servicetechniker"
+
+#. Label of a Currency field in DocType 'Service Order'
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+msgid "Service Total"
+msgstr "Servicesumme"
+
+#. Name of a DocType
+#: starrain_fsm/field_service_management/doctype/service_type/service_type.json
+msgid "Service Type"
+msgstr "Serviceart"
+
+#. Service Type record name (fixture)
+#: starrain_fsm/field_service_management/fixtures/service_type.json
+msgid "Inspection"
+msgstr "Inspektion"
+
+#. Service Type record name (fixture)
+#: starrain_fsm/field_service_management/fixtures/service_type.json
+msgid "Installation"
+msgstr "Installation"
+
+#. Service Type record name (fixture)
+#: starrain_fsm/field_service_management/fixtures/service_type.json
+msgid "Maintenance"
+msgstr "Wartung"
+
+#. Service Type record name (fixture)
+#: starrain_fsm/field_service_management/fixtures/service_type.json
+msgid "Emergency"
+msgstr "Notfall"
+
+#. Service Type record name (fixture)
+#: starrain_fsm/field_service_management/fixtures/service_type.json
+msgid "Warranty Claim"
+msgstr "Garantiereklamation"
+
+#. Service Type record name (fixture)
+#: starrain_fsm/field_service_management/fixtures/service_type.json
+msgid "Service"
+msgstr "Service"
+
+#. Label of a Currency field in DocType 'AMC Contract'
+#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
+msgid "Service Utilized"
+msgstr "In Anspruch genommener Service"
+
+#. Label of a Table field in DocType 'Service Order'
+#. Label of a Table field in DocType 'Service Quotation'
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+msgid "Services & Parts"
+msgstr "Dienstleistungen & Teile"
+
+#. Title of invoice dialog
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:201
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:256
+msgid "Services and Parts to Invoice"
+msgstr "Dienstleistungen und Teile zur Fakturierung"
+
+#. Label of a table field in invoice dialog
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:206
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:261
+msgid "Services and Parts"
+msgstr "Dienstleistungen und Teile"
+
+#. Title of dialog
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:187
+msgid "Set Quotation as Lost"
+msgstr "Angebot als verloren markieren"
+
+#. Button label in DocType 'Service Quotation'
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:89
+msgid "Set as Lost"
+msgstr "Als verloren markieren"
+
+#. Option for the 'Status' (Select) field in DocType 'Repair Shipment'
+#: starrain_fsm/field_service_management/doctype/repair_shipment/repair_shipment.json
+msgid "Shipped"
+msgstr "Versandt"
+
+#. Label of a Currency field in DocType 'AMC Contract'
+#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
+msgid "Spare Parts Budget"
+msgstr "Ersatzteilbudget"
+
+#. Label of a Currency field in DocType 'AMC Contract'
+#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
+msgid "Spare Parts Utilized"
+msgstr "In Anspruch genommene Ersatzteile"
+
+#. Label of a Currency field in DocType 'Service Order'
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+msgid "SpareParts Total"
+msgstr "Ersatzteile gesamt"
+
+#. Label of a Currency field in DocType 'AMC Contract'
+#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
+msgid "Spareparts Item Budget"
+msgstr "Ersatzteilartikelbudget"
+
+#. Label of a Link field in DocType 'Service Technician'
+#. Label of a Link field in DocType 'Service Specialization'
+#: starrain_fsm/field_service_management/doctype/service_technician/service_technician.json
+#: starrain_fsm/field_service_management/doctype/service_specialization/service_specialization.json
+msgid "Specialization"
+msgstr "Fachgebiet"
+
+#. Label of the Status field in status change dialogs
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:36
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:45
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:56
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:66
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:28
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:37
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:48
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:58
+msgid "Status"
+msgstr "Status"
+
+#. Label of a Link field in DocType 'Service Order'
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:72
+msgid "Stock Entry"
+msgstr "Lagerbuchung"
+
+#. Column label in logistics dialog
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:607
+msgid "Source Warehouse"
+msgstr "Quelllager"
+
+#. Column label in logistics dialog
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:614
+msgid "Target Warehouse"
+msgstr "Ziellager"
+
+#. Label of a Data field in DocType 'Service Technician'
+#: starrain_fsm/field_service_management/doctype/service_technician/service_technician.json
+msgid "Technician Name"
+msgstr "Technikername"
+
+#. Label of a Link field in the calendar view
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment_calendar.js
+msgid "Technician"
+msgstr "Techniker"
+
+#. Label of a Section Break field in DocType 'Field Service Management Settings'
+#: starrain_fsm/field_service_management/doctype/field_service_management_settings/field_service_management_settings.json
+msgid "Time and Durations"
+msgstr "Zeit und Dauer"
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1194
+msgid "This Service Order exceeds the linked AMC budget. Do you want to continue with submission?"
+msgstr "Dieser Serviceauftrag überschreitet das verknüpfte AMC-Budget. Soll die Einreichung trotzdem fortgesetzt werden?"
+
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.py:80
+msgid "There is an overlap with another appointment"
+msgstr "Es gibt eine Überschneidung mit einem anderen Termin"
+
+#. Option for the 'Warranty / AMC Status' (Select) field
+#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
+#: starrain_fsm/field_service_management/doctype/repair_shipment_items/repair_shipment_items.json
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Under AMC"
+msgstr "In AMC-Wartung"
+
+#. Option for the 'Warranty / AMC Status' (Select) field
+#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
+#: starrain_fsm/field_service_management/doctype/repair_shipment_items/repair_shipment_items.json
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Under Warranty"
+msgstr "In Garantie"
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1109
+msgid "Unable to record product movement. Please review the Service Request manually."
+msgstr "Produktbewegung konnte nicht erfasst werden. Bitte die Serviceanfrage manuell prüfen."
+
+#. Primary action label in dialog
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:196
+msgid "Update"
+msgstr "Aktualisieren"
+
+#. Description of 'Used for Production Plan' field
+#: starrain_fsm/field_service_management/doctype/service_order_item/service_order_item.json
+#: starrain_fsm/field_service_management/doctype/service_quotation_item/service_quotation_item.json
+msgid "Used for Production Plan"
+msgstr "Für den Produktionsplan verwendet"
+
+#. Option for the 'Service Category' (Select) field in DocType 'Service Request'
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Vendor"
+msgstr "Lieferant"
+
+#. Label of a Link field in logistics dialog
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:670
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:740
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:825
+msgid "Warehouse"
+msgstr "Lager"
+
+#. Label of a Select field
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+msgid "Warranty / AMC Status"
+msgstr "Garantie- / AMC-Status"
+
+#. Label of a Date field
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+msgid "Warranty Expiry Date"
+msgstr "Garantieablaufdatum"
+
+#. Option for the 'Service Category' (Select) field in DocType 'Service Request'
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Workshop"
+msgstr "Werkstatt"
+
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.py:82
+msgid "assigned technicians"
+msgstr "zugewiesene Techniker"
+
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.py:83
+msgid "Overlap with appointment {apt} ({start} - {end}) for technician(s): {techs}"
+msgstr "Überschneidung mit Termin {apt} ({start} - {end}) für Techniker: {techs}"
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.py:303
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.py:439
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.py:590
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.py:760
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.py:931
+msgid "Quantity for item {0} cannot exceed {1}."
+msgstr "Die Menge für Artikel {0} darf {1} nicht überschreiten."
+
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:886
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:930
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:976
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1029
+msgid "Quantity for item {0} exceeds the available quantity ({1})."
+msgstr "Die Menge für Artikel {0} überschreitet die verfügbare Menge ({1})."
+
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:251
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:284
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:306
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:339
+msgid "Quantity for {0} cannot exceed {1}"
+msgstr "Die Menge für {0} darf {1} nicht überschreiten"
+
+#. Label of a Float field in dialogs
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:220
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:275
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:594
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:657
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:727
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:799
+msgid "Quantity"
+msgstr "Menge"
+
+#. Label of a Section Break field in DocType 'Service Appointment'
+#. Label of a Section Break field in DocType 'Service Order'
+#. Label of a Section Break field in DocType 'Service Quotation'
+#. Label of a Section Break field in DocType 'Service Request'
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Service Address & Contact"
+msgstr "Serviceadresse & Kontakt"
+
+#. Label of a Small Text field in DocType 'Service Appointment'
+#. Label of a Small Text field in DocType 'Service Order'
+#. Label of a Small Text field in DocType 'Service Quotation'
+#. Label of a Small Text field in DocType 'Service Request'
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Address Details"
+msgstr "Adressdetails"
+
+#. Label of a Link field in DocType 'Service Appointment'
+#. Label of a Link field in DocType 'Service Order'
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+msgid "Contact Person"
+msgstr "Kontaktperson"
+
+#. Label of a Small Text field in DocType 'Service Appointment'
+#. Label of a Small Text field in DocType 'Service Order'
+#. Label of a Small Text field in DocType 'Service Quotation'
+#. Label of a Small Text field in DocType 'Service Request'
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Contact Details"
+msgstr "Kontaktdetails"
+
+#. Label of a Section Break field in DocType 'Service Request'
+#. Label of a Section Break field in DocType 'Service Order'
+#. Label of a Section Break field in DocType 'Service Quotation'
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+msgid "Warranty / AMC Details"
+msgstr "Garantie- / AMC-Details"
+
+#. Label of a Section Break field in DocType 'Service Request'
+msgid "Details"
+msgstr "Details"
+
+#. Name of a Dashboard Chart
+#: starrain_fsm/field_service_management/dashboard_chart/service_appointment_by_status/service_appointment_by_status.json
+msgid "Service Appointment By Status"
+msgstr "Servicetermin nach Status"
+
+#. Name of a Dashboard Chart
+#: starrain_fsm/field_service_management/dashboard_chart/service_order_by_status/service_order_by_status.json
+msgid "Service Order by Status"
+msgstr "Serviceauftrag nach Status"
+
+#. Name of a Dashboard Chart
+#: starrain_fsm/field_service_management/dashboard_chart/service_requests_by_status/service_requests_by_status.json
+msgid "Service Requests by Status"
+msgstr "Serviceanfragen nach Status"
+
+#. Name of a Number Card
+#: starrain_fsm/field_service_management/number_card/non_billed_appointments/non_billed_appointments.json
+msgid "Non Billed Appointments"
+msgstr "Nicht abgerechnete Termine"
+
+#. Name of a Number Card
+#: starrain_fsm/field_service_management/number_card/open_service_orders/open_service_orders.json
+msgid "Open Service Orders"
+msgstr "Offene Serviceaufträge"
+
+#. Name of a Number Card
+#: starrain_fsm/field_service_management/number_card/open_service_requests/open_service_requests.json
+msgid "Open Service Requests"
+msgstr "Offene Serviceanfragen"
+
+#. Name of a Number Card
+#: starrain_fsm/field_service_management/number_card/scheduled_service_appointments/scheduled_service_appointments.json
+msgid "Scheduled Service Appointments"
+msgstr "Geplante Servicetermine"
+
+#. Label of a Number Card in Workspace 'Service'
+#: starrain_fsm/field_service_management/workspace/service/service.json
+msgid "Open Requests"
+msgstr "Offene Anfragen"
+
+#. Label of a Number Card in Workspace 'Service'
+#: starrain_fsm/field_service_management/workspace/service/service.json
+msgid "Open Orders"
+msgstr "Offene Aufträge"
+
+#. Label of a Number Card in Workspace 'Service'
+#: starrain_fsm/field_service_management/workspace/service/service.json
+msgid "Scheduled Appointments"
+msgstr "Geplante Termine"
+
+#. Label of a Card link in Workspace 'Service'
+#: starrain_fsm/field_service_management/workspace/service/service.json
+msgid "Other Masters"
+msgstr "Weitere Stammdaten"
+
+#. Label of a Shortcut in Workspace 'Service'
+#: starrain_fsm/field_service_management/workspace/service/service.json
+msgid "Calendar and Grid"
+msgstr "Kalender und Raster"
