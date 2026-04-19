@@ -595,7 +595,8 @@
    "fieldname": "customer_address",
    "fieldtype": "Link",
    "label": "Service Address",
-   "options": "Address"
+   "options": "Address",
+   "reqd": 1
   },
   {
    "fieldname": "address_details",
@@ -607,7 +608,8 @@
    "fieldname": "customer_contact",
    "fieldtype": "Link",
    "label": "Contact Person",
-   "options": "Contact"
+   "options": "Contact",
+   "reqd": 1
   },
   {
    "fieldname": "contact_details",
