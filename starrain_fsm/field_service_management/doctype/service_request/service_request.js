@@ -6,9 +6,9 @@ frappe.ui.form.on("Service Request", {
     frm.trigger("set_amc_contract_query");
   },
   refresh: function (frm) {
-    // Render address/contact HTML on load
-    if (frm.doc.customer_address) frm.trigger("customer_address");
-    if (frm.doc.customer_contact) frm.trigger("customer_contact");
+    // Render address/contact HTML on load (always trigger so DOM is cleared on new docs)
+    frm.trigger("customer_address");
+    frm.trigger("customer_contact");
 
     // Disable connection links add
     frm.trigger("disable_connection_links_add");

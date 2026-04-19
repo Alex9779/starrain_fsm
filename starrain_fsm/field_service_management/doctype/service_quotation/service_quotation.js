@@ -164,6 +164,8 @@ frappe.ui.form.on("Service Quotation", {
           frm.set_value("address_details", details);
         },
       });
+    } else {
+      frm.set_value("address_details", "");
     }
   },
 
@@ -178,6 +180,8 @@ frappe.ui.form.on("Service Quotation", {
           frm.set_value("contact_details", details);
         },
       });
+    } else {
+      frm.set_value("contact_details", "");
     }
   },
 
