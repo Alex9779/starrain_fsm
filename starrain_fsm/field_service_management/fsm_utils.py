@@ -61,10 +61,6 @@ def update_invoice_status(doc, method):
 
 	if updated:
 		service_doc.save()
-		frappe.msgprint(
-			f"Updated invoice status for <strong>Services and Parts</strong> in "
-			f"<strong>Service Appointment</strong> {doc.custom_reference_service_document}"
-		)
 
 	update_associated_docs_invoice_status(doc, method)
 
@@ -108,10 +104,6 @@ def update_target_documents(target_doctype, target_docname, source_items):
 
 	if updated:
 		target_doc.save()
-		frappe.msgprint(
-			f"Updated invoice status for <strong>Services and Parts</strong> in "
-			f"<strong>{target_doctype}</strong> {target_docname}"
-		)
 
 
 def _apply_per_billed(doc):
