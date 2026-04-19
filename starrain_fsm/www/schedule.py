@@ -4,7 +4,6 @@ import re
 import frappe
 import frappe.sessions
 from frappe import _
-from frappe.utils.telemetry import capture
 
 no_cache = 1
 
