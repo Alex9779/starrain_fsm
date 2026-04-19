@@ -46,6 +46,10 @@ def get_appointments(
 		"service_type",
 		"description",
 		"naming_series",
+		"customer_address",
+		"address_details",
+		"customer_contact",
+		"contact_details",
 	]
 
 	if fields:
