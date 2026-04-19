@@ -177,7 +177,6 @@ def update_appointment_from_api(
 			{
 				"service_technician": service_technician["service_technician"],
 				"full_name": service_technician["full_name"],
-				# "service_area": service_technician["service_area"],
 				# "specialization": service_technician["specialization"]
 			},
 		)

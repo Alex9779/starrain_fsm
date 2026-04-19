@@ -14,7 +14,6 @@
   "service_request",
   "type",
   "priority",
-  "service_area",
   "company",
   "amended_from",
   "product_location",
@@ -740,15 +739,6 @@
    "print_hide": 1,
    "read_only": 1,
    "width": "100px"
-  },
-  {
-   "allow_on_submit": 1,
-   "fieldname": "service_area",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Service Area",
-   "options": "Service Area"
   },
   {
    "depends_on": "eval:doc.warranty_amc_status==\"Under AMC\"",
