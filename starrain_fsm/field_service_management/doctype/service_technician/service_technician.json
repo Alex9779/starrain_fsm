@@ -7,7 +7,6 @@
  "engine": "InnoDB",
  "field_order": [
   "full_name",
-  "service_area",
   "column_break_jvsh",
   "employee",
   "specialization"
@@ -32,12 +31,6 @@
    "fieldtype": "Link",
    "label": "Employee",
    "options": "Employee"
-  },
-  {
-   "fieldname": "service_area",
-   "fieldtype": "Link",
-   "label": "Service Area",
-   "options": "Service Area"
   },
   {
    "fieldname": "specialization",
