@@ -4,12 +4,11 @@ import frappe
 
 
 @frappe.whitelist()
-def create_service_invoice(doctype, docname, customer, items=None):
+def create_service_invoice(docname, customer, items=None):
 	items = json.loads(items) if items else []
 	invoice = frappe.new_doc("Sales Invoice")
 	invoice.customer = customer
 	invoice.due_date = frappe.utils.nowdate()
-	invoice.custom_reference_service_doctype = doctype
 	invoice.custom_reference_service_document = docname
 	for item in items:
 		invoice.append(
@@ -26,7 +25,7 @@ def create_service_invoice(doctype, docname, customer, items=None):
 
 
 def update_invoice_status(doc, method):
-	if not (doc.custom_reference_service_doctype and doc.custom_reference_service_document):
+	if not doc.custom_reference_service_document:
 		return
 
 	new_status = "Invoiced" if method == "on_submit" else "Not Invoiced"
@@ -39,16 +38,14 @@ def update_invoice_status(doc, method):
 		)
 	}
 
-	# Load the referenced service document
-	ref_doctype = doc.custom_reference_service_doctype
-	ref_docname = doc.custom_reference_service_document
-	service_doc = frappe.get_doc(ref_doctype, ref_docname)
+	# Load the referenced Service Appointment
+	service_doc = frappe.get_doc("Service Appointment", doc.custom_reference_service_document)
 
 	updated = False
-	child_tables = ["items"]  # Extend this list if there are more child tables to update (Services, Parts)
+	child_tables = ["items"]
 	for table in child_tables:
 		if not hasattr(service_doc, table):
-			frappe.throw(f"No '{table}' child table found in {ref_doctype}")
+			frappe.throw(f"No '{table}' child table found in Service Appointment")
 
 		for row in getattr(service_doc, table):
 			invoiced_qty = invoice_item_codes[row.item_code]
@@ -66,43 +63,32 @@ def update_invoice_status(doc, method):
 		service_doc.save()
 		frappe.msgprint(
 			f"Updated invoice status for <strong>Services and Parts</strong> in "
-			f"<strong>{ref_doctype}</strong> {ref_docname}"
+			f"<strong>Service Appointment</strong> {doc.custom_reference_service_document}"
 		)
 
 	update_associated_docs_invoice_status(doc, method)
 
 
 def update_associated_docs_invoice_status(doc, method):
-	if not (doc.custom_reference_service_doctype and doc.custom_reference_service_document):
+	if not doc.custom_reference_service_document:
 		return
 
-	source_doc = frappe.get_doc(doc.custom_reference_service_doctype, doc.custom_reference_service_document)
+	source_doc = frappe.get_doc("Service Appointment", doc.custom_reference_service_document)
 	source_items = source_doc.get("items", [])
 
-	possible_doctypes = {"Service Order", "Service Appointment"}
-	target_doctype = (possible_doctypes - {doc.custom_reference_service_doctype}).pop()
+	# Propagate to the linked Service Order
+	if source_doc.service_order:
+		update_target_documents("Service Order", source_doc.service_order, source_items)
 
-	if target_doctype == "Service Order":
-		target_docnames = [source_doc.service_order] if source_doc.service_order else []
-	elif target_doctype == "Service Appointment":
-		target_docnames = frappe.get_all(
-			target_doctype, filters={"service_order": source_doc.name}, pluck="name"
-		)
-	else:
-		target_docnames = []
-
-	# For Service Appointments, update other similar appointments in the same order
-	if doc.custom_reference_service_doctype == "Service Appointment":
+	# Propagate to other appointments on the same order
+	if source_doc.service_order:
 		similar_appointments = frappe.get_all(
-			source_doc.doctype,
+			"Service Appointment",
 			filters={"service_order": source_doc.service_order, "name": ["!=", source_doc.name]},
 			pluck="name",
 		)
 		for appointment_name in similar_appointments:
-			update_target_documents(source_doc.doctype, appointment_name, source_items)
-
-	for target_name in target_docnames:
-		update_target_documents(target_doctype, target_name, source_items)
+			update_target_documents("Service Appointment", appointment_name, source_items)
 
 
 def update_target_documents(target_doctype, target_docname, source_items):
@@ -147,10 +133,10 @@ def _apply_per_billed(doc):
 
 
 def update_per_billed_status(doc, method):
-	if not (doc.custom_reference_service_doctype and doc.custom_reference_service_document):
+	if not doc.custom_reference_service_document:
 		return
 
-	ref_doc = frappe.get_doc(doc.custom_reference_service_doctype, doc.custom_reference_service_document)
+	ref_doc = frappe.get_doc("Service Appointment", doc.custom_reference_service_document)
 	_apply_per_billed(ref_doc)
 
 	# Propagate to the linked Service Order
