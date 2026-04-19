@@ -44,6 +44,7 @@ class ServiceAppointment(Document):
 		filters = [
 			["name", "!=", self.name],
 			["name", "in", child_parents],
+			["docstatus", "!=", 2],
 			["status", "not in", ["Closed", "Cancelled"]],
 			["scheduled_start_datetime", "<", self.scheduled_finish_datetime],
 			["scheduled_finish_datetime", ">", self.scheduled_start_datetime],
