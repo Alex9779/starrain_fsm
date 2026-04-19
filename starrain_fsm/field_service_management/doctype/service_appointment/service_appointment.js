@@ -262,7 +262,6 @@ frappe.ui.form.on("Service Appointment", {
           method:
             "starrain_fsm.field_service_management.fsm_utils.create_service_invoice",
           args: {
-            doctype: frm.doc.doctype,
             docname: frm.doc.name,
             customer: frm.doc.customer,
             items: values.service_items,
