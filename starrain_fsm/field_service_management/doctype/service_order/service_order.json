@@ -780,7 +780,8 @@
    "fieldname": "service_technicians",
    "fieldtype": "Table",
    "label": "Service Technicians",
-   "options": "Service Technician Item"
+   "options": "Service Technician Item",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
