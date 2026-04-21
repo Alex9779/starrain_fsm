@@ -7,7 +7,6 @@
  "engine": "InnoDB",
  "field_order": [
   "overview",
-  "subject",
   "customer",
   "type",
   "priority",
@@ -25,6 +24,7 @@
   "customer_contact",
   "contact_details",
   "description_section",
+  "subject",
   "description",
   "appointment_preference_section",
   "preferred_date_1",
