@@ -51,24 +51,6 @@ msgstr ""
 msgid "<span class=\"h4\">Your Shortcuts</span>"
 msgstr ""
 
-#. Name of a DocType
-#. Label of a Link field in DocType 'Service Order'
-#. Label of a Link field in DocType 'Service Request'
-#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
-#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
-msgid "AMC Contract"
-msgstr ""
-
-#. Label of a Date field in DocType 'Service Order'
-#. Label of a Date field in DocType 'Service Quotation'
-#. Label of a Date field in DocType 'Service Request'
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
-#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
-#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
-msgid "AMC Expiry Date"
-msgstr ""
-
 #. Label of a Section Break field in DocType 'Service Order'
 #. Label of a Section Break field in DocType 'Service Quotation'
 #. Label of a Section Break field in DocType 'Service Request'
@@ -142,12 +124,10 @@ msgstr ""
 msgid "Against Blanket Order"
 msgstr ""
 
-#. Label of a Link field in DocType 'AMC Contract'
 #. Label of a Link field in DocType 'Service Appointment'
 #. Label of a Link field in DocType 'Service Order'
 #. Label of a Link field in DocType 'Service Quotation'
 #. Label of a Link field in DocType 'Service Request'
-#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
 #: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
@@ -325,21 +305,6 @@ msgstr ""
 msgid "Continue"
 msgstr ""
 
-#. Label of a Date field in DocType 'AMC Contract'
-#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
-msgid "Contract End Date"
-msgstr ""
-
-#. Label of a Int field in DocType 'AMC Contract'
-#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
-msgid "Contract Period(Months)"
-msgstr ""
-
-#. Label of a Date field in DocType 'AMC Contract'
-#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
-msgid "Contract Start Date"
-msgstr ""
-
 #. Label of a Float field in DocType 'Service Order'
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 msgid "Conversion Rate"
@@ -404,11 +369,9 @@ msgstr ""
 msgid "Critical"
 msgstr ""
 
-#. Label of a Link field in DocType 'AMC Contract'
 #. Label of a Link field in DocType 'Service Order'
 #. Label of a Link field in DocType 'Service Quotation'
 #. Label of a Link field in DocType 'Service Request'
-#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.json
@@ -429,11 +392,9 @@ msgstr ""
 msgid "Current Product Location"
 msgstr ""
 
-#. Label of a Link field in DocType 'AMC Contract'
 #. Label of a Link field in DocType 'Service Appointment'
 #. Label of a Link field in DocType 'Service Order'
 #. Label of a Link field in DocType 'Service Request'
-#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
 #: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.json
@@ -783,14 +744,12 @@ msgstr ""
 msgid "Is Stock Item"
 msgstr ""
 
-#. Label of a Link field in DocType 'AMC Contract'
 #. Label of a Link field in DocType 'Service Items'
 #. Label of a Link field in DocType 'Service Order'
 #. Label of a Link field in DocType 'Service Order Item'
 #. Label of a Link field in DocType 'Service Quotation'
 #. Label of a Link field in DocType 'Service Quotation Item'
 #. Label of a Link field in DocType 'Service Request'
-#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
 #: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:229
 #: starrain_fsm/field_service_management/doctype/service_items/service_items.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.js:300
@@ -1160,31 +1119,11 @@ msgstr ""
 msgid "Other Masters"
 msgstr ""
 
-#. Option for the 'Warranty / AMC Status' (Select) field in DocType 'Repair
+#. Option for the 'Warranty Status' (Select) field in DocType 'Service
 #. Order'
-#. Option for the 'Warranty / AMC Status' (Select) field in DocType 'Repair
-#. Shipment Items'
-#. Option for the 'Warranty / AMC Status' (Select) field in DocType 'Service
-#. Order'
-#. Option for the 'Warranty / AMC Status' (Select) field in DocType 'Service
+#. Option for the 'Warranty Status' (Select) field in DocType 'Service
 #. Quotation'
-#. Option for the 'Warranty / AMC Status' (Select) field in DocType 'Service
-#. Request'
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
-#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
-#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
-msgid "Out of AMC"
-msgstr ""
-
-#. Option for the 'Warranty / AMC Status' (Select) field in DocType 'Repair
-#. Order'
-#. Option for the 'Warranty / AMC Status' (Select) field in DocType 'Repair
-#. Shipment Items'
-#. Option for the 'Warranty / AMC Status' (Select) field in DocType 'Service
-#. Order'
-#. Option for the 'Warranty / AMC Status' (Select) field in DocType 'Service
-#. Quotation'
-#. Option for the 'Warranty / AMC Status' (Select) field in DocType 'Service
+#. Option for the 'Warranty Status' (Select) field in DocType 'Service
 #. Request'
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
@@ -1755,11 +1694,9 @@ msgstr ""
 msgid "Select at least one item to transfer."
 msgstr ""
 
-#. Label of a Link field in DocType 'AMC Contract'
 #. Label of a Link field in DocType 'Service Order'
 #. Label of a Link field in DocType 'Service Quotation'
 #. Label of a Link field in DocType 'Service Request'
-#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.js:619
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
@@ -1825,11 +1762,6 @@ msgstr ""
 msgid "Service Appointment By Status"
 msgstr ""
 
-#. Label of a Currency field in DocType 'AMC Contract'
-#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
-msgid "Service Budget"
-msgstr ""
-
 #. Label of a Select field in DocType 'Service Request'
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.json
 msgid "Service Category"
@@ -1890,11 +1822,6 @@ msgstr ""
 #. Name of a DocType
 #: starrain_fsm/field_service_management/doctype/service_order_item/service_order_item.json
 msgid "Service Order Item"
-msgstr ""
-
-#. Label of a Link field in DocType 'AMC Contract'
-#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
-msgid "Service Order Reference"
 msgstr ""
 
 #. Label of a chart in the Service Workspace
@@ -1982,11 +1909,6 @@ msgstr ""
 msgid "Service Type"
 msgstr ""
 
-#. Label of a Currency field in DocType 'AMC Contract'
-#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
-msgid "Service Utilized"
-msgstr ""
-
 #. Label of a Section Break field in DocType 'Service Order'
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 msgid "Services & Parts"
@@ -2030,16 +1952,6 @@ msgstr ""
 
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.js:639
 msgid "Source Warehouse"
-msgstr ""
-
-#. Label of a Currency field in DocType 'AMC Contract'
-#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
-msgid "Spare Parts Budget"
-msgstr ""
-
-#. Label of a Currency field in DocType 'AMC Contract'
-#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
-msgid "Spare Parts Utilized"
 msgstr ""
 
 #. Label of a Currency field in DocType 'Service Order'
@@ -2118,7 +2030,6 @@ msgid "Supplier delivers to Customer"
 msgstr ""
 
 #. Name of a role
-#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
 #: starrain_fsm/field_service_management/doctype/field_service_management_settings/field_service_management_settings.json
 #: starrain_fsm/field_service_management/doctype/product_location/product_location.json
 #: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
@@ -2154,10 +2065,6 @@ msgstr ""
 
 #: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.py:80
 msgid "There is an overlap with another appointment"
-msgstr ""
-
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1225
-msgid "This Service Order exceeds the linked AMC budget. Do you want to continue with submission?"
 msgstr ""
 
 #. Label of a Section Break field in DocType 'Field Service Management
@@ -2215,11 +2122,6 @@ msgstr ""
 msgid "Total Taxes and Charges (Company Currency)"
 msgstr ""
 
-#. Label of a Currency field in DocType 'AMC Contract'
-#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
-msgid "Total Value"
-msgstr ""
-
 #. Label of a Float field in DocType 'Service Order Item'
 #. Label of a Float field in DocType 'Service Quotation Item'
 #: starrain_fsm/field_service_management/doctype/service_order_item/service_order_item.json
@@ -2254,31 +2156,11 @@ msgstr ""
 msgid "Unable to record product movement. Please review the Service Request manually."
 msgstr ""
 
-#. Option for the 'Warranty / AMC Status' (Select) field in DocType 'Repair
+#. Option for the 'Warranty Status' (Select) field in DocType 'Service
 #. Order'
-#. Option for the 'Warranty / AMC Status' (Select) field in DocType 'Repair
-#. Shipment Items'
-#. Option for the 'Warranty / AMC Status' (Select) field in DocType 'Service
-#. Order'
-#. Option for the 'Warranty / AMC Status' (Select) field in DocType 'Service
+#. Option for the 'Warranty Status' (Select) field in DocType 'Service
 #. Quotation'
-#. Option for the 'Warranty / AMC Status' (Select) field in DocType 'Service
-#. Request'
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
-#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
-#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
-msgid "Under AMC"
-msgstr ""
-
-#. Option for the 'Warranty / AMC Status' (Select) field in DocType 'Repair
-#. Order'
-#. Option for the 'Warranty / AMC Status' (Select) field in DocType 'Repair
-#. Shipment Items'
-#. Option for the 'Warranty / AMC Status' (Select) field in DocType 'Service
-#. Order'
-#. Option for the 'Warranty / AMC Status' (Select) field in DocType 'Service
-#. Quotation'
-#. Option for the 'Warranty / AMC Status' (Select) field in DocType 'Service
+#. Option for the 'Warranty Status' (Select) field in DocType 'Service
 #. Request'
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
@@ -2297,11 +2179,6 @@ msgstr ""
 #: starrain_fsm/field_service_management/doctype/service_order_item/service_order_item.json
 #: starrain_fsm/field_service_management/doctype/service_quotation_item/service_quotation_item.json
 msgid "Used for Production Plan"
-msgstr ""
-
-#. Label of a Section Break field in DocType 'AMC Contract'
-#: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
-msgid "Utilized Amounts"
 msgstr ""
 
 #. Label of a Currency field in DocType 'Service Order Item'
@@ -2336,7 +2213,7 @@ msgstr ""
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.json
-msgid "Warranty / AMC Details"
+msgid "Warranty Details"
 msgstr ""
 
 #. Label of a Select field in DocType 'Service Order'
@@ -2345,7 +2222,7 @@ msgstr ""
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.json
-msgid "Warranty / AMC Status"
+msgid "Warranty Status"
 msgstr ""
 
 #. Label of a Date field in DocType 'Service Order'

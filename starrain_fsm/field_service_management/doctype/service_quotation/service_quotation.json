@@ -64,7 +64,6 @@
   "column_break_mgix",
   "warranty_amc_status",
   "warranty_expiry_date",
-  "amc_expiry_date",
   "appointment_preference_section",
   "preferred_date_1",
   "preferred_date_2",
@@ -115,7 +114,7 @@
    "collapsible": 1,
    "fieldname": "asset_details_section",
    "fieldtype": "Section Break",
-   "label": "Warranty / AMC Details"
+   "label": "Warranty Details"
   },
   {
    "collapsible": 1,
@@ -354,8 +353,8 @@
    "fetch_if_empty": 1,
    "fieldname": "warranty_amc_status",
    "fieldtype": "Select",
-   "label": "Warranty / AMC Status",
-   "options": "\nUnder Warranty\nOut of Warranty\nUnder AMC\nOut of AMC"
+   "label": "Warranty Status",
+   "options": "\nUnder Warranty\nOut of Warranty"
   },
   {
    "fetch_from": "serial_no.warranty_expiry_date",
@@ -363,13 +362,6 @@
    "fieldname": "warranty_expiry_date",
    "fieldtype": "Date",
    "label": "Warranty Expiry Date"
-  },
-  {
-   "fetch_from": "serial_no.amc_expiry_date",
-   "fetch_if_empty": 1,
-   "fieldname": "amc_expiry_date",
-   "fieldtype": "Date",
-   "label": "AMC Expiry Date"
   },
   {
    "fieldname": "section_break_31",

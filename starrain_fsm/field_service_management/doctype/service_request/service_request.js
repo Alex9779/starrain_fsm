@@ -3,7 +3,6 @@
 
 frappe.ui.form.on("Service Request", {
   setup(frm) {
-    frm.trigger("set_amc_contract_query");
   },
   refresh: function (frm) {
     // Hide company when only one company exists (matches ERPNext transaction behaviour)
@@ -108,7 +107,6 @@ frappe.ui.form.on("Service Request", {
         },
       };
     });
-    frm.trigger("set_amc_contract_query");
   },
   customer_address: function (frm) {
     if (frm.doc.customer_address) {
@@ -140,12 +138,6 @@ frappe.ui.form.on("Service Request", {
       frm.fields_dict["contact_details"].$wrapper.html("");
     }
   },
-  serial_no(frm) {
-    frm.trigger("set_amc_contract_query");
-  },
-  item_code(frm) {
-    frm.trigger("set_amc_contract_query");
-  },
   disable_connection_links_add: (frm) => {
     if (!["Converted"].includes(frm.doc.status)) {
       return;
@@ -173,25 +165,6 @@ frappe.ui.form.on("Service Request", {
         source_doctype: frm.doc.doctype,
         target_doctype: "Service Order",
       },
-    });
-  },
-  set_amc_contract_query(frm) {
-    frm.set_query("amc_contract", function () {
-      const filters = { docstatus: 1 };
-
-      if (frm.doc.customer) {
-        filters.customer = frm.doc.customer;
-      }
-      if (frm.doc.serial_no) {
-        filters.serial_no = frm.doc.serial_no;
-      }
-      if (frm.doc.item_code) {
-        filters.item_code = frm.doc.item_code;
-      }
-
-      return {
-        filters,
-      };
     });
   },
 });

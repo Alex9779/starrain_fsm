@@ -353,67 +353,6 @@ frappe.ui.form.on("Service Order", {
 
     dialog.show();
   },
-  before_submit(frm) {
-    if (!frm.doc.is_over_budget || frm.__over_budget_confirmed) {
-      return;
-    }
-
-    const dialog = new frappe.ui.Dialog({
-      title: __("Confirm Submission"),
-      fields: [
-        {
-          fieldtype: "HTML",
-          options: `<div style="padding: 15px 0;">
-            <p style="font-size: 14px; color: #333;">
-              ${__(
-                "This Service Order exceeds the linked AMC budget. Do you want to continue with submission?"
-              )}
-            </p>
-          </div>`,
-        },
-      ],
-      primary_action_label: __("Confirm"),
-      primary_action() {
-        frm.__over_budget_confirmed = true;
-        dialog.hide();
-        frm.savesubmit();
-      },
-      secondary_action_label: __("Cancel"),
-      secondary_action() {
-        frm.__over_budget_confirmed = false;
-        dialog.hide();
-      },
-    });
-
-    dialog.show();
-
-    // Style the primary button to be orange after dialog is shown
-    setTimeout(() => {
-      const primaryBtn = dialog.$wrapper.find(".btn-primary");
-      primaryBtn.css({
-        "background-color": "#ff9800",
-        "border-color": "#ff9800",
-        color: "#fff",
-      });
-
-      // Add hover effect
-      primaryBtn.on("mouseenter", function () {
-        $(this).css({
-          "background-color": "#f57c00",
-          "border-color": "#f57c00",
-        });
-      });
-
-      primaryBtn.on("mouseleave", function () {
-        $(this).css({
-          "background-color": "#ff9800",
-          "border-color": "#ff9800",
-        });
-      });
-    }, 100);
-
-    frappe.validated = false;
-  },
 });
 
 starrain_fsm.field_service_management.ServiceOrderController = class ServiceOrderController extends (

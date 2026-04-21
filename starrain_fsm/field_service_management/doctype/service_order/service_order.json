@@ -74,8 +74,6 @@
   "column_break_gakd",
   "warranty_amc_status",
   "warranty_expiry_date",
-  "amc_contract",
-  "amc_expiry_date",
   "appointment_preference_section",
   "preferred_date_1",
   "preferred_date_2",
@@ -503,7 +501,7 @@
   {
    "fieldname": "asset_details_section",
    "fieldtype": "Section Break",
-   "label": "Warranty / AMC Details"
+   "label": "Warranty Details"
   },
   {
    "fieldname": "appointment_preference_section",
@@ -645,8 +643,8 @@
    "fetch_if_empty": 1,
    "fieldname": "warranty_amc_status",
    "fieldtype": "Select",
-   "label": "Warranty / AMC Status",
-   "options": "\nUnder Warranty\nOut of Warranty\nUnder AMC\nOut of AMC"
+   "label": "Warranty Status",
+   "options": "\nUnder Warranty\nOut of Warranty"
   },
   {
    "fetch_from": "serial_no.warranty_expiry_date",
@@ -654,13 +652,6 @@
    "fieldname": "warranty_expiry_date",
    "fieldtype": "Date",
    "label": "Warranty Expiry Date"
-  },
-  {
-   "fetch_from": "serial_no.amc_expiry_date",
-   "fetch_if_empty": 1,
-   "fieldname": "amc_expiry_date",
-   "fieldtype": "Date",
-   "label": "AMC Expiry Date"
   },
   {
    "fieldname": "service_quotation",
@@ -742,20 +733,12 @@
    "width": "100px"
   },
   {
-   "depends_on": "eval:doc.warranty_amc_status==\"Under AMC\"",
-   "fieldname": "amc_contract",
-   "fieldtype": "Link",
-   "label": "AMC Contract",
-   "options": "AMC Contract"
-  },
-  {
    "collapsible": 1,
    "fieldname": "service_spareparts_breakdown_section",
    "fieldtype": "Section Break",
    "label": "Service & SpareParts Breakdown"
   },
   {
-   "fetch_from": "amc_contract.service_budget",
    "fieldname": "service_item_budget",
    "fieldtype": "Currency",
    "label": "Service Item Budget"
@@ -778,7 +761,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "fetch_from": "amc_contract.spare_parts_budget",
    "fieldname": "spareparts_item_budget",
    "fieldtype": "Currency",
    "label": "Spareparts Item Budget"
