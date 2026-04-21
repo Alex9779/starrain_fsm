@@ -13,7 +13,6 @@ class ServiceOrder(Document):
 		self.set_in_words()
 		self.validate_items()
 		self.calculate_service_totals()
-		self.check_amc_budget()
 
 	def before_submit(self):
 		self.update_linked_doc_status_before_submit()
@@ -22,10 +21,9 @@ class ServiceOrder(Document):
 		self.update_linked_doc_status_after_submit()
 
 	def on_submit(self):
-		self.update_amc_contract_utilization()
+		pass
 
 	def on_cancel(self):
-		self.revert_amc_contract_utilization()
 		self.cancel_linked_request()
 		self.cancel_linked_quotation()
 
@@ -129,60 +127,6 @@ class ServiceOrder(Document):
 
 		self.service_total = service_total
 		self.spareparts_total = spareparts_total
-
-	def check_amc_budget(self):
-		self.is_over_budget = 0
-
-		if not self.amc_contract:
-			return
-
-		fields = [
-			"service_budget",
-			"spare_parts_budget",
-			"service_utilized",
-			"spare_parts_utilized",
-		]
-		contract = frappe.db.get_value("AMC Contract", self.amc_contract, fields, as_dict=True) or {}
-
-		service_budget = flt(contract.get("service_budget"))
-		spare_budget = flt(contract.get("spare_parts_budget"))
-		service_utilized = flt(contract.get("service_utilized"))
-		spare_utilized = flt(contract.get("spare_parts_utilized"))
-
-		projected_service = service_utilized + flt(self.service_total)
-		projected_spare = spare_utilized + flt(self.spareparts_total)
-
-		over_service = service_budget and projected_service > service_budget
-		over_spare = spare_budget and projected_spare > spare_budget
-
-		if over_service or over_spare:
-			self.is_over_budget = 1
-
-	def update_amc_contract_utilization(self):
-		if not self.amc_contract:
-			return
-
-		contract = frappe.get_doc("AMC Contract", self.amc_contract)
-
-		contract.service_utilized = flt(contract.service_utilized) + flt(self.service_total)
-		contract.spare_parts_utilized = flt(contract.spare_parts_utilized) + flt(self.spareparts_total)
-		contract.service_order_reference = self.name
-
-		contract.save(ignore_permissions=True)
-
-	def revert_amc_contract_utilization(self):
-		if not self.amc_contract:
-			return
-
-		contract = frappe.get_doc("AMC Contract", self.amc_contract)
-
-		contract.service_utilized = max(0, flt(contract.service_utilized) - flt(self.service_total))
-		contract.spare_parts_utilized = max(
-			0, flt(contract.spare_parts_utilized) - flt(self.spareparts_total)
-		)
-		contract.service_order_reference = ""
-
-		contract.save(ignore_permissions=True)
 
 
 @frappe.whitelist()
