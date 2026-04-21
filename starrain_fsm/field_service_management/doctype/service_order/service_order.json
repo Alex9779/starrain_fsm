@@ -559,7 +559,7 @@
    "in_standard_filter": 1,
    "label": "Status",
    "no_copy": 1,
-   "options": "Open\nScheduled\nAssessed\nCompleted",
+   "options": "Open\nScheduled\nIn Progress\nAssessed\nReview\nCompleted",
    "read_only": 1,
    "reqd": 1
   },

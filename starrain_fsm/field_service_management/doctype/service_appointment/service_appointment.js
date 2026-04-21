@@ -3,9 +3,8 @@
 
 frappe.ui.form.on("Service Appointment", {
   onload: function (frm) {
-    // Hide either quotation or request
-    if (frm.doc.service_order) frm.toggle_enable("service_quotation", 0);
-    if (frm.doc.service_quotation) frm.toggle_enable("service_order", 0);
+    // Lock service_order field once set (it drives the appointment)
+    if (frm.doc.service_order) frm.toggle_enable("service_order", 0);
   },
   refresh(frm) {
     // Set Posting Date
@@ -13,9 +12,8 @@ frappe.ui.form.on("Service Appointment", {
       frm.set_value("posting_date", frappe.datetime.get_today());
     }
 
-    // Hide either quotation or request
-    if (frm.doc.service_order) frm.toggle_enable("service_quotation", 0);
-    if (frm.doc.service_quotation) frm.toggle_enable("service_order", 0);
+    // Lock service_order field once set
+    if (frm.doc.service_order) frm.toggle_enable("service_order", 0);
 
     frm.trigger("disable_invoicing");
     frm.trigger("disable_items_and_techs_edit");
@@ -281,6 +279,7 @@ frappe.ui.form.on("Service Appointment", {
             "starrain_fsm.field_service_management.fsm_utils.create_service_invoice",
           args: {
             docname: frm.doc.name,
+            doctype: frm.doc.doctype,
             customer: frm.doc.customer,
             items: values.service_items,
           },

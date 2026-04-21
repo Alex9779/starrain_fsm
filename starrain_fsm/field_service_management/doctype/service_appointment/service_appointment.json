@@ -267,16 +267,12 @@
    "title": "Scheduled"
   },
   {
-   "color": "Purple",
-   "title": "Dispatched"
-  },
-  {
-   "color": "Orange",
-   "title": "In Progress"
-  },
-  {
    "color": "Green",
    "title": "Completed"
+  },
+  {
+   "color": "Red",
+   "title": "Cancelled"
   }
  ]
 }
