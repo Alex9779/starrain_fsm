@@ -685,9 +685,10 @@
   },
   {
    "allow_on_submit": 1,
+   "default": "Today",
    "fieldname": "posting_date",
    "fieldtype": "Date",
-   "label": "Date",
+   "label": "Posting Date",
    "reqd": 1
   },
   {
