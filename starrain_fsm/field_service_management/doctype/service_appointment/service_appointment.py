@@ -19,7 +19,9 @@ class ServiceAppointment(Document):
 		self.set_scheduled_status()
 
 	def before_update_after_submit(self):
-		self.validate_overlap()
+		# Only check overlap when rescheduling — not when marking as Completed/Cancelled
+		if self.status not in ("Completed", "Cancelled"):
+			self.validate_overlap()
 		self.update_service_order_status()
 
 	def on_cancel(self):
@@ -98,38 +100,32 @@ class ServiceAppointment(Document):
 
 	def set_service_order_status(self):
 		if self.service_order:
-			order = frappe.get_doc("Service Order", self.service_order)
-			order.status = "Scheduled"
-			order.save()
+			frappe.db.set_value("Service Order", self.service_order, "status", "Scheduled")
 
 	def update_service_order_status(self):
 		if not self.service_order:
 			return
 
-		order = frappe.get_doc("Service Order", self.service_order)
-
 		if self.status == "Scheduled":
-			# Only move order forward to Scheduled — never overwrite In Progress / Review
+			# Only advance to Scheduled — never overwrite In Progress / Review
 			# states that product movements may have set.
-			if order.status in ("Open", "Assessed"):
-				order.status = "Scheduled"
-				order.save()
+			current_status = frappe.db.get_value("Service Order", self.service_order, "status")
+			if current_status in ("Open", "Assessed"):
+				frappe.db.set_value("Service Order", self.service_order, "status", "Scheduled")
 		elif self.status == "Completed":
 			# Assessment visits move the order to Assessed so scope can be
 			# defined before scheduling an execution appointment.
 			if self.service_type == "Assessment":
-				order.status = "Assessed"
+				new_status = "Assessed"
 			else:
-				order.status = "Completed"
-			order.save()
+				new_status = "Completed"
+			frappe.db.set_value("Service Order", self.service_order, "status", new_status)
 
 	def cancel_linked_order(self):
 		if not self.service_order:
 			return
-		order = frappe.get_doc("Service Order", self.service_order)
-		order.status = "Open"
+		frappe.db.set_value("Service Order", self.service_order, "status", "Open")
 		self.service_order = ""
-		order.save()
 
 
 @frappe.whitelist()
