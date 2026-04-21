@@ -668,6 +668,41 @@ msgstr ""
 msgid "Product Location"
 msgstr ""
 
+#. Product Location record name (fixture)
+#: starrain_fsm/fixtures/product_location.json
+msgid "Customer Site"
+msgstr ""
+
+#. Product Location record name (fixture)
+#: starrain_fsm/fixtures/product_location.json
+msgid "In Transit to Workshop"
+msgstr ""
+
+#. Product Location record name (fixture)
+#: starrain_fsm/fixtures/product_location.json
+msgid "Sent to Vendor"
+msgstr ""
+
+#. Product Location record name (fixture)
+#: starrain_fsm/fixtures/product_location.json
+msgid "Receive from Vendor"
+msgstr ""
+
+#. Product Location record name (fixture)
+#: starrain_fsm/fixtures/product_location.json
+msgid "Deliver to Customer"
+msgstr ""
+
+#. Product Location record name (fixture)
+#: starrain_fsm/fixtures/product_location.json
+msgid "Receive From Customer"
+msgstr ""
+
+#. Product Location destination value (fixture)
+#: starrain_fsm/fixtures/product_location.json
+msgid "Vendor Location"
+msgstr ""
+
 #. Name of a DocType
 #: starrain_fsm/field_service_management/doctype/product_movement/product_movement.json
 msgid "Product Movement"

@@ -631,6 +631,41 @@ msgstr "Bevorzugte Uhrzeit"
 msgid "Product Location"
 msgstr "Produktstandort"
 
+#. Product Location record name (fixture)
+#: starrain_fsm/fixtures/product_location.json
+msgid "Customer Site"
+msgstr "Kundenstandort"
+
+#. Product Location record name (fixture)
+#: starrain_fsm/fixtures/product_location.json
+msgid "In Transit to Workshop"
+msgstr "Unterwegs zur Werkstatt"
+
+#. Product Location record name (fixture)
+#: starrain_fsm/fixtures/product_location.json
+msgid "Sent to Vendor"
+msgstr "An Lieferanten gesendet"
+
+#. Product Location record name (fixture)
+#: starrain_fsm/fixtures/product_location.json
+msgid "Receive from Vendor"
+msgstr "Von Lieferanten erhalten"
+
+#. Product Location record name (fixture)
+#: starrain_fsm/fixtures/product_location.json
+msgid "Deliver to Customer"
+msgstr "An Kunden liefern"
+
+#. Product Location record name (fixture)
+#: starrain_fsm/fixtures/product_location.json
+msgid "Receive From Customer"
+msgstr "Von Kunden erhalten"
+
+#. Product Location destination value (fixture)
+#: starrain_fsm/fixtures/product_location.json
+msgid "Vendor Location"
+msgstr "Lieferantenstandort"
+
 #. Name of a DocType
 #: starrain_fsm/field_service_management/doctype/product_movement/product_movement.json
 msgid "Product Movement"
