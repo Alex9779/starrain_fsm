@@ -27,24 +27,41 @@ class ServiceRequest(Document):
 			self._add_address_dynamic_link(new_address)
 
 	def _add_address_dynamic_link(self, address_name):
-		addr = frappe.get_doc("Address", address_name)
-		already_linked = any(
-			lnk.link_doctype == self.doctype and lnk.link_name == self.name
-			for lnk in addr.links
+		already_linked = frappe.db.exists(
+			"Dynamic Link",
+			{
+				"parenttype": "Address",
+				"parent": address_name,
+				"link_doctype": self.doctype,
+				"link_name": self.name,
+			},
 		)
 		if not already_linked:
-			addr.append("links", {"link_doctype": self.doctype, "link_name": self.name})
-			addr.save(ignore_permissions=True)
+			link = frappe.new_doc("Dynamic Link")
+			link.update(
+				{
+					"parenttype": "Address",
+					"parent": address_name,
+					"parentfield": "links",
+					"link_doctype": self.doctype,
+					"link_name": self.name,
+					"link_title": self.name,
+				}
+			)
+			link.insert(ignore_permissions=True)
 
 	def _remove_address_dynamic_link(self, address_name):
 		if not address_name:
 			return
-		addr = frappe.get_doc("Address", address_name)
-		addr.links = [
-			lnk for lnk in addr.links
-			if not (lnk.link_doctype == self.doctype and lnk.link_name == self.name)
-		]
-		addr.save(ignore_permissions=True)
+		frappe.db.delete(
+			"Dynamic Link",
+			{
+				"parenttype": "Address",
+				"parent": address_name,
+				"link_doctype": self.doctype,
+				"link_name": self.name,
+			},
+		)
 
 
 def update_status():
