@@ -42,7 +42,6 @@ def get_service_orders_for_tracking(
 		"item_code",
 		"priority",
 		"type",
-		"product_location",
 	]
 
 	limit = int(limit_page_length) if limit_page_length else None
@@ -55,21 +54,5 @@ def get_service_orders_for_tracking(
 		order_by="posting_date desc",
 		limit_page_length=limit,
 	)
-
-	for order in orders:
-		doc = frappe.get_doc("Service Order", order.name)
-		order["product_movement"] = [
-			{
-				"name": movement.name,
-				"movement_type": movement.movement_type,
-				"destination": movement.destination,
-				"movement_date": movement.movement_date,
-				"linked_document_type": movement.linked_document_type,
-				"linked_document": movement.linked_document,
-				"handled_by": movement.handled_by,
-				"service_order": order.name,
-			}
-			for movement in doc.product_movement
-		]
 
 	return orders

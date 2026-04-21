@@ -24,7 +24,6 @@ app_license = "mit"
 fixtures = [
 	# Export your custom "Service Type" doctype
 	"Service Type",
-	"Product Location",
 	# Export the "Service" Workspace only
 	# {"dt": "Workspace", "filters": {"name": "Service"}},
 	# Export specific Custom Fields related to Service Order links
@@ -40,11 +39,6 @@ fixtures = [
 					"Purchase Receipt-custom_service_order",
 					"Stock Entry-custom_service_order",
 					"Delivery Note-custom_service_order",
-					"Delivery Note-custom_current_product_location",
-					"Stock Entry-custom_current_product_location",
-					"Purchase Order-custom_current_product_location",
-					"Purchase Invoice-custom_current_product_location",
-					"Purchase Receipt-custom_current_product_location",
 				],
 			]
 		],
@@ -190,27 +184,22 @@ doc_events = {
 	},
 	"Delivery Note": {
 		"on_submit": [
-			"starrain_fsm.field_service_management.doctype.service_order.service_order.update_product_movement_on_submit",
 		],
 	},
 	"Purchase Order": {
 		"on_submit": [
-			"starrain_fsm.field_service_management.doctype.service_order.service_order.update_product_movement_on_submit",
 		],
 	},
 	"Purchase Receipt": {
 		"on_submit": [
-			"starrain_fsm.field_service_management.doctype.service_order.service_order.update_product_movement_on_submit",
 		],
 	},
 	"Purchase Invoice": {
 		"on_submit": [
-			"starrain_fsm.field_service_management.doctype.service_order.service_order.update_product_movement_on_submit",
 		],
 	},
 	"Stock Entry": {
 		"on_submit": [
-			"starrain_fsm.field_service_management.doctype.service_order.service_order.update_product_movement_on_submit",
 		],
 	},
 }

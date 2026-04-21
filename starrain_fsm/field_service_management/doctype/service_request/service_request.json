@@ -19,7 +19,6 @@
   "posting_date",
   "due_date",
   "service_category",
-  "current_product_location",
   "customer_addresses_contacts_section",
   "customer_address",
   "address_details",
@@ -351,15 +350,6 @@
    "label": "Repair Vendor",
    "no_copy": 1,
    "options": "Supplier"
-  },
-  {
-   "allow_on_submit": 1,
-   "default": "Customer Site",
-   "fieldname": "current_product_location",
-   "fieldtype": "Link",
-   "label": "Current Product Location",
-   "no_copy": 1,
-   "options": "Product Location"
   }
  ],
  "index_web_pages_for_search": 1,
