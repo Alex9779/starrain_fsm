@@ -62,13 +62,9 @@ msgstr ""
 msgid "AMC Contract"
 msgstr "AMC-Vertrag"
 
-#. Label of a Date field in DocType 'Repair Order'
-#. Label of a Date field in DocType 'Repair Shipment Items'
 #. Label of a Date field in DocType 'Service Order'
 #. Label of a Date field in DocType 'Service Quotation'
 #. Label of a Date field in DocType 'Service Request'
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-#: starrain_fsm/field_service_management/doctype/repair_shipment_items/repair_shipment_items.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.json
@@ -149,15 +145,11 @@ msgid "Against Blanket Order"
 msgstr ""
 
 #. Label of a Link field in DocType 'AMC Contract'
-#. Label of a Link field in DocType 'Repair Order'
-#. Label of a Link field in DocType 'Repair Shipment'
 #. Label of a Link field in DocType 'Service Appointment'
 #. Label of a Link field in DocType 'Service Order'
 #. Label of a Link field in DocType 'Service Quotation'
 #. Label of a Link field in DocType 'Service Request'
 #: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-#: starrain_fsm/field_service_management/doctype/repair_shipment/repair_shipment.json
 #: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
@@ -285,11 +277,9 @@ msgstr "Schließen"
 msgid "Closed"
 msgstr "Geschlossen"
 
-#. Label of a Link field in DocType 'Repair Order'
 #. Label of a Link field in DocType 'Service Order'
 #. Label of a Link field in DocType 'Service Quotation'
 #. Label of a Link field in DocType 'Service Request'
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.json
@@ -442,14 +432,10 @@ msgid "Current Product Location"
 msgstr "Aktueller Produktstandort"
 
 #. Label of a Link field in DocType 'AMC Contract'
-#. Label of a Link field in DocType 'Repair Order'
-#. Label of a Link field in DocType 'Repair Shipment Items'
 #. Label of a Link field in DocType 'Service Appointment'
 #. Label of a Link field in DocType 'Service Order'
 #. Label of a Link field in DocType 'Service Request'
 #: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-#: starrain_fsm/field_service_management/doctype/repair_shipment_items/repair_shipment_items.json
 #: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.json
@@ -478,13 +464,6 @@ msgstr ""
 #. Label of a shortcut in the Service Workspace
 #: starrain_fsm/field_service_management/workspace/service/service.json
 msgid "Dashboard"
-msgstr ""
-
-#. Label of a Date field in DocType 'Repair Order'
-#. Label of a Date field in DocType 'Repair Shipment'
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-#: starrain_fsm/field_service_management/doctype/repair_shipment/repair_shipment.json
-msgid "Date"
 msgstr ""
 
 #. Label of a Float field in DocType 'Field Service Management Settings'
@@ -556,11 +535,6 @@ msgstr ""
 #: starrain_fsm/field_service_management/doctype/service_quotation_item/service_quotation_item.json
 msgid "Discount and Margin"
 msgstr ""
-
-#. Option for the 'Status' (Select) field in DocType 'Repair Order'
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-msgid "Dispatched"
-msgstr "Versendet"
 
 #. Label of a Section Break field in DocType 'Service Order Item'
 #. Label of a Section Break field in DocType 'Service Quotation Item'
@@ -806,8 +780,6 @@ msgid "Is Stock Item"
 msgstr ""
 
 #. Label of a Link field in DocType 'AMC Contract'
-#. Label of a Link field in DocType 'Repair Order'
-#. Label of a Link field in DocType 'Repair Shipment Items'
 #. Label of a Link field in DocType 'Service Items'
 #. Label of a Link field in DocType 'Service Order'
 #. Label of a Link field in DocType 'Service Order Item'
@@ -815,8 +787,6 @@ msgstr ""
 #. Label of a Link field in DocType 'Service Quotation Item'
 #. Label of a Link field in DocType 'Service Request'
 #: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-#: starrain_fsm/field_service_management/doctype/repair_shipment_items/repair_shipment_items.json
 #: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:229
 #: starrain_fsm/field_service_management/doctype/service_items/service_items.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.js:300
@@ -839,16 +809,12 @@ msgstr "Artikelnummer"
 msgid "Item Group"
 msgstr ""
 
-#. Label of a Data field in DocType 'Repair Order'
-#. Label of a Data field in DocType 'Repair Shipment Items'
 #. Label of a Data field in DocType 'Service Items'
 #. Label of a Data field in DocType 'Service Order'
 #. Label of a Data field in DocType 'Service Order Item'
 #. Label of a Data field in DocType 'Service Quotation'
 #. Label of a Data field in DocType 'Service Quotation Item'
 #. Label of a Data field in DocType 'Service Request'
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-#: starrain_fsm/field_service_management/doctype/repair_shipment_items/repair_shipment_items.json
 #: starrain_fsm/field_service_management/doctype/service_items/service_items.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.js:612
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.js:682
@@ -1151,14 +1117,10 @@ msgstr "Pausiert"
 msgid "Onsite"
 msgstr "Vor Ort"
 
-#. Option for the 'Status' (Select) field in DocType 'Repair Order'
-#. Option for the 'Status' (Select) field in DocType 'Repair Shipment'
 #. Option for the 'Status' (Select) field in DocType 'Service Appointment'
 #. Option for the 'Status' (Select) field in DocType 'Service Order'
 #. Option for the 'Status' (Select) field in DocType 'Service Quotation'
 #. Option for the 'Status' (Select) field in DocType 'Service Request'
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-#: starrain_fsm/field_service_management/doctype/repair_shipment/repair_shipment.json
 #: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
@@ -1199,8 +1161,6 @@ msgstr "Weitere Stammdaten"
 #. Option for the 'Warranty / AMC Status' (Select) field in DocType 'Service
 #. Quotation'
 #. Request'
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-#: starrain_fsm/field_service_management/doctype/repair_shipment_items/repair_shipment_items.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.json
@@ -1213,8 +1173,6 @@ msgstr "Außerhalb des AMC-Vertrags"
 #. Option for the 'Warranty / AMC Status' (Select) field in DocType 'Service
 #. Quotation'
 #. Request'
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-#: starrain_fsm/field_service_management/doctype/repair_shipment_items/repair_shipment_items.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.json
@@ -1250,11 +1208,6 @@ msgstr "Teilweise fakturiert"
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
 msgid "Party"
 msgstr ""
-
-#. Option for the 'Repair Status' (Select) field in DocType 'Repair Order'
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-msgid "Pending"
-msgstr "Ausstehend"
 
 #. Option for the 'Margin Type' (Select) field in DocType 'Service Order Item'
 #. Option for the 'Margin Type' (Select) field in DocType 'Service Quotation
@@ -1654,64 +1607,15 @@ msgstr ""
 msgid "Refresh Amount"
 msgstr "Betrag aktualisieren"
 
-#. Option for the 'Repair Status' (Select) field in DocType 'Repair Order'
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-msgid "Rejected"
-msgstr "Abgelehnt"
-
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:50
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.js:51
 msgid "Reopen"
 msgstr "Wiedereröffnen"
 
-#. Label of a Section Break field in DocType 'Repair Order'
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-msgid "Repair Details"
-msgstr "Reparaturdetails"
-
-#. Label of a Section Break field in DocType 'Repair Order'
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-msgid "Repair Item"
-msgstr "Reparaturartikel"
-
-#. Name of a DocType
-#. Label of a Link field in DocType 'Repair Shipment Items'
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-#: starrain_fsm/field_service_management/doctype/repair_shipment_items/repair_shipment_items.json
-msgid "Repair Order"
-msgstr "Reparaturauftrag"
-
-#. Name of a DocType
-#: starrain_fsm/field_service_management/doctype/repair_shipment/repair_shipment.json
-msgid "Repair Shipment"
-msgstr "Reparatursendung"
-
-#. Label of a Table field in DocType 'Repair Shipment'
-#. Name of a DocType
-#: starrain_fsm/field_service_management/doctype/repair_shipment/repair_shipment.json
-#: starrain_fsm/field_service_management/doctype/repair_shipment_items/repair_shipment_items.json
-msgid "Repair Shipment Items"
-msgstr "Reparatursendungsartikel"
-
-#. Label of a Select field in DocType 'Repair Order'
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-msgid "Repair Status"
-msgstr "Reparaturstatus"
-
 #. Label of a Link field in DocType 'Service Request'
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.json
 msgid "Repair Vendor"
 msgstr "Reparaturlieferant"
-
-#. Option for the 'Repair Status' (Select) field in DocType 'Repair Order'
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-msgid "Repaired"
-msgstr "Repariert"
-
-#. Option for the 'Repair Status' (Select) field in DocType 'Repair Order'
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-msgid "Replaced"
-msgstr "Ersetzt"
 
 #: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:46
 msgid "Reschedule"
@@ -1728,11 +1632,6 @@ msgstr ""
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.js:32
 msgid "Resume"
 msgstr "Fortsetzen"
-
-#. Option for the 'Status' (Select) field in DocType 'Repair Order'
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-msgid "Returned"
-msgstr "Zurückgegeben"
 
 #. Label of a Float field in DocType 'Service Order Item'
 #. Label of a Float field in DocType 'Service Quotation Item'
@@ -1843,14 +1742,10 @@ msgid "Select at least one item to transfer."
 msgstr "Bitte mindestens einen Artikel zum Übertragen auswählen."
 
 #. Label of a Link field in DocType 'AMC Contract'
-#. Label of a Link field in DocType 'Repair Order'
-#. Label of a Link field in DocType 'Repair Shipment Items'
 #. Label of a Link field in DocType 'Service Order'
 #. Label of a Link field in DocType 'Service Quotation'
 #. Label of a Link field in DocType 'Service Request'
 #: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-#: starrain_fsm/field_service_management/doctype/repair_shipment_items/repair_shipment_items.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.js:619
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
@@ -1858,14 +1753,10 @@ msgstr "Bitte mindestens einen Artikel zum Übertragen auswählen."
 msgid "Serial No"
 msgstr "Seriennummer"
 
-#. Label of a Select field in DocType 'Repair Order'
-#. Label of a Select field in DocType 'Repair Shipment'
 #. Label of a Select field in DocType 'Service Appointment'
 #. Label of a Select field in DocType 'Service Order'
 #. Label of a Select field in DocType 'Service Quotation'
 #. Label of a Select field in DocType 'Service Request'
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-#: starrain_fsm/field_service_management/doctype/repair_shipment/repair_shipment.json
 #: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
@@ -1959,13 +1850,11 @@ msgstr "Serviceartikel"
 msgid "Service Notes"
 msgstr "Servicenotizen"
 
-#. Label of a Link field in DocType 'Repair Order'
 #. Label of a Link field in DocType 'Service Appointment'
 #. Name of a DocType
 #. Linked DocType in Service Quotation's connections
 #. Linked DocType in Service Request's connections
 #. Label of a shortcut in the Service Workspace
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
 #: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.js:77
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
@@ -2111,16 +2000,6 @@ msgstr "Angebot als verloren markieren"
 msgid "Set as Lost"
 msgstr "Als verloren markieren"
 
-#. Label of a Date field in DocType 'Repair Shipment'
-#: starrain_fsm/field_service_management/doctype/repair_shipment/repair_shipment.json
-msgid "Shipment Date"
-msgstr ""
-
-#. Option for the 'Status' (Select) field in DocType 'Repair Shipment'
-#: starrain_fsm/field_service_management/doctype/repair_shipment/repair_shipment.json
-msgid "Shipped"
-msgstr "Versandt"
-
 #. Label of a Section Break field in DocType 'Service Order Item'
 #. Label of a Section Break field in DocType 'Service Quotation Item'
 #: starrain_fsm/field_service_management/doctype/service_order_item/service_order_item.json
@@ -2166,16 +2045,12 @@ msgstr "Ersatzteilartikelbudget"
 msgid "Specialization"
 msgstr "Fachgebiet"
 
-#. Label of a Select field in DocType 'Repair Order'
-#. Label of a Select field in DocType 'Repair Shipment'
 #. Label of a Select field in DocType 'Service Appointment'
 #. Label of a Select field in DocType 'Service Order'
 #. Label of a Section Break field in DocType 'Service Order'
 #. Label of a Select field in DocType 'Service Quotation'
 #. Label of a Section Break field in DocType 'Service Quotation'
 #. Label of a Select field in DocType 'Service Request'
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-#: starrain_fsm/field_service_management/doctype/repair_shipment/repair_shipment.json
 #: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:36
@@ -2214,12 +2089,8 @@ msgstr ""
 msgid "Subject"
 msgstr ""
 
-#. Label of a Link field in DocType 'Repair Order'
-#. Label of a Link field in DocType 'Repair Shipment'
 #. Label of a Link field in DocType 'Service Order Item'
 #. Label of a Link field in DocType 'Service Quotation Item'
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-#: starrain_fsm/field_service_management/doctype/repair_shipment/repair_shipment.json
 #: starrain_fsm/field_service_management/doctype/service_order_item/service_order_item.json
 #: starrain_fsm/field_service_management/doctype/service_quotation_item/service_quotation_item.json
 msgid "Supplier"
@@ -2236,8 +2107,6 @@ msgstr ""
 #: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
 #: starrain_fsm/field_service_management/doctype/field_service_management_settings/field_service_management_settings.json
 #: starrain_fsm/field_service_management/doctype/product_location/product_location.json
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-#: starrain_fsm/field_service_management/doctype/repair_shipment/repair_shipment.json
 #: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
@@ -2377,8 +2246,6 @@ msgstr "Produktbewegung konnte nicht erfasst werden. Bitte die Serviceanfrage ma
 #. Option for the 'Warranty / AMC Status' (Select) field in DocType 'Service
 #. Quotation'
 #. Request'
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-#: starrain_fsm/field_service_management/doctype/repair_shipment_items/repair_shipment_items.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.json
@@ -2391,8 +2258,6 @@ msgstr "In AMC-Wartung"
 #. Option for the 'Warranty / AMC Status' (Select) field in DocType 'Service
 #. Quotation'
 #. Request'
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-#: starrain_fsm/field_service_management/doctype/repair_shipment_items/repair_shipment_items.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.json
@@ -2451,26 +2316,18 @@ msgstr ""
 msgid "Warranty / AMC Details"
 msgstr "Garantie- / AMC-Details"
 
-#. Label of a Select field in DocType 'Repair Order'
-#. Label of a Select field in DocType 'Repair Shipment Items'
 #. Label of a Select field in DocType 'Service Order'
 #. Label of a Select field in DocType 'Service Quotation'
 #. Label of a Select field in DocType 'Service Request'
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-#: starrain_fsm/field_service_management/doctype/repair_shipment_items/repair_shipment_items.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.json
 msgid "Warranty / AMC Status"
 msgstr "Garantie- / AMC-Status"
 
-#. Label of a Date field in DocType 'Repair Order'
-#. Label of a Date field in DocType 'Repair Shipment Items'
 #. Label of a Date field in DocType 'Service Order'
 #. Label of a Date field in DocType 'Service Quotation'
 #. Label of a Date field in DocType 'Service Request'
-#: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
-#: starrain_fsm/field_service_management/doctype/repair_shipment_items/repair_shipment_items.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.json
