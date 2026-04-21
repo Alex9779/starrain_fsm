@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Beveren Field Service Management VERSION\n"
 "Report-Msgid-Bugs-To: info@beverensoftware.com\n"
-"POT-Creation-Date: 2026-04-21 16:19+0000\n"
-"PO-Revision-Date: 2026-04-21 16:19+0000\n"
+"POT-Creation-Date: 2026-04-21 16:29+0000\n"
+"PO-Revision-Date: 2026-04-21 16:29+0000\n"
 "Last-Translator: info@beverensoftware.com\n"
 "Language-Team: info@beverensoftware.com\n"
 "MIME-Version: 1.0\n"
@@ -480,10 +480,8 @@ msgstr ""
 
 #. Label of a Date field in DocType 'Repair Order'
 #. Label of a Date field in DocType 'Repair Shipment'
-#. Label of a Date field in DocType 'Service Order'
 #: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
 #: starrain_fsm/field_service_management/doctype/repair_shipment/repair_shipment.json
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 msgid "Date"
 msgstr ""
 
@@ -1337,9 +1335,11 @@ msgid "Please set an Expense Account for item {0}."
 msgstr ""
 
 #. Label of a Date field in DocType 'Service Appointment'
+#. Label of a Date field in DocType 'Service Order'
 #. Label of a Date field in DocType 'Service Quotation'
 #. Label of a Date field in DocType 'Service Request'
 #: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.json
 msgid "Posting Date"
