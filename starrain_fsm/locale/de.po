@@ -1556,11 +1556,6 @@ msgstr "Betrag aktualisieren"
 msgid "Reopen"
 msgstr "Wiedereröffnen"
 
-#. Label of a Link field in DocType 'Service Request'
-#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
-msgid "Repair Vendor"
-msgstr "Reparaturlieferant"
-
 #: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:46
 msgid "Reschedule"
 msgstr "Neu planen"
