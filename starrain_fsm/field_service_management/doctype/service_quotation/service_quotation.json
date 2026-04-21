@@ -181,7 +181,6 @@
    "reqd": 1
   },
   {
-   "default": "Service",
    "fieldname": "type",
    "fieldtype": "Link",
    "in_list_view": 1,

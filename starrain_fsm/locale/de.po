@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Star Rain Field Service Management VERSION\n"
 "Report-Msgid-Bugs-To: info@alitecs.de\n"
-"POT-Creation-Date: 2026-04-21 16:12+0000\n"
+"POT-Creation-Date: 2026-04-21 16:19+0000\n"
 "PO-Revision-Date: 2026-04-19 00:00+0000\n"
 "Last-Translator: Alexander Leisentritt <info@alitecs.de>\n"
 "Language: de\n"
@@ -274,7 +274,7 @@ msgid "Cancelled"
 msgstr "Storniert"
 
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:60
-#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:57
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:61
 msgid "Close"
 msgstr "Schließen"
 
@@ -391,9 +391,9 @@ msgstr "Kostenstelle"
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.js:110
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:106
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:108
-#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:78
-#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:85
-#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:87
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:82
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:89
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:91
 msgid "Create"
 msgstr "Erstellen"
 
@@ -684,7 +684,7 @@ msgid "High"
 msgstr "Hoch"
 
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:40
-#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:37
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:41
 msgid "Hold"
 msgstr "Pausieren"
 
@@ -1660,7 +1660,7 @@ msgid "Rejected"
 msgstr "Abgelehnt"
 
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:50
-#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:47
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:51
 msgid "Reopen"
 msgstr "Wiedereröffnen"
 
@@ -1725,7 +1725,7 @@ msgid "Reserve Stock"
 msgstr ""
 
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:31
-#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:28
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:32
 msgid "Resume"
 msgstr "Fortsetzen"
 
@@ -1966,7 +1966,7 @@ msgstr "Servicenotizen"
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:102
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
-#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:81
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:85
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.json
 #: starrain_fsm/field_service_management/workspace/service/service.json
 msgid "Service Order"
@@ -2002,7 +2002,7 @@ msgstr "Serviceauftrag nach Status"
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.js:72
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
-#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:74
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:78
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.json
 #: starrain_fsm/field_service_management/workspace/service/service.json
 msgid "Service Quotation"
@@ -2183,10 +2183,10 @@ msgstr "Fachgebiet"
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:56
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.js:66
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
-#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:33
-#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:42
-#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:53
-#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:63
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:37
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:46
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:57
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.js:67
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.json
 msgid "Status"
 msgstr "Status"
