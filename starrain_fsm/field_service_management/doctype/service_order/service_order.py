@@ -1232,6 +1232,7 @@ def make_order_from_assessed(source_name, target_doc=None):
 				"preferred_date_1": "preferred_date_1",
 				"preferred_time": "preferred_time",
 				"preference_note": "preference_note",
+				"service_request": "service_request",
 			},
 		},
 		"Service Order Item": {

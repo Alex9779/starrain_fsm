@@ -193,8 +193,8 @@ frappe.ui.form.on("Service Order", {
   },
   disable_items_edit: (frm) => {
     //when appointment is going on, if anything add in appointment
-    let is_not_allowed = !["Scheduled", "Completed"].includes(frm.doc.status);
-    frm.toggle_enable(["items", "service_technicians"], is_not_allowed);
+    const can_edit = frm.doc.docstatus === 0 || ["Open", "Assessed"].includes(frm.doc.status);
+    frm.toggle_enable(["items", "service_technicians"], can_edit);
   },
   disable_creating_appointment: (frm) => {
     if (![
