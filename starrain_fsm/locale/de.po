@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Star Rain Field Service Management VERSION\n"
 "Report-Msgid-Bugs-To: info@alitecs.de\n"
-"POT-Creation-Date: 2026-04-21 11:48+0000\n"
+"POT-Creation-Date: 2026-04-21 16:05+0000\n"
 "PO-Revision-Date: 2026-04-19 00:00+0000\n"
 "Last-Translator: Alexander Leisentritt <info@alitecs.de>\n"
 "Language: de\n"
@@ -996,8 +996,10 @@ msgstr "Mittel"
 
 #. Label of a Tab Break field in DocType 'Service Order'
 #. Label of a Tab Break field in DocType 'Service Quotation'
+#. Label of a Tab Break field in DocType 'Service Request'
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
 msgid "More Info"
 msgstr ""
 
@@ -1931,7 +1933,9 @@ msgid "Service Contact"
 msgstr "Servicekontakt"
 
 #. Label of a Section Break field in DocType 'Service Appointment'
+#. Label of a Section Break field in DocType 'Service Order'
 #: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 msgid "Service Crew"
 msgstr "Serviceteam"
 
@@ -2057,7 +2061,9 @@ msgid "Service Technician Skill Item"
 msgstr "Servicetechnikerfähigkeitseintrag"
 
 #. Label of a Table field in DocType 'Service Appointment'
+#. Label of a Table field in DocType 'Service Order'
 #: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 msgid "Service Technicians"
 msgstr "Servicetechniker"
 

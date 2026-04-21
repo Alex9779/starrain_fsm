@@ -42,15 +42,16 @@
   "amc_contract",
   "warranty_expiry_date",
   "amc_expiry_date",
+  "reference_section",
+  "company",
+  "amended_from",
+  "more_info_tab",
   "accounting_dimensions_section",
   "cost_center",
   "column_break_digf",
   "project",
   "currency_and_price_list_section",
-  "currency",
-  "reference_section",
-  "company",
-  "amended_from"
+  "currency"
  ],
  "fields": [
   {
@@ -149,6 +150,11 @@
    "fieldname": "reference_section",
    "fieldtype": "Section Break",
    "label": "Reference"
+  },
+  {
+   "fieldname": "more_info_tab",
+   "fieldtype": "Tab Break",
+   "label": "More Info"
   },
   {
    "fieldname": "amended_from",

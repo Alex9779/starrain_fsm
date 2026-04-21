@@ -166,6 +166,13 @@ def make_appointment_from_order(source_name, target_doc=None, selected_items=Non
 			},
 			"add_if_empty": True,
 		},
+		"Service Technician Item": {
+			"doctype": "Service Technician Item",
+			"field_map": {
+				"service_technician": "service_technician",
+			},
+			"add_if_empty": True,
+		},
 	}
 	doc = get_mapped_doc("Service Order", source_name, mapping, target_doc)
 	return doc
