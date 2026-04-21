@@ -824,10 +824,6 @@
    "title": "Closed"
   },
   {
-   "color": "Red",
-   "title": "Cancelled"
-  },
-  {
    "color": "Cyan",
    "title": "Lost"
   }

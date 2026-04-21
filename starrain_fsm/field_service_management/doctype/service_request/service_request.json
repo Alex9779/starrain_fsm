@@ -425,10 +425,6 @@
   {
    "color": "Blue",
    "title": "Closed"
-  },
-  {
-   "color": "Red",
-   "title": "Cancelled"
   }
  ],
  "track_changes": 1
