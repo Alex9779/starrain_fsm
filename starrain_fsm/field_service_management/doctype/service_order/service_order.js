@@ -350,6 +350,7 @@ frappe.ui.form.on("Service Order", {
             "starrain_fsm.field_service_management.fsm_utils.create_service_invoice",
           args: {
             docname: frm.doc.name,
+            doctype: frm.doc.doctype,
             customer: frm.doc.customer,
             items: values.service_items,
           },

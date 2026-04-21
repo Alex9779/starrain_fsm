@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Star Rain Field Service Management VERSION\n"
 "Report-Msgid-Bugs-To: info@alitecs.de\n"
-"POT-Creation-Date: 2026-04-21 16:29+0000\n"
+"POT-Creation-Date: 2026-04-21 17:00+0000\n"
 "PO-Revision-Date: 2026-04-19 00:00+0000\n"
 "Last-Translator: Alexander Leisentritt <info@alitecs.de>\n"
 "Language: de\n"
@@ -171,12 +171,12 @@ msgstr ""
 #. Option for the 'Margin Type' (Select) field in DocType 'Service Quotation
 #. Item'
 #. Label of a Currency field in DocType 'Service Quotation Item'
-#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:251
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:249
 #: starrain_fsm/field_service_management/doctype/service_items/service_items.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.js:320
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:715
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:784
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:849
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:716
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:785
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:850
 #: starrain_fsm/field_service_management/doctype/service_order_item/service_order_item.json
 #: starrain_fsm/field_service_management/doctype/service_quotation_item/service_quotation_item.json
 msgid "Amount"
@@ -208,7 +208,7 @@ msgstr "Jederzeit"
 msgid "Appointment Preference"
 msgstr "Terminpräferenz"
 
-#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:38
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:36
 msgid "Are you sure you want to complete this appointment?"
 msgstr "Soll dieser Termin wirklich abgeschlossen werden?"
 
@@ -264,7 +264,7 @@ msgstr ""
 msgid "Brand Name"
 msgstr ""
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1237
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1238
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -296,7 +296,7 @@ msgstr "Geschlossen"
 msgid "Company"
 msgstr ""
 
-#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:28
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:26
 msgid "Complete"
 msgstr "Abschließen"
 
@@ -307,11 +307,11 @@ msgstr "Abschließen"
 msgid "Completed"
 msgstr "Abgeschlossen"
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1231
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1232
 msgid "Confirm"
 msgstr "Bestätigen"
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1218
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1219
 msgid "Confirm Submission"
 msgstr "Einreichung bestätigen"
 
@@ -333,7 +333,7 @@ msgstr "Kontaktdetails"
 msgid "Contact Person"
 msgstr "Kontaktperson"
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:882
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:883
 msgid "Continue"
 msgstr "Weiter"
 
@@ -367,17 +367,17 @@ msgstr "Umgewandelt"
 #. Label of a Link field in DocType 'Service Order'
 #. Label of a Link field in DocType 'Service Quotation'
 #. Label of a Link field in DocType 'Service Request'
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:863
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:864
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.json
 msgid "Cost Center"
 msgstr "Kostenstelle"
 
-#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:74
-#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:77
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:72
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:75
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:83
 #: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:85
-#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:87
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.js:65
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.js:67
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.js:74
@@ -397,12 +397,12 @@ msgstr "Kostenstelle"
 msgid "Create"
 msgstr "Erstellen"
 
-#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:295
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:364
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:294
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:365
 msgid "Create Invoice"
 msgstr "Rechnung erstellen"
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:880
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:881
 #, python-brace-format
 msgid "Create {0}"
 msgstr "{0} erstellen"
@@ -614,7 +614,7 @@ msgstr "Abends"
 msgid "Exchange Rate"
 msgstr ""
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:870
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:871
 msgid "Expense Account"
 msgstr "Aufwandskonto"
 
@@ -709,6 +709,11 @@ msgstr ""
 msgid "Image View"
 msgstr ""
 
+#. Option for the 'Status' (Select) field in DocType 'Service Order'
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+msgid "In Progress"
+msgstr ""
+
 #. Label of a Data field in DocType 'Service Order'
 #. Label of a Data field in DocType 'Service Quotation'
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
@@ -731,10 +736,10 @@ msgstr ""
 msgid "In Words will be visible once you save the Sales Order."
 msgstr "Der Betrag in Worten wird nach dem Speichern des Verkaufsauftrags angezeigt."
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:596
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:666
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:736
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:808
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:597
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:667
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:737
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:809
 msgid "Include"
 msgstr "Einbeziehen"
 
@@ -812,13 +817,13 @@ msgstr ""
 #: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
 #: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
 #: starrain_fsm/field_service_management/doctype/repair_shipment_items/repair_shipment_items.json
-#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:231
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:229
 #: starrain_fsm/field_service_management/doctype/service_items/service_items.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.js:300
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:603
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:673
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:743
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:815
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:604
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:674
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:744
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:816
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_order_item/service_order_item.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
@@ -845,10 +850,10 @@ msgstr ""
 #: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
 #: starrain_fsm/field_service_management/doctype/repair_shipment_items/repair_shipment_items.json
 #: starrain_fsm/field_service_management/doctype/service_items/service_items.json
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:611
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:681
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:751
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:823
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:612
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:682
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:752
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:824
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_order_item/service_order_item.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
@@ -887,19 +892,19 @@ msgstr ""
 msgid "Items"
 msgstr ""
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:658
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:659
 msgid "Items to Deliver"
 msgstr "Zu liefernde Artikel"
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:800
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:801
 msgid "Items to Purchase"
 msgstr "Zu bestellende Artikel"
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:728
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:729
 msgid "Items to Receive"
 msgstr "Zu empfangende Artikel"
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:588
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:589
 msgid "Items to Transfer"
 msgstr "Zu übertragende Artikel"
 
@@ -974,12 +979,12 @@ msgstr ""
 msgid "Material Request Item"
 msgstr ""
 
-#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:257
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:255
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.js:326
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:631
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:694
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:764
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:836
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:632
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:695
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:765
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:837
 msgid "Max Quantity"
 msgstr "Maximale Menge"
 
@@ -1013,18 +1018,13 @@ msgstr "Morgens"
 
 #. Label of a Date field in DocType 'Product Movement'
 #: starrain_fsm/field_service_management/doctype/product_movement/product_movement.json
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:578
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:579
 msgid "Movement Date"
 msgstr "Bewegungsdatum"
 
 #. Label of a Data field in DocType 'Product Location'
 #: starrain_fsm/field_service_management/doctype/product_location/product_location.json
 msgid "Movement Type"
-msgstr ""
-
-#. Label of a Data field in DocType 'Service Report'
-#: starrain_fsm/field_service_management/doctype/service_report/service_report.json
-msgid "Name"
 msgstr ""
 
 #. Label of a Currency field in DocType 'Service Order Item'
@@ -1069,15 +1069,15 @@ msgstr ""
 msgid "Net Total (Company Currency)"
 msgstr ""
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:495
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:496
 msgid "No deliverable items are available."
 msgstr "Keine lieferbaren Artikel vorhanden."
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:549
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:550
 msgid "No items are available for purchasing."
 msgstr "Keine Artikel zum Bestellen vorhanden."
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:503
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:504
 msgid "No items are available to receive."
 msgstr "Keine empfangbaren Artikel vorhanden."
 
@@ -1113,7 +1113,7 @@ msgstr "Es wurden keine Artikel für die Bestellung ausgewählt."
 msgid "No items were selected for the Purchase Receipt."
 msgstr "Es wurden keine Artikel für den Wareneingang ausgewählt."
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:487
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:488
 msgid "No stock items are available to transfer."
 msgstr "Keine Lagerartikel zum Übertragen vorhanden."
 
@@ -1295,19 +1295,19 @@ msgstr "Bitte mindestens einen Artikel hinzufügen"
 msgid "Please add at least one technician"
 msgstr "Bitte mindestens einen Techniker hinzufügen"
 
-#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:34
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:32
 msgid "Please enter the Actual Finish Datetime before completing."
 msgstr "Bitte die tatsächliche Endzeit eingeben, bevor der Termin abgeschlossen wird."
 
-#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:30
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:28
 msgid "Please enter the Actual Start Datetime before completing."
 msgstr "Bitte die tatsächliche Startzeit eingeben, bevor der Termin abgeschlossen wird."
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:427
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:428
 msgid "Please save the Service Order before creating logistics documents."
 msgstr "Bitte den Serviceauftrag speichern, bevor Logistikdokumente erstellt werden."
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:887
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:888
 msgid "Please select a Product Location."
 msgstr "Bitte einen Produktstandort auswählen."
 
@@ -1442,11 +1442,11 @@ msgstr "Produktstandort"
 
 #. Name of a DocType
 #: starrain_fsm/field_service_management/doctype/product_movement/product_movement.json
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1135
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1136
 msgid "Product Movement"
 msgstr "Produktbewegung"
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:570
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:571
 msgid "Product Movement Type"
 msgstr "Produktbewegungstyp"
 
@@ -1464,7 +1464,7 @@ msgstr "Produktnachverfolgung"
 msgid "Product location is required"
 msgstr "Produktstandort ist erforderlich"
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1129
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1130
 msgid "Product movement logged on Service Request."
 msgstr "Produktbewegung auf Serviceanfrage protokolliert."
 
@@ -1538,12 +1538,12 @@ msgstr ""
 
 #. Label of a Float field in DocType 'Service Order Item'
 #. Label of a Float field in DocType 'Service Quotation Item'
-#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:238
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:236
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.js:307
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:625
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:688
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:758
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:830
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:626
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:689
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:759
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:831
 #: starrain_fsm/field_service_management/doctype/service_order_item/service_order_item.json
 #: starrain_fsm/field_service_management/doctype/service_quotation_item/service_quotation_item.json
 msgid "Quantity"
@@ -1565,18 +1565,18 @@ msgstr ""
 msgid "Quantity for item {0} cannot exceed {1}."
 msgstr "Die Menge für Artikel {0} darf {1} nicht überschreiten."
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:924
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:968
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1014
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1067
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:925
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:969
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1015
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1068
 #, python-brace-format
 msgid "Quantity for item {0} exceeds the available quantity ({1})."
 msgstr "Die Menge für Artikel {0} überschreitet die verfügbare Menge ({1})."
 
-#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:269
-#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:301
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:267
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:300
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.js:338
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:370
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:371
 #, python-brace-format
 msgid "Quantity for {0} cannot exceed {1}"
 msgstr "Die Menge für {0} darf {1} nicht überschreiten"
@@ -1598,12 +1598,12 @@ msgstr ""
 #. Label of a Currency field in DocType 'Service Items'
 #. Label of a Currency field in DocType 'Service Order Item'
 #. Label of a Currency field in DocType 'Service Quotation Item'
-#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:244
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:242
 #: starrain_fsm/field_service_management/doctype/service_items/service_items.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.js:313
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:708
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:778
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:843
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:709
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:779
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:844
 #: starrain_fsm/field_service_management/doctype/service_order_item/service_order_item.json
 #: starrain_fsm/field_service_management/doctype/service_quotation_item/service_quotation_item.json
 msgid "Rate"
@@ -1649,8 +1649,8 @@ msgstr ""
 msgid "Reference"
 msgstr ""
 
-#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:312
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:381
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:311
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:382
 msgid "Refresh Amount"
 msgstr "Betrag aktualisieren"
 
@@ -1713,7 +1713,7 @@ msgstr "Repariert"
 msgid "Replaced"
 msgstr "Ersetzt"
 
-#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:48
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:46
 msgid "Reschedule"
 msgstr "Neu planen"
 
@@ -1739,6 +1739,11 @@ msgstr "Zurückgegeben"
 #: starrain_fsm/field_service_management/doctype/service_order_item/service_order_item.json
 #: starrain_fsm/field_service_management/doctype/service_quotation_item/service_quotation_item.json
 msgid "Returned Qty"
+msgstr ""
+
+#. Option for the 'Status' (Select) field in DocType 'Service Order'
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+msgid "Review"
 msgstr ""
 
 #. Label of a Currency field in DocType 'Service Order'
@@ -1770,7 +1775,7 @@ msgid "Rounding Adjustment (Company Currency)"
 msgstr ""
 
 #. Linked DocType in Service Appointment's connections
-#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:70
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:68
 #: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
 msgid "Sales Invoice"
 msgstr "Verkaufsrechnung"
@@ -1821,19 +1826,19 @@ msgstr ""
 msgid "Scheduling and Working Time"
 msgstr "Planung und Arbeitszeit"
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:961
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:962
 msgid "Select at least one item to deliver."
 msgstr "Bitte mindestens einen Artikel zum Liefern auswählen."
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1060
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1061
 msgid "Select at least one item to purchase."
 msgstr "Bitte mindestens einen Artikel zum Bestellen auswählen."
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1007
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1008
 msgid "Select at least one item to receive."
 msgstr "Bitte mindestens einen Artikel zum Empfangen auswählen."
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:917
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:918
 msgid "Select at least one item to transfer."
 msgstr "Bitte mindestens einen Artikel zum Übertragen auswählen."
 
@@ -1846,7 +1851,7 @@ msgstr "Bitte mindestens einen Artikel zum Übertragen auswählen."
 #: starrain_fsm/field_service_management/doctype/amc_contract/amc_contract.json
 #: starrain_fsm/field_service_management/doctype/repair_order/repair_order.json
 #: starrain_fsm/field_service_management/doctype/repair_shipment_items/repair_shipment_items.json
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:618
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:619
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.json
@@ -1998,7 +2003,7 @@ msgstr "Serviceauftrag nach Status"
 #. Name of a DocType
 #. Linked DocType in Service Request's connections
 #. Label of a shortcut in the Service Workspace
-#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:83
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:81
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.js:72
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
@@ -2012,11 +2017,6 @@ msgstr "Serviceangebot"
 #: starrain_fsm/field_service_management/doctype/service_quotation_item/service_quotation_item.json
 msgid "Service Quotation Item"
 msgstr "Serviceangebotposition"
-
-#. Name of a DocType
-#: starrain_fsm/field_service_management/doctype/service_report/service_report.json
-msgid "Service Report"
-msgstr "Servicebericht"
 
 #. Label of a Link field in DocType 'Service Order'
 #. Label of a Link field in DocType 'Service Quotation'
@@ -2091,14 +2091,14 @@ msgstr "Dienstleistungen & Teile"
 
 #. Label of a Section Break field in DocType 'Service Appointment'
 #. Label of a Section Break field in DocType 'Service Quotation'
-#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:224
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:222
 #: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.js:293
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
 msgid "Services and Parts"
 msgstr "Dienstleistungen und Teile"
 
-#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:219
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js:217
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.js:288
 msgid "Services and Parts to Invoice"
 msgstr "Dienstleistungen und Teile zur Fakturierung"
@@ -2135,7 +2135,7 @@ msgstr ""
 msgid "Skill"
 msgstr ""
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:638
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:639
 msgid "Source Warehouse"
 msgstr "Quelllager"
 
@@ -2241,7 +2241,6 @@ msgstr ""
 #: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
-#: starrain_fsm/field_service_management/doctype/service_report/service_report.json
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.json
 #: starrain_fsm/field_service_management/doctype/service_specialization/service_specialization.json
 #: starrain_fsm/field_service_management/doctype/service_technician/service_technician.json
@@ -2250,7 +2249,7 @@ msgstr ""
 msgid "System Manager"
 msgstr ""
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:645
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:646
 msgid "Target Warehouse"
 msgstr "Ziellager"
 
@@ -2274,7 +2273,7 @@ msgstr "Technikername"
 msgid "There is an overlap with another appointment"
 msgstr "Es gibt eine Überschneidung mit einem anderen Termin"
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1224
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1225
 msgid "This Service Order exceeds the linked AMC budget. Do you want to continue with submission?"
 msgstr "Dieser Serviceauftrag überschreitet das verknüpfte AMC-Budget. Soll die Einreichung trotzdem fortgesetzt werden?"
 
@@ -2368,7 +2367,7 @@ msgstr ""
 msgid "UOM"
 msgstr ""
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1137
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1138
 msgid "Unable to record product movement. Please review the Service Request manually."
 msgstr "Produktbewegung konnte nicht erfasst werden. Bitte die Serviceanfrage manuell prüfen."
 
@@ -2430,9 +2429,9 @@ msgstr ""
 msgid "Vendor"
 msgstr "Lieferant"
 
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:701
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:771
-#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:856
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:702
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:772
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.js:857
 msgid "Warehouse"
 msgstr "Lager"
 
