@@ -75,11 +75,16 @@ frappe.ui.form.on("Service Appointment", {
         cur_frm.page.set_inner_btn_group_as_primary(__("Create"));
       }
 
-      // Assessment appointments offer a Quotation so scope can be priced after the site visit
+      // Assessment appointments offer a Quotation or direct Service Order after the site visit
       if (frm.doc.status == "Completed" && frm.doc.service_type === "Assessment") {
         frm.add_custom_button(
           __("Service Quotation"),
           () => frm.trigger("make_quotation_from_appointment"),
+          __("Create")
+        );
+        frm.add_custom_button(
+          __("Service Order"),
+          () => frm.trigger("make_order_from_appointment"),
           __("Create")
         );
         cur_frm.page.set_inner_btn_group_as_primary(__("Create"));
@@ -168,6 +173,14 @@ frappe.ui.form.on("Service Appointment", {
     frappe.model.open_mapped_doc({
       method:
         "starrain_fsm.field_service_management.doctype.service_quotation.service_quotation.make_quotation_from_appointment",
+      frm: frm,
+    });
+  },
+
+  make_order_from_appointment: (frm) => {
+    frappe.model.open_mapped_doc({
+      method:
+        "starrain_fsm.field_service_management.doctype.service_order.service_order.make_order_from_appointment",
       frm: frm,
     });
   },

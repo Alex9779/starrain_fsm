@@ -979,3 +979,39 @@ def make_order_from_assessed(source_name, target_doc=None):
 	}
 	doc = get_mapped_doc("Service Order", source_name, mapping, target_doc)
 	return doc
+
+
+@frappe.whitelist()
+def make_order_from_appointment(source_name, target_doc=None):
+	"""Create a new Service Order directly from a completed Assessment appointment."""
+	mapping = {
+		"Service Appointment": {
+			"doctype": "Service Order",
+			"field_map": {
+				"customer": "customer",
+				"company": "company",
+				"currency": "currency",
+				"cost_center": "cost_center",
+				"project": "project",
+				"customer_address": "customer_address",
+				"address_details": "address_details",
+				"customer_contact": "customer_contact",
+				"contact_details": "contact_details",
+				"serial_no": "serial_no",
+				"due_date": "due_date",
+			},
+		},
+		"Service Order Item": {
+			"doctype": "Service Order Item",
+			"field_map": {
+				"item_code": "item_code",
+				"description": "description",
+				"qty": "qty",
+				"rate": "rate",
+				"amount": "amount",
+			},
+			"add_if_empty": True,
+		},
+	}
+	doc = get_mapped_doc("Service Appointment", source_name, mapping, target_doc)
+	return doc
