@@ -109,7 +109,11 @@ class ServiceAppointment(Document):
 		order = frappe.get_doc("Service Order", self.service_order)
 
 		if self.status == "Scheduled":
-			order.status = "Scheduled"
+			# Only move order forward to Scheduled — never overwrite In Progress / Review
+			# states that product movements may have set.
+			if order.status in ("Open", "Assessed"):
+				order.status = "Scheduled"
+				order.save()
 		elif self.status == "Completed":
 			# Assessment visits move the order to Assessed so scope can be
 			# defined before scheduling an execution appointment.
@@ -117,8 +121,7 @@ class ServiceAppointment(Document):
 				order.status = "Assessed"
 			else:
 				order.status = "Completed"
-
-		order.save()
+			order.save()
 
 	def cancel_linked_order(self):
 		if not self.service_order:
