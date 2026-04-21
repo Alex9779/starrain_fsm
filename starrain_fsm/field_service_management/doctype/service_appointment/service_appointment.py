@@ -107,14 +107,18 @@ class ServiceAppointment(Document):
 			return
 
 		order = frappe.get_doc("Service Order", self.service_order)
-		status_mapping = {
-			"Scheduled": "Scheduled",
-			"Completed": "Completed",
-		}
 
-		if self.status in status_mapping:
-			order.status = status_mapping[self.status]
-			order.save()
+		if self.status == "Scheduled":
+			order.status = "Scheduled"
+		elif self.status == "Completed":
+			# Assessment visits move the order to Assessed so scope can be
+			# defined before scheduling an execution appointment.
+			if self.service_type == "Assessment":
+				order.status = "Assessed"
+			else:
+				order.status = "Completed"
+
+		order.save()
 
 	def cancel_linked_order(self):
 		if not self.service_order:
@@ -127,16 +131,6 @@ class ServiceAppointment(Document):
 
 @frappe.whitelist()
 def make_appointment_from_order(source_name, target_doc=None, selected_items=None):
-	existing = frappe.get_all(
-		"Service Appointment",
-		filters={"service_order": source_name, "docstatus": ["!=", 2]},
-		pluck="name",
-		limit=1,
-	)
-	if existing:
-		frappe.throw(
-			_("A Service Appointment ({0}) already exists for this Service Order.").format(existing[0])
-		)
 	mapping = {
 		"Service Order": {
 			"doctype": "Service Appointment",

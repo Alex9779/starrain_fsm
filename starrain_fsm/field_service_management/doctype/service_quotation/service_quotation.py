@@ -57,3 +57,70 @@ def make_service_quotation(source_name, target_doc=None, selected_items=None):
 	}
 	doc = get_mapped_doc("Service Request", source_name, mapping, target_doc)
 	return doc
+
+
+@frappe.whitelist()
+def make_quotation_from_appointment(source_name, target_doc=None):
+	mapping = {
+		"Service Appointment": {
+			"doctype": "Service Quotation",
+			"field_map": {
+				"customer": "party_name",
+				"company": "company",
+				"currency": "currency",
+				"cost_center": "cost_center",
+				"project": "project",
+				"customer_address": "service_address",
+				"serial_no": "serial_no",
+			},
+		},
+		"Service Order Item": {
+			"doctype": "Service Quotation Item",
+			"field_map": {
+				"item_code": "item_code",
+				"description": "description",
+				"qty": "qty",
+				"rate": "rate",
+			},
+			"add_if_empty": True,
+		},
+	}
+	doc = get_mapped_doc("Service Appointment", source_name, mapping, target_doc)
+	return doc
+
+
+@frappe.whitelist()
+def make_quotation_from_order(source_name, target_doc=None):
+	mapping = {
+		"Service Order": {
+			"doctype": "Service Quotation",
+			"field_map": {
+				"customer": "party_name",
+				"company": "company",
+				"type": "type",
+				"priority": "priority",
+				"due_date": "due_date",
+				"customer_address": "service_address",
+				"cost_center": "cost_center",
+				"project": "project",
+				"currency": "currency",
+				"serial_no": "serial_no",
+				"preferred_date_1": "preferred_date_1",
+				"preferred_time": "preferred_time",
+				"preference_note": "preference_note",
+			},
+		},
+		"Service Order Item": {
+			"doctype": "Service Quotation Item",
+			"field_map": {
+				"item_code": "item_code",
+				"description": "description",
+				"qty": "qty",
+				"rate": "rate",
+				"amount": "amount",
+			},
+			"add_if_empty": True,
+		},
+	}
+	doc = get_mapped_doc("Service Order", source_name, mapping, target_doc)
+	return doc
