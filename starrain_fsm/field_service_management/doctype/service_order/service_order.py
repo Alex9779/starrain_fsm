@@ -403,19 +403,10 @@ def make_purchase_receipt(service_order: str, items=None):
 		except frappe.DoesNotExistError:
 			service_request = None
 
-	# if not service_request.repair_vendor:
-	# 	frappe.throw(
-	# 		_("Please set a Repair Vendor on Service Request {0} before creating a Purchase Receipt.").format(
-	# 			service_request.name
-	# 		)
-	# 	)
-
 	purchase_receipt = frappe.new_doc("Purchase Receipt")
 	purchase_receipt.company = order.company
 	purchase_receipt.posting_date = today()
-	purchase_receipt.supplier = getattr(order, "repair_vendor", None) or getattr(
-		service_request, "repair_vendor", None
-	)
+	purchase_receipt.supplier = None
 	purchase_receipt.supplier_address = getattr(order, "supplier_address", None) or getattr(
 		service_request, "customer_address", None
 	)
@@ -574,20 +565,11 @@ def make_purchase_order(service_order: str, items=None):
 		except frappe.DoesNotExistError:
 			service_request = None
 
-	# if not service_request.repair_vendor:
-	# 	frappe.throw(
-	# 		_("Please set a Repair Vendor on Service Request {0} before creating a Purchase Order.").format(
-	# 			service_request.name
-	# 		)
-	# 	)
-
 	purchase_order = frappe.new_doc("Purchase Order")
 	purchase_order.company = order.company
 	purchase_order.transaction_date = today()
 	purchase_order.schedule_date = today()
-	purchase_order.supplier = getattr(order, "repair_vendor", None) or getattr(
-		service_request, "repair_vendor", None
-	)
+	purchase_order.supplier = None
 	purchase_order.tc_name = getattr(order, "tc_name", None)
 	purchase_order.terms = getattr(order, "terms", None)
 	purchase_order.custom_service_order = order.name
@@ -741,19 +723,10 @@ def make_purchase_invoice(service_order: str, items=None):
 		except frappe.DoesNotExistError:
 			service_request = None
 
-	# if not service_request.repair_vendor:
-	# 	frappe.throw(
-	# 		_("Please set a Repair Vendor on Service Request {0} before creating a Purchase Invoice.").format(
-	# 			service_request.name
-	# 		)
-	# 	)
-
 	purchase_invoice = frappe.new_doc("Purchase Invoice")
 	purchase_invoice.company = order.company
 	purchase_invoice.posting_date = today()
-	purchase_invoice.supplier = getattr(order, "repair_vendor", None) or getattr(
-		service_request, "repair_vendor", None
-	)
+	purchase_invoice.supplier = None
 	purchase_invoice.tc_name = getattr(order, "tc_name", None)
 	purchase_invoice.terms = getattr(order, "terms", None)
 	purchase_invoice.custom_service_order = order.name

@@ -11,7 +11,6 @@
   "type",
   "priority",
   "company",
-  "repair_vendor",
   "column_break_kzwu",
   "naming_series",
   "status",
@@ -317,13 +316,6 @@
    "fieldname": "warranty_expiry_date",
    "fieldtype": "Date",
    "label": "Warranty Expiry Date"
-  },
-  {
-   "fieldname": "repair_vendor",
-   "fieldtype": "Link",
-   "label": "Repair Vendor",
-   "no_copy": 1,
-   "options": "Supplier"
   }
  ],
  "index_web_pages_for_search": 1,
