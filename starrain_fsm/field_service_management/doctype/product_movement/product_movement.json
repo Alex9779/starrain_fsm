@@ -65,16 +65,6 @@
    "options": "linked_document_type"
   },
   {
-   "allow_on_submit": 1,
-   "fieldname": "movement_type",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Latest Movement",
-   "options": "Product Location",
-   "reqd": 1
-  },
-  {
    "fetch_from": "movement_type.destination",
    "fieldname": "destination",
    "fieldtype": "Data",
