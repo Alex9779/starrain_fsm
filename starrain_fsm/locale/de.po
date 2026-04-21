@@ -1928,7 +1928,7 @@ msgstr "Servicebudget"
 #. Label of a Select field in DocType 'Service Request'
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.json
 msgid "Service Category"
-msgstr "Servicekategorie"
+msgstr ""
 
 #. Label of a Link field in DocType 'Service Quotation'
 #. Label of a Link field in DocType 'Service Request'
