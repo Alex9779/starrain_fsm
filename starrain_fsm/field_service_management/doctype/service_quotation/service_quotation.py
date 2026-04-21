@@ -65,6 +65,7 @@ def make_quotation_from_appointment(source_name, target_doc=None):
 		"Service Appointment": {
 			"doctype": "Service Quotation",
 			"field_map": {
+				"name": "source_appointment",
 				"customer": "party_name",
 				"company": "company",
 				"currency": "currency",
@@ -95,6 +96,7 @@ def make_quotation_from_order(source_name, target_doc=None):
 		"Service Order": {
 			"doctype": "Service Quotation",
 			"field_map": {
+				"name": "source_service_order",
 				"customer": "party_name",
 				"company": "company",
 				"type": "type",

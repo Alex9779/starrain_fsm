@@ -10,6 +10,8 @@
   "quotation_to",
   "party_name",
   "service_request",
+  "source_appointment",
+  "source_service_order",
   "customer_group",
   "company",
   "type",
@@ -737,6 +739,22 @@
    "options": "Service Request",
    "read_only": 1,
    "unique": 1
+  },
+  {
+   "fieldname": "source_appointment",
+   "fieldtype": "Link",
+   "label": "Source Appointment",
+   "no_copy": 1,
+   "options": "Service Appointment",
+   "read_only": 1
+  },
+  {
+   "fieldname": "source_service_order",
+   "fieldtype": "Link",
+   "label": "Source Service Order",
+   "no_copy": 1,
+   "options": "Service Order",
+   "read_only": 1
   },
   {
    "fieldname": "status_section",

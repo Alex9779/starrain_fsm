@@ -946,6 +946,7 @@ def make_order_from_assessed(source_name, target_doc=None):
 		"Service Order": {
 			"doctype": "Service Order",
 			"field_map": {
+				"name": "source_service_order",
 				"customer": "customer",
 				"company": "company",
 				"type": "type",
@@ -988,6 +989,7 @@ def make_order_from_appointment(source_name, target_doc=None):
 		"Service Appointment": {
 			"doctype": "Service Order",
 			"field_map": {
+				"name": "source_appointment",
 				"customer": "customer",
 				"company": "company",
 				"currency": "currency",

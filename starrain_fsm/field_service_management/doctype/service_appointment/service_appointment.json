@@ -233,6 +233,14 @@
   {
    "link_doctype": "Sales Invoice",
    "link_fieldname": "custom_reference_service_document"
+  },
+  {
+   "link_doctype": "Service Quotation",
+   "link_fieldname": "source_appointment"
+  },
+  {
+   "link_doctype": "Service Order",
+   "link_fieldname": "source_appointment"
   }
  ],
  "modified": "2025-11-02 05:09:07.178919",

@@ -12,6 +12,8 @@
   "status",
   "service_quotation",
   "service_request",
+  "source_appointment",
+  "source_service_order",
   "type",
   "priority",
   "company",
@@ -672,6 +674,22 @@
    "unique": 1
   },
   {
+   "fieldname": "source_appointment",
+   "fieldtype": "Link",
+   "label": "Source Appointment",
+   "no_copy": 1,
+   "options": "Service Appointment",
+   "read_only": 1
+  },
+  {
+   "fieldname": "source_service_order",
+   "fieldtype": "Link",
+   "label": "Source Service Order",
+   "no_copy": 1,
+   "options": "Service Order",
+   "read_only": 1
+  },
+  {
    "allow_on_submit": 1,
    "default": "Today",
    "fieldname": "posting_date",
@@ -790,6 +808,14 @@
   {
    "link_doctype": "Service Appointment",
    "link_fieldname": "service_order"
+  },
+  {
+   "link_doctype": "Service Quotation",
+   "link_fieldname": "source_service_order"
+  },
+  {
+   "link_doctype": "Service Order",
+   "link_fieldname": "source_service_order"
   }
  ],
  "modified": "2025-11-18 05:19:20.178318",
