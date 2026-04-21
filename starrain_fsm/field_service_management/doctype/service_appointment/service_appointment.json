@@ -122,7 +122,8 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Service Order",
-   "options": "Service Order"
+   "options": "Service Order",
+   "reqd": 1
   },
   {
    "allow_on_submit": 1,
@@ -140,7 +141,8 @@
    "fieldname": "service_type",
    "fieldtype": "Link",
    "label": "Service Type",
-   "options": "Service Type"
+   "options": "Service Type",
+   "reqd": 1
   },
   {
    "fieldname": "service_team_section",
