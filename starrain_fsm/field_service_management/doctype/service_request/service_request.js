@@ -6,6 +6,15 @@ frappe.ui.form.on("Service Request", {
     frm.trigger("set_amc_contract_query");
   },
   refresh: function (frm) {
+    // Hide company when only one company exists (matches ERPNext transaction behaviour)
+    if (frm.fields_dict.company) {
+      var companies = Object.keys(locals[":Company"] || {});
+      if (companies.length === 1) {
+        if (!frm.doc.company) frm.set_value("company", companies[0]);
+        frm.toggle_display("company", false);
+      }
+    }
+
     // Render address/contact HTML on load (always trigger so DOM is cleared on new docs)
     frm.trigger("customer_address");
     frm.trigger("customer_contact");
