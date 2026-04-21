@@ -18,7 +18,6 @@
   "status",
   "posting_date",
   "due_date",
-  "service_category",
   "customer_addresses_contacts_section",
   "customer_address",
   "address_details",
@@ -330,12 +329,6 @@
    "label": "AMC Expiry Date"
   },
   {
-   "fieldname": "service_category",
-   "fieldtype": "Select",
-   "label": "Service Category",
-   "options": "\nOnsite\nWorkshop\nVendor"
-  },
-  {
    "depends_on": "eval:doc.warranty_amc_status===\"Under AMC\"",
    "fieldname": "amc_contract",
    "fieldtype": "Link",
@@ -344,7 +337,6 @@
    "options": "AMC Contract"
   },
   {
-   "depends_on": "eval: doc.service_category==\"Vendor\"",
    "fieldname": "repair_vendor",
    "fieldtype": "Link",
    "label": "Repair Vendor",
