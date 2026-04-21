@@ -7,34 +7,9 @@ from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
 from frappe.utils import flt, getdate, today
 
-LOCATION_STATUS_MAP = {
-	"delivered to customer": "Review",
-	"deliver to customer": "Review",  # fallback for legacy value
-	"receive from vendor": "In Progress",
-	"receive from customer": "In Progress",
-	"received from customer": "In Progress",
-	"sent to vendor": "In Progress",
-	"send to vendor": "In Progress",
-}
-
-
-def _set_status_from_location(order, location):
-	if not location:
-		return False
-
-	normalized_location = location.strip().lower()
-	new_status = LOCATION_STATUS_MAP.get(normalized_location)
-
-	if new_status and order.status != new_status:
-		order.status = new_status
-		return True
-
-	return False
-
 
 class ServiceOrder(Document):
 	def validate(self):
-		self.ensure_default_product_location()
 		self.set_in_words()
 		self.validate_items()
 		self.calculate_service_totals()
@@ -104,14 +79,6 @@ class ServiceOrder(Document):
 		request.status = "Open"
 		self.service_request = ""
 		request.save()
-
-	def ensure_default_product_location(self):
-		if not self.product_location:
-			default_location = (
-				frappe.db.get_value("Product Location", {"name": "Customer Site"}, "destination")
-				or "Customer Site"
-			)
-			self.product_location = default_location
 
 	@frappe.whitelist()
 	def create_appointment(self, service_order):
@@ -219,21 +186,15 @@ class ServiceOrder(Document):
 
 
 @frappe.whitelist()
-def make_stock_entry(service_order: str, items=None, product_location: str | None = None):
+def make_stock_entry(service_order: str, items=None):
 	order = frappe.get_doc("Service Order", service_order)
 
 	stock_entry = frappe.new_doc("Stock Entry")
-	location = (product_location or "").strip().lower()
-	if location == "receive from customer":
-		stock_entry.stock_entry_type = "Material Receipt"
-	else:
-		stock_entry.stock_entry_type = "Material Transfer"
+	stock_entry.stock_entry_type = "Material Transfer"
 	stock_entry.company = order.company
 	stock_entry.posting_date = today()
 	stock_entry.remarks = _("Generated from Service Order {0}").format(order.name)
 	stock_entry.custom_service_order = order.name
-	if product_location:
-		stock_entry.custom_current_product_location = product_location
 
 	order_item_map = {item.item_code: item for item in order.items or []}
 
@@ -366,7 +327,7 @@ def make_stock_entry(service_order: str, items=None, product_location: str | Non
 
 
 @frappe.whitelist()
-def make_delivery_note(service_order: str, items=None, product_location: str | None = None):
+def make_delivery_note(service_order: str, items=None):
 	order = frappe.get_doc("Service Order", service_order)
 
 	delivery_note = frappe.new_doc("Delivery Note")
@@ -378,8 +339,6 @@ def make_delivery_note(service_order: str, items=None, product_location: str | N
 	delivery_note.tc_name = getattr(order, "tc_name", None)
 	delivery_note.terms = getattr(order, "terms", None)
 	delivery_note.custom_service_order = order.name
-	if product_location:
-		delivery_note.custom_current_product_location = product_location
 
 	order_item_map = {item.item_code: item for item in order.items or []}
 
@@ -490,7 +449,7 @@ def make_delivery_note(service_order: str, items=None, product_location: str | N
 
 
 @frappe.whitelist()
-def make_purchase_receipt(service_order: str, items=None, product_location: str | None = None):
+def make_purchase_receipt(service_order: str, items=None):
 	order = frappe.get_doc("Service Order", service_order)
 
 	service_request = None
@@ -519,8 +478,6 @@ def make_purchase_receipt(service_order: str, items=None, product_location: str 
 	purchase_receipt.tc_name = getattr(order, "tc_name", None)
 	purchase_receipt.terms = getattr(order, "terms", None)
 	purchase_receipt.custom_service_order = order.name
-	if product_location:
-		purchase_receipt.custom_current_product_location = product_location
 
 	order_item_map = {item.item_code: item for item in order.items or []}
 
@@ -663,7 +620,7 @@ def make_purchase_receipt(service_order: str, items=None, product_location: str 
 
 
 @frappe.whitelist()
-def make_purchase_order(service_order: str, items=None, product_location: str | None = None):
+def make_purchase_order(service_order: str, items=None):
 	order = frappe.get_doc("Service Order", service_order)
 
 	service_request = None
@@ -690,8 +647,6 @@ def make_purchase_order(service_order: str, items=None, product_location: str | 
 	purchase_order.tc_name = getattr(order, "tc_name", None)
 	purchase_order.terms = getattr(order, "terms", None)
 	purchase_order.custom_service_order = order.name
-	if product_location:
-		purchase_order.custom_current_product_location = product_location
 
 	order_item_map = {item.item_code: item for item in order.items or []}
 
@@ -832,7 +787,7 @@ def make_purchase_order(service_order: str, items=None, product_location: str | 
 
 
 @frappe.whitelist()
-def make_purchase_invoice(service_order: str, items=None, product_location: str | None = None):
+def make_purchase_invoice(service_order: str, items=None):
 	order = frappe.get_doc("Service Order", service_order)
 
 	service_request = None
@@ -858,8 +813,6 @@ def make_purchase_invoice(service_order: str, items=None, product_location: str 
 	purchase_invoice.tc_name = getattr(order, "tc_name", None)
 	purchase_invoice.terms = getattr(order, "terms", None)
 	purchase_invoice.custom_service_order = order.name
-	if product_location:
-		purchase_invoice.custom_current_product_location = product_location
 
 	order_item_map = {item.item_code: item for item in order.items or []}
 
@@ -1003,146 +956,6 @@ def make_purchase_invoice(service_order: str, items=None, product_location: str 
 		)
 
 	return purchase_invoice.as_dict()
-
-
-@frappe.whitelist()
-def record_product_movement(
-	service_order: str,
-	movement_type: str | None = None,
-	movement_date: str | None = None,
-	linked_document_type: str | None = None,
-	linked_document: str | None = None,
-	product_location: str | None = None,
-):
-	location = product_location or movement_type
-	if not location:
-		frappe.throw(_("Product location is required"))
-
-	order = frappe.get_doc("Service Order", service_order)
-
-	row = {
-		"movement_type": location,
-		"movement_date": movement_date or today(),
-		"handled_by": frappe.session.user,
-	}
-
-	if linked_document and linked_document_type:
-		row["linked_document_type"] = linked_document_type
-		row["linked_document"] = linked_document
-
-	entry = order.append("product_movement", row)
-	row_destination = entry.destination or location
-
-	# Update Service Order fields
-	order.current_product_location = location
-	order.product_location = row_destination
-	_set_status_from_location(order, row_destination)
-	order.save(ignore_permissions=True)
-
-	# Keep Service Request in sync when available
-	if order.service_request:
-		try:
-			service_request = frappe.get_doc("Service Request", order.service_request)
-			service_request.current_product_location = row_destination
-			if hasattr(service_request, "product_movement"):
-				# legacy compatibility: mirror entry if table still exists
-				service_request.append(
-					"product_movement",
-					{
-						"movement_type": row_destination,
-						"movement_date": entry.movement_date,
-						"linked_document_type": entry.linked_document_type,
-						"linked_document": entry.linked_document,
-						"handled_by": entry.handled_by,
-					},
-				)
-			service_request.save(ignore_permissions=True)
-		except frappe.DoesNotExistError:
-			pass
-
-	return entry.name
-
-
-def update_product_movement_on_submit(doc, method):
-	"""
-	Update product movement entry with linked document information on submit.
-	This is called from doc_events hooks when documents are submitted.
-	"""
-	# Check if document has custom_current_product_location and custom_service_order
-	if not hasattr(doc, "custom_current_product_location") or not doc.custom_current_product_location:
-		return
-
-	if not hasattr(doc, "custom_service_order") or not doc.custom_service_order:
-		return
-
-	# Get Service Order
-	try:
-		order = frappe.get_doc("Service Order", doc.custom_service_order)
-	except frappe.DoesNotExistError:
-		return
-
-	product_location = doc.custom_current_product_location
-	matching_entry = None
-	for entry in order.product_movement:
-		if entry.movement_type == product_location and not entry.linked_document:
-			matching_entry = entry
-			break
-
-	if matching_entry:
-		matching_entry.linked_document_type = doc.doctype
-		matching_entry.linked_document = doc.name
-		if not matching_entry.movement_date:
-			matching_entry.movement_date = getattr(doc, "posting_date", None) or today()
-		if not matching_entry.handled_by:
-			matching_entry.handled_by = frappe.session.user
-	else:
-		order.append(
-			"product_movement",
-			{
-				"movement_type": product_location,
-				"movement_date": getattr(doc, "posting_date", None) or today(),
-				"linked_document_type": doc.doctype,
-				"linked_document": doc.name,
-				"handled_by": frappe.session.user,
-			},
-		)
-
-	order.current_product_location = product_location
-	order.product_location = (
-		(getattr(matching_entry, "destination", None) if matching_entry else None)
-		or getattr(order.product_movement[-1], "destination", None)
-		or product_location
-	)
-	_set_status_from_location(order, order.product_location or product_location)
-	order.save(ignore_permissions=True)
-
-	# Keep Service Request in sync when available
-	if order.service_request:
-		try:
-			service_request = frappe.get_doc("Service Request", order.service_request)
-		except frappe.DoesNotExistError:
-			service_request = None
-
-		if service_request:
-			service_request.current_product_location = product_location
-			if hasattr(service_request, "product_movement"):
-				sr_entry = None
-				for entry in service_request.product_movement:
-					if entry.movement_type == product_location and not entry.linked_document:
-						sr_entry = entry
-						break
-				if not sr_entry:
-					sr_entry = service_request.append(
-						"product_movement",
-						{
-							"movement_type": product_location,
-							"movement_date": getattr(doc, "posting_date", None) or today(),
-							"handled_by": frappe.session.user,
-						},
-					)
-				sr_entry.linked_document_type = doc.doctype
-				sr_entry.linked_document = doc.name
-			service_request.save(ignore_permissions=True)
 
 
 @frappe.whitelist()

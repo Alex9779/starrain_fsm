@@ -16,7 +16,6 @@
   "priority",
   "company",
   "amended_from",
-  "product_location",
   "column_break_llgp",
   "naming_series",
   "posting_date",
@@ -96,9 +95,7 @@
   "plc_conversion_rate",
   "ignore_pricing_rule",
   "status_section",
-  "per_billed",
-  "product_tracking_tab",
-  "product_movement"
+  "per_billed"
  ],
  "fields": [
   {
@@ -559,7 +556,7 @@
    "in_standard_filter": 1,
    "label": "Status",
    "no_copy": 1,
-   "options": "Open\nScheduled\nIn Progress\nAssessed\nReview\nCompleted",
+   "options": "Open\nScheduled\nIn Progress\nAssessed\nCompleted",
    "read_only": 1,
    "reqd": 1
   },
@@ -802,30 +799,6 @@
    "fieldtype": "Table",
    "label": "Service Technicians",
    "options": "Service Technician Item"
-  },
-  {
-   "fieldname": "product_tracking_tab",
-   "fieldtype": "Tab Break",
-   "label": "Product Tracking"
-  },
-  {
-   "allow_on_submit": 1,
-   "fieldname": "product_movement",
-   "fieldtype": "Table",
-   "ignore_user_permissions": 1,
-   "label": "Product Tracker",
-   "no_copy": 1,
-   "options": "Product Movement",
-   "read_only": 1
-  },
-  {
-   "allow_on_submit": 1,
-   "fetch_from": "current_product_location.destination",
-   "fieldname": "product_location",
-   "fieldtype": "Data",
-   "label": "Product Location",
-   "no_copy": 1,
-   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
@@ -876,10 +849,6 @@
   {
    "color": "Yellow",
    "title": "Assessed"
-  },
-  {
-   "color": "Pink",
-   "title": "Review"
   },
   {
    "color": "Green",
