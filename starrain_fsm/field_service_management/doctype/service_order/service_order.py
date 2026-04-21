@@ -1207,3 +1207,44 @@ def make_order_from_quote(source_name, target_doc=None, selected_items=None):
 	}
 	doc = get_mapped_doc("Service Quotation", source_name, mapping, target_doc)
 	return doc
+
+
+@frappe.whitelist()
+def make_order_from_assessed(source_name, target_doc=None):
+	"""Create a new Service Order from an Assessed order, carrying over all scope details."""
+	mapping = {
+		"Service Order": {
+			"doctype": "Service Order",
+			"field_map": {
+				"customer": "customer",
+				"company": "company",
+				"type": "type",
+				"priority": "priority",
+				"due_date": "due_date",
+				"customer_address": "customer_address",
+				"address_details": "address_details",
+				"customer_contact": "customer_contact",
+				"contact_details": "contact_details",
+				"cost_center": "cost_center",
+				"project": "project",
+				"currency": "currency",
+				"serial_no": "serial_no",
+				"preferred_date_1": "preferred_date_1",
+				"preferred_time": "preferred_time",
+				"preference_note": "preference_note",
+			},
+		},
+		"Service Order Item": {
+			"doctype": "Service Order Item",
+			"field_map": {
+				"item_code": "item_code",
+				"description": "description",
+				"qty": "qty",
+				"rate": "rate",
+				"amount": "amount",
+			},
+			"add_if_empty": True,
+		},
+	}
+	doc = get_mapped_doc("Service Order", source_name, mapping, target_doc)
+	return doc

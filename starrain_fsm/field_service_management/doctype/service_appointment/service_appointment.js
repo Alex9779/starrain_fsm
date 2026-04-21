@@ -51,8 +51,8 @@ frappe.ui.form.on("Service Appointment", {
           .removeClass("btn-default")
           .addClass("btn-info");
       }
-      // Enable Invoice only for Completed appointments
-      if (frm.doc.status == "Completed") {
+      // Enable Invoice only for Completed non-assessment appointments
+      if (frm.doc.status == "Completed" && frm.doc.service_type !== "Assessment") {
         let items = frm.doc.items || [];
         let non_invoiced_items = [];
         items.forEach((item) => {
@@ -74,6 +74,16 @@ frappe.ui.form.on("Service Appointment", {
             __("Create")
           );
         }
+        cur_frm.page.set_inner_btn_group_as_primary(__("Create"));
+      }
+
+      // Assessment appointments offer a Quotation so scope can be priced after the site visit
+      if (frm.doc.status == "Completed" && frm.doc.service_type === "Assessment") {
+        frm.add_custom_button(
+          __("Service Quotation"),
+          () => frm.trigger("make_quotation_from_appointment"),
+          __("Create")
+        );
         cur_frm.page.set_inner_btn_group_as_primary(__("Create"));
       }
     }
@@ -154,6 +164,14 @@ frappe.ui.form.on("Service Appointment", {
       frm.set_df_property("scheduled_start_datetime", "read_only", 1);
       frm.set_df_property("scheduled_finish_datetime", "read_only", 1);
     }
+  },
+
+  make_quotation_from_appointment: (frm) => {
+    frappe.model.open_mapped_doc({
+      method:
+        "starrain_fsm.field_service_management.doctype.service_quotation.service_quotation.make_quotation_from_appointment",
+      frm: frm,
+    });
   },
 
   invoice_appointment: (frm) => {

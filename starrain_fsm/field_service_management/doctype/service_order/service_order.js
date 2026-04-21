@@ -56,12 +56,26 @@ frappe.ui.form.on("Service Order", {
     // 	);
     // }
     if (frm.doc.docstatus === 1 && !frm.is_dirty()) {
-      if (frm.doc.status === "Open") {
+      if (["Open", "Assessed"].includes(frm.doc.status)) {
         frm.add_custom_button(
           __("Service Appointment"),
           () => {
             frm.trigger("make_appointment_from_order");
           },
+          __("Create")
+        );
+        cur_frm.page.set_inner_btn_group_as_primary(__("Create"));
+      }
+
+      if (frm.doc.status === "Assessed") {
+        frm.add_custom_button(
+          __("Service Quotation"),
+          () => frm.trigger("make_quotation_from_order"),
+          __("Create")
+        );
+        frm.add_custom_button(
+          __("Service Order"),
+          () => frm.trigger("make_order_from_assessed"),
           __("Create")
         );
         cur_frm.page.set_inner_btn_group_as_primary(__("Create"));
@@ -96,7 +110,7 @@ frappe.ui.form.on("Service Order", {
         cur_frm.page.set_inner_btn_group_as_primary(__("Create"));
       }
 
-      if (!["Open", "Review"].includes(frm.doc.status)) {
+      if (!["Open", "Assessed", "Review"].includes(frm.doc.status)) {
         frm.trigger("hide_create_icon_buttons");
       }
     }
@@ -212,6 +226,20 @@ frappe.ui.form.on("Service Order", {
     frappe.model.open_mapped_doc({
       method:
         "starrain_fsm.field_service_management.doctype.service_appointment.service_appointment.make_appointment_from_order",
+      frm: frm,
+    });
+  },
+  make_quotation_from_order: (frm) => {
+    frappe.model.open_mapped_doc({
+      method:
+        "starrain_fsm.field_service_management.doctype.service_quotation.service_quotation.make_quotation_from_order",
+      frm: frm,
+    });
+  },
+  make_order_from_assessed: (frm) => {
+    frappe.model.open_mapped_doc({
+      method:
+        "starrain_fsm.field_service_management.doctype.service_order.service_order.make_order_from_assessed",
       frm: frm,
     });
   },

@@ -40,5 +40,12 @@
   "doctype": "Service Type",
   "modified": "2025-01-26 05:21:49.891645",
   "name": "Service"
+ },
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Service Type",
+  "modified": "2026-04-21 00:00:00.000000",
+  "name": "Assessment"
  }
 ]

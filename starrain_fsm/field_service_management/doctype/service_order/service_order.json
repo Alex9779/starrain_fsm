@@ -558,7 +558,7 @@
    "in_standard_filter": 1,
    "label": "Status",
    "no_copy": 1,
-   "options": "Open\nScheduled\nCompleted",
+   "options": "Open\nScheduled\nAssessed\nCompleted",
    "read_only": 1,
    "reqd": 1
   },
