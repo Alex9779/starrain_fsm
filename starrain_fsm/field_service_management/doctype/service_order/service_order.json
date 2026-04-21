@@ -870,12 +870,12 @@
    "title": "Scheduled"
   },
   {
-   "color": "Purple",
-   "title": "Dispatched"
-  },
-  {
    "color": "Orange",
    "title": "In Progress"
+  },
+  {
+   "color": "Yellow",
+   "title": "Assessed"
   },
   {
    "color": "Pink",
