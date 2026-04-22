@@ -100,13 +100,11 @@
    "reqd": 1
   },
   {
-   "collapsible": 1,
    "fieldname": "asset_details_section",
    "fieldtype": "Section Break",
    "label": "Warranty Details"
   },
   {
-   "collapsible": 1,
    "fieldname": "appointment_preference_section",
    "fieldtype": "Section Break",
    "label": "Appointment Preference"
@@ -141,7 +139,6 @@
    "reqd": 1
   },
   {
-   "collapsible": 1,
    "fieldname": "reference_section",
    "fieldtype": "Section Break",
    "label": "Reference"
@@ -242,7 +239,6 @@
    "reqd": 1
   },
   {
-   "collapsible": 1,
    "fieldname": "accounting_dimensions_section",
    "fieldtype": "Section Break",
    "label": "Accounting Dimensions"
@@ -256,7 +252,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "collapsible": 1,
    "fieldname": "currency_and_price_list_section",
    "fieldtype": "Section Break",
    "label": "Currency and Price List"

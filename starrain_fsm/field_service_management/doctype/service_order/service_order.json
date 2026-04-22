@@ -153,7 +153,6 @@
    "reqd": 1
   },
   {
-   "collapsible": 1,
    "fieldname": "accounting_dimensions_section",
    "fieldtype": "Section Break",
    "label": "Accounting Dimensions"
@@ -580,7 +579,6 @@
    "precision": "2"
   },
   {
-   "collapsible": 1,
    "fieldname": "currency_and_price_list_section",
    "fieldtype": "Section Break",
    "label": "Currency and Price List"
@@ -751,7 +749,6 @@
    "width": "100px"
   },
   {
-   "collapsible": 1,
    "fieldname": "service_spareparts_breakdown_section",
    "fieldtype": "Section Break",
    "label": "Service & SpareParts Breakdown"

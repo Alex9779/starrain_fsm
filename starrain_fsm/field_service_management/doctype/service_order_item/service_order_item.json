@@ -157,7 +157,6 @@
    "width": "150"
   },
   {
-   "collapsible": 1,
    "fieldname": "section_break_5",
    "fieldtype": "Section Break",
    "label": "Description"
@@ -268,7 +267,6 @@
    "width": "100px"
   },
   {
-   "collapsible": 1,
    "collapsible_depends_on": "eval: doc.margin_type || doc.discount_amount",
    "fieldname": "discount_and_margin",
    "fieldtype": "Section Break",
@@ -445,7 +443,6 @@
    "read_only": 1
   },
   {
-   "collapsible": 1,
    "collapsible_depends_on": "eval:doc.delivered_by_supplier==1||doc.supplier",
    "fieldname": "drop_ship_section",
    "fieldtype": "Section Break",
@@ -468,7 +465,6 @@
    "print_hide": 1
   },
   {
-   "collapsible": 1,
    "fieldname": "item_weight_details",
    "fieldtype": "Section Break",
    "label": "Item Weight Details"
@@ -754,13 +750,11 @@
    "fieldtype": "Column Break"
   },
   {
-   "collapsible": 1,
    "fieldname": "image_section",
    "fieldtype": "Section Break",
    "label": "Image"
   },
   {
-   "collapsible": 1,
    "fieldname": "shopping_cart_section",
    "fieldtype": "Section Break",
    "label": "Shopping Cart"
