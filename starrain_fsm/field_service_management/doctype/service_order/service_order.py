@@ -990,6 +990,7 @@ def make_order_from_appointment(source_name, target_doc=None):
 			"doctype": "Service Order",
 			"field_map": {
 				"name": "source_appointment",
+				"service_order": "source_service_order",
 				"customer": "customer",
 				"company": "company",
 				"currency": "currency",
