@@ -6,6 +6,7 @@ from frappe import _
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
 from frappe.utils import flt, getdate, today
+from starrain_fsm.field_service_management.utils.address_util import get_address_details, get_contact_details
 
 
 class ServiceOrder(Document):
@@ -880,6 +881,10 @@ def make_order_from_request(source_name, target_doc=None, selected_items=None):
 	def postprocess(source, target):
 		if not target.naming_series:
 			target.naming_series = "SVC-ORD-.YYYY.-"
+		if target.customer_address:
+			target.address_details = get_address_details(target.customer_address).get("details", "")
+		if target.customer_contact:
+			target.contact_details = get_contact_details(target.customer_contact).get("details", "")
 
 	mapping = {
 		"Service Request": {
@@ -914,6 +919,10 @@ def make_order_from_quote(source_name, target_doc=None, selected_items=None):
 	def postprocess(source, target):
 		if not target.naming_series:
 			target.naming_series = "SVC-ORD-.YYYY.-"
+		if target.customer_address:
+			target.address_details = get_address_details(target.customer_address).get("details", "")
+		if target.customer_contact:
+			target.contact_details = get_contact_details(target.customer_contact).get("details", "")
 
 	mapping = {
 		"Service Quotation": {
@@ -961,6 +970,10 @@ def make_order_from_assessed(source_name, target_doc=None):
 	def postprocess(source, target):
 		if not target.naming_series:
 			target.naming_series = "SVC-ORD-.YYYY.-"
+		if target.customer_address:
+			target.address_details = get_address_details(target.customer_address).get("details", "")
+		if target.customer_contact:
+			target.contact_details = get_contact_details(target.customer_contact).get("details", "")
 
 	mapping = {
 		"Service Order": {
@@ -1007,6 +1020,10 @@ def make_order_from_appointment(source_name, target_doc=None):
 	def postprocess(source, target):
 		if not target.naming_series:
 			target.naming_series = "SVC-ORD-.YYYY.-"
+		if target.customer_address:
+			target.address_details = get_address_details(target.customer_address).get("details", "")
+		if target.customer_contact:
+			target.contact_details = get_contact_details(target.customer_contact).get("details", "")
 
 	mapping = {
 		"Service Appointment": {

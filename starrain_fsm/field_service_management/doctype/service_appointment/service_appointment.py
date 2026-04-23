@@ -5,6 +5,7 @@ import frappe
 from frappe import _
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
+from starrain_fsm.field_service_management.utils.address_util import get_address_details, get_contact_details
 
 
 class ServiceAppointment(Document):
@@ -181,6 +182,12 @@ class ServiceAppointment(Document):
 
 @frappe.whitelist()
 def make_appointment_from_order(source_name, target_doc=None, selected_items=None):
+	def postprocess(source, target):
+		if target.customer_address:
+			target.address_details = get_address_details(target.customer_address).get("details", "")
+		if target.customer_contact:
+			target.contact_details = get_contact_details(target.customer_contact).get("details", "")
+
 	mapping = {
 		"Service Order": {
 			"doctype": "Service Appointment",
@@ -221,5 +228,5 @@ def make_appointment_from_order(source_name, target_doc=None, selected_items=Non
 			"add_if_empty": True,
 		},
 	}
-	doc = get_mapped_doc("Service Order", source_name, mapping, target_doc)
+	doc = get_mapped_doc("Service Order", source_name, mapping, target_doc, postprocess)
 	return doc
