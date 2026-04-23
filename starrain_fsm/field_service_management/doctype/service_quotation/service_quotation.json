@@ -57,6 +57,12 @@
   "column_break_phrd",
   "customer_contact",
   "contact_details",
+  "appointment_preference_section",
+  "preferred_date_1",
+  "preferred_date_2",
+  "preferred_time",
+  "column_break_extu",
+  "preference_note",
   "asset_details_section",
   "serial_no",
   "item_code",
@@ -64,12 +70,6 @@
   "column_break_mgix",
   "warranty_amc_status",
   "warranty_expiry_date",
-  "appointment_preference_section",
-  "preferred_date_1",
-  "preferred_date_2",
-  "preferred_time",
-  "column_break_extu",
-  "preference_note",
   "accounting_dimensions_section",
   "cost_center",
   "column_break_digf",
@@ -111,6 +111,7 @@
    "reqd": 1
   },
   {
+   "depends_on": "doc.serial_no",
    "fieldname": "asset_details_section",
    "fieldtype": "Section Break",
    "label": "Warranty Details"
