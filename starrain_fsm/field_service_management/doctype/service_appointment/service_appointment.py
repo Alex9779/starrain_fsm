@@ -23,7 +23,14 @@ class ServiceAppointment(Document):
 		# Only check overlap when rescheduling — not when marking as Completed/Cancelled
 		if self.status not in ("Completed", "Cancelled"):
 			self.validate_overlap()
+		self.refresh_address_contact_details()
 		self.update_service_order_status()
+
+	def refresh_address_contact_details(self):
+		if self.customer_address:
+			self.address_details = get_address_details(self.customer_address).get("details", "")
+		if self.customer_contact:
+			self.contact_details = get_contact_details(self.customer_contact).get("details", "")
 
 	def on_update_after_submit(self):
 		self._log_items_changes()

@@ -61,6 +61,7 @@
    "label": "Service Address & Contact"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "customer_address",
    "fieldtype": "Link",
    "label": "Service Address",
@@ -68,6 +69,7 @@
    "reqd": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "address_details",
    "fieldtype": "Small Text",
    "label": "Address Details",
@@ -78,6 +80,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "customer_contact",
    "fieldtype": "Link",
    "label": "Contact Person",
@@ -85,6 +88,7 @@
    "reqd": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "contact_details",
    "fieldtype": "Small Text",
    "label": "Contact Details",
