@@ -10,13 +10,13 @@ from starrain_fsm.field_service_management.utils.address_util import get_address
 
 class ServiceAppointment(Document):
 	def before_submit(self):
+		self.validate_overlap()
 		self.set_scheduled_status()
 		self.set_service_order_status()
 
 	def validate(self):
 		self.validate_items()
 		self.validate_technicians()
-		self.validate_overlap()
 		self.set_scheduled_status()
 
 	def before_update_after_submit(self):
