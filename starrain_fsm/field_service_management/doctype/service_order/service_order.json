@@ -498,7 +498,7 @@
    "fieldtype": "Column Break"
   },
   {
-   "depends_on": "doc.serial_no",
+   "depends_on": "eval:doc.serial_no || doc.warranty_amc_status || doc.warranty_expiry_date",
    "fieldname": "asset_details_section",
    "fieldtype": "Section Break",
    "label": "Warranty Details"
