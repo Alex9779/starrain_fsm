@@ -35,6 +35,10 @@ class ServiceQuotation(Document):
 
 @frappe.whitelist()
 def make_service_quotation(source_name, target_doc=None, selected_items=None):
+	def postprocess(source, target):
+		if not target.naming_series:
+			target.naming_series = "SQ-.YYYY.-"
+
 	mapping = {
 		"Service Request": {
 			"doctype": "Service Quotation",
@@ -56,12 +60,16 @@ def make_service_quotation(source_name, target_doc=None, selected_items=None):
 			},
 		}
 	}
-	doc = get_mapped_doc("Service Request", source_name, mapping, target_doc)
+	doc = get_mapped_doc("Service Request", source_name, mapping, target_doc, postprocess)
 	return doc
 
 
 @frappe.whitelist()
 def make_quotation_from_appointment(source_name, target_doc=None):
+	def postprocess(source, target):
+		if not target.naming_series:
+			target.naming_series = "SQ-.YYYY.-"
+
 	mapping = {
 		"Service Appointment": {
 			"doctype": "Service Quotation",
@@ -86,12 +94,16 @@ def make_quotation_from_appointment(source_name, target_doc=None):
 			"add_if_empty": True,
 		},
 	}
-	doc = get_mapped_doc("Service Appointment", source_name, mapping, target_doc)
+	doc = get_mapped_doc("Service Appointment", source_name, mapping, target_doc, postprocess)
 	return doc
 
 
 @frappe.whitelist()
 def make_quotation_from_order(source_name, target_doc=None):
+	def postprocess(source, target):
+		if not target.naming_series:
+			target.naming_series = "SQ-.YYYY.-"
+
 	mapping = {
 		"Service Order": {
 			"doctype": "Service Quotation",
@@ -124,5 +136,5 @@ def make_quotation_from_order(source_name, target_doc=None):
 			"add_if_empty": True,
 		},
 	}
-	doc = get_mapped_doc("Service Order", source_name, mapping, target_doc)
+	doc = get_mapped_doc("Service Order", source_name, mapping, target_doc, postprocess)
 	return doc

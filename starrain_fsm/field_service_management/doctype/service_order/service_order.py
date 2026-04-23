@@ -877,6 +877,10 @@ def make_purchase_invoice(service_order: str, items=None):
 
 @frappe.whitelist()
 def make_order_from_request(source_name, target_doc=None, selected_items=None):
+	def postprocess(source, target):
+		if not target.naming_series:
+			target.naming_series = "SVC-ORD-.YYYY.-"
+
 	mapping = {
 		"Service Request": {
 			"doctype": "Service Order",
@@ -898,12 +902,16 @@ def make_order_from_request(source_name, target_doc=None, selected_items=None):
 			},
 		}
 	}
-	doc = get_mapped_doc("Service Request", source_name, mapping, target_doc)
+	doc = get_mapped_doc("Service Request", source_name, mapping, target_doc, postprocess)
 	return doc
 
 
 @frappe.whitelist()
 def make_order_from_quote(source_name, target_doc=None, selected_items=None):
+	def postprocess(source, target):
+		if not target.naming_series:
+			target.naming_series = "SVC-ORD-.YYYY.-"
+
 	mapping = {
 		"Service Quotation": {
 			"doctype": "Service Order",
@@ -937,13 +945,17 @@ def make_order_from_quote(source_name, target_doc=None, selected_items=None):
 			"add_if_empty": True,
 		},
 	}
-	doc = get_mapped_doc("Service Quotation", source_name, mapping, target_doc)
+	doc = get_mapped_doc("Service Quotation", source_name, mapping, target_doc, postprocess)
 	return doc
 
 
 @frappe.whitelist()
 def make_order_from_assessed(source_name, target_doc=None):
 	"""Create a new Service Order from an Assessed order, carrying over all scope details."""
+	def postprocess(source, target):
+		if not target.naming_series:
+			target.naming_series = "SVC-ORD-.YYYY.-"
+
 	mapping = {
 		"Service Order": {
 			"doctype": "Service Order",
@@ -980,13 +992,17 @@ def make_order_from_assessed(source_name, target_doc=None):
 			"add_if_empty": True,
 		},
 	}
-	doc = get_mapped_doc("Service Order", source_name, mapping, target_doc)
+	doc = get_mapped_doc("Service Order", source_name, mapping, target_doc, postprocess)
 	return doc
 
 
 @frappe.whitelist()
 def make_order_from_appointment(source_name, target_doc=None):
 	"""Create a new Service Order directly from a completed Assessment appointment."""
+	def postprocess(source, target):
+		if not target.naming_series:
+			target.naming_series = "SVC-ORD-.YYYY.-"
+
 	mapping = {
 		"Service Appointment": {
 			"doctype": "Service Order",
@@ -1016,5 +1032,5 @@ def make_order_from_appointment(source_name, target_doc=None):
 			"add_if_empty": True,
 		},
 	}
-	doc = get_mapped_doc("Service Appointment", source_name, mapping, target_doc)
+	doc = get_mapped_doc("Service Appointment", source_name, mapping, target_doc, postprocess)
 	return doc
