@@ -166,6 +166,8 @@ frappe.ui.form.on("Service Appointment", {
     if (frm.doc.docstatus == 1) {
       frm.set_df_property("scheduled_start_datetime", "read_only", 1);
       frm.set_df_property("scheduled_finish_datetime", "read_only", 1);
+      frm.set_df_property("customer_address", "read_only", 1);
+      frm.set_df_property("customer_contact", "read_only", 1);
     }
   },
 
