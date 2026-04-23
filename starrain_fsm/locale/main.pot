@@ -187,6 +187,11 @@ msgstr ""
 msgid "Assessed"
 msgstr ""
 
+#. Name of a Service Type document
+#: starrain_fsm/fixtures/service_type.json
+msgid "Assessment"
+msgstr ""
+
 #. Label of a Attach field in DocType 'Service Notes'
 #: starrain_fsm/field_service_management/doctype/service_notes/service_notes.json
 msgid "Attachment"
@@ -520,6 +525,11 @@ msgstr ""
 msgid "Due Soon"
 msgstr ""
 
+#. Name of a Service Type document
+#: starrain_fsm/fixtures/service_type.json
+msgid "Emergency"
+msgstr ""
+
 #. Label of a Link field in DocType 'Service Technician'
 #: starrain_fsm/field_service_management/doctype/service_technician/service_technician.json
 msgid "Employee"
@@ -679,6 +689,16 @@ msgstr ""
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.js:737
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.js:809
 msgid "Include"
+msgstr ""
+
+#. Name of a Service Type document
+#: starrain_fsm/fixtures/service_type.json
+msgid "Inspection"
+msgstr ""
+
+#. Name of a Service Type document
+#: starrain_fsm/fixtures/service_type.json
+msgid "Installation"
 msgstr ""
 
 #. Label of a Section Break field in DocType 'Service Order Item'
@@ -871,6 +891,11 @@ msgstr ""
 #: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
 #: starrain_fsm/field_service_management/doctype/service_request/service_request.json
 msgid "Low"
+msgstr ""
+
+#. Name of a Service Type document
+#: starrain_fsm/fixtures/service_type.json
+msgid "Maintenance"
 msgstr ""
 
 #. Label of a Section Break field in DocType 'Service Order Item'
@@ -2200,6 +2225,15 @@ msgstr ""
 #: starrain_fsm/field_service_management/doctype/service_order_item/service_order_item.json
 #: starrain_fsm/field_service_management/doctype/service_quotation_item/service_quotation_item.json
 msgid "Warehouse and Reference"
+msgstr ""
+
+#. Label of a Section Break field in DocType 'Service Order'
+#. Label of a Section Break field in DocType 'Service Quotation'
+#. Label of a Section Break field in DocType 'Service Request'
+#: starrain_fsm/field_service_management/doctype/service_order/service_order.json
+#: starrain_fsm/field_service_management/doctype/service_quotation/service_quotation.json
+#: starrain_fsm/field_service_management/doctype/service_request/service_request.json
+msgid "Warranty Claim"
 msgstr ""
 
 #. Label of a Section Break field in DocType 'Service Order'
