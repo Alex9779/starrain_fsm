@@ -19,6 +19,12 @@
   "column_break_contact",
   "customer_contact",
   "contact_details",
+  "appointment_preference_section",
+  "pref_date_1",
+  "pref_date_2",
+  "pref_time",
+  "column_break_pref",
+  "pref_note",
   "scheduling_section",
   "scheduled_time_column",
   "scheduled_start_datetime",
@@ -88,6 +94,45 @@
    "fieldname": "services_section",
    "fieldtype": "Section Break",
    "label": "Services and Parts"
+  },
+  {
+   "depends_on": "eval:doc.pref_date_1 || doc.pref_date_2 || doc.pref_time || doc.pref_note",
+   "fieldname": "appointment_preference_section",
+   "fieldtype": "Section Break",
+   "label": "Terminpräferenz"
+  },
+  {
+   "fetch_from": "service_order.preferred_date_1",
+   "fieldname": "pref_date_1",
+   "fieldtype": "Date",
+   "label": "Preferred Date 1",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "service_order.preferred_date_2",
+   "fieldname": "pref_date_2",
+   "fieldtype": "Date",
+   "label": "Preferred Date 2",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "service_order.preferred_time",
+   "fieldname": "pref_time",
+   "fieldtype": "Select",
+   "label": "Preferred Time",
+   "options": "\nAnytime\nMorning\nAfternoon\nEvening",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_pref",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "service_order.preference_note",
+   "fieldname": "pref_note",
+   "fieldtype": "Small Text",
+   "label": "Preference Note",
+   "read_only": 1
   },
   {
    "fieldname": "scheduling_section",

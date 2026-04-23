@@ -199,9 +199,6 @@ def make_appointment_from_order(source_name, target_doc=None, selected_items=Non
 				"project": "project",
 				"currency": "currency",
 				"serial_no": "serial_no",
-				"preferred_date_1": "preferred_date_1",
-				"preferred_time": "preferred_time",
-				"preference_note": "preference_note",
 			},
 		},
 		"Service Order Item": {
