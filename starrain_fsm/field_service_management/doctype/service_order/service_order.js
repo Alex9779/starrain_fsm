@@ -367,10 +367,12 @@ starrain_fsm.field_service_management.ServiceOrderController = class ServiceOrde
       this.frm.set_value("posting_date", frappe.datetime.get_today());
     }
     if (doc.__islocal && !doc.due_date) {
-      this.frm.set_value(
-        "due_date",
-        frappe.datetime.add_months(doc.posting_date, 1)
-      );
+      const base = doc.posting_date || frappe.datetime.get_today();
+      if (frappe.boot.sysdefaults.quotation_due_date) {
+        this.frm.set_value("due_date", frappe.datetime.add_days(base, frappe.boot.sysdefaults.quotation_due_date));
+      } else {
+        this.frm.set_value("due_date", frappe.datetime.add_months(base, 1));
+      }
     }
   }
 };

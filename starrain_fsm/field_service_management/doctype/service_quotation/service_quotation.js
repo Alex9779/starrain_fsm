@@ -234,19 +234,11 @@ starrain_fsm.field_service_management.ServiceQuotationController = class Service
     var me = this;
 
     if (doc.__islocal && !doc.due_date) {
+      const base = doc.posting_date || frappe.datetime.get_today();
       if (frappe.boot.sysdefaults.quotation_due_date) {
-        this.frm.set_value(
-          "due_date",
-          frappe.datetime.add_days(
-            doc.posting_date,
-            frappe.boot.sysdefaults.quotation_due_date
-          )
-        );
+        this.frm.set_value("due_date", frappe.datetime.add_days(base, frappe.boot.sysdefaults.quotation_due_date));
       } else {
-        this.frm.set_value(
-          "due_date",
-          frappe.datetime.add_months(doc.posting_date, 1)
-        );
+        this.frm.set_value("due_date", frappe.datetime.add_months(base, 1));
       }
     }
 
