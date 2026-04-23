@@ -562,7 +562,8 @@
    "fieldname": "items",
    "fieldtype": "Table",
    "label": "Items",
-   "options": "Service Order Item"
+   "options": "Service Order Item",
+   "reqd": 1
   },
   {
    "fieldname": "currency",

@@ -659,7 +659,8 @@
    "fieldname": "items",
    "fieldtype": "Table",
    "label": "Items",
-   "options": "Service Quotation Item"
+   "options": "Service Quotation Item",
+   "reqd": 1
   },
   {
    "fieldname": "more_info_tab",

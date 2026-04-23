@@ -12,7 +12,6 @@ from starrain_fsm.field_service_management.utils.address_util import get_address
 class ServiceOrder(Document):
 	def validate(self):
 		self.set_in_words()
-		self.validate_items()
 		self.calculate_service_totals()
 
 	def before_submit(self):
@@ -27,10 +26,6 @@ class ServiceOrder(Document):
 	def on_cancel(self):
 		self.cancel_linked_request()
 		self.cancel_linked_quotation()
-
-	def validate_items(self):
-		if not self.get("items"):
-			frappe.throw(_("Please add at least one item"))
 
 	def update_linked_doc_status_before_submit(self):
 		if not self.service_quotation and not self.service_request:

@@ -19,13 +19,7 @@ frappe.ui.form.on("Service Order", {
     if (frm.doc.service_request) frm.toggle_enable("service_quotation", 0);
     if (frm.doc.service_quotation) frm.toggle_enable("service_request", 0);
   },
-  validate: function (frm) {
-    // check if items table has at least one item
-    if (!frm.doc.items.length) {
-      frappe.throw("Please add at least one item!");
-      return;
-    }
-  },
+  validate: function (frm) {},
   refresh(frm) {
     if (frm.doc.docstatus === 0) {
       frm.__over_budget_confirmed = false;
