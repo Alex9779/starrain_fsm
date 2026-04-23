@@ -235,11 +235,9 @@ starrain_fsm.field_service_management.ServiceQuotationController = class Service
 
     if (doc.__islocal && !doc.due_date) {
       const base = doc.posting_date || frappe.datetime.get_today();
-      if (frappe.boot.sysdefaults.quotation_due_date) {
-        this.frm.set_value("due_date", frappe.datetime.add_days(base, frappe.boot.sysdefaults.quotation_due_date));
-      } else {
-        this.frm.set_value("due_date", frappe.datetime.add_months(base, 1));
-      }
+      frappe.db.get_single_value("Field Service Management Settings", "default_due_date_after").then(days => {
+        this.frm.set_value("due_date", frappe.datetime.add_days(base, days || 10));
+      });
     }
 
     this.toggle_reqd_lead_customer();

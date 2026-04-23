@@ -17,11 +17,9 @@ frappe.ui.form.on("Service Request", {
     // Set due_date default for new documents
     if (frm.doc.__islocal && !frm.doc.due_date) {
       const base = frm.doc.posting_date || frappe.datetime.get_today();
-      if (frappe.boot.sysdefaults.quotation_due_date) {
-        frm.set_value("due_date", frappe.datetime.add_days(base, frappe.boot.sysdefaults.quotation_due_date));
-      } else {
-        frm.set_value("due_date", frappe.datetime.add_months(base, 1));
-      }
+      frappe.db.get_single_value("Field Service Management Settings", "default_due_date_after").then(days => {
+        frm.set_value("due_date", frappe.datetime.add_days(base, days || 10));
+      });
     }
 
     // Render address/contact HTML on load (always trigger so DOM is cleared on new docs)
