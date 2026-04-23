@@ -413,3 +413,11 @@ frappe.ui.form.on("Service Appointment", {
   },
 });
 
+frappe.ui.form.on("Service Order Item", {
+  items_add(frm, cdt, cdn) {
+    if (frm.doc.service_type === "Assessment") {
+      frappe.model.set_value(cdt, cdn, "is_billable", 0);
+    }
+  },
+});
+
