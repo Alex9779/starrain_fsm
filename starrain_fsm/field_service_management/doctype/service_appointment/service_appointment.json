@@ -71,9 +71,8 @@
   {
    "allow_on_submit": 1,
    "fieldname": "address_details",
-   "fieldtype": "Small Text",
-   "label": "Address Details",
-   "read_only": 1
+   "fieldtype": "HTML",
+   "label": "Address Details"
   },
   {
    "fieldname": "column_break_contact",
@@ -90,9 +89,8 @@
   {
    "allow_on_submit": 1,
    "fieldname": "contact_details",
-   "fieldtype": "Small Text",
-   "label": "Contact Details",
-   "read_only": 1
+   "fieldtype": "HTML",
+   "label": "Contact Details"
   },
   {
    "fieldname": "services_section",

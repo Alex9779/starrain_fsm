@@ -25,6 +25,10 @@ frappe.ui.form.on("Service Order", {
       frm.__over_budget_confirmed = false;
     }
 
+    // Render address/contact HTML on load
+    frm.trigger("customer_address");
+    frm.trigger("customer_contact");
+
     // set posting date
     frm.trigger("set_posting_date");
 
@@ -113,11 +117,11 @@ frappe.ui.form.on("Service Order", {
         args: { customer_address: frm.doc.customer_address },
         callback: function (r) {
           let details = r.message["details"] || "";
-          frm.set_value("address_details", details);
+          frm.fields_dict["address_details"].$wrapper.html(details);
         },
       });
     } else {
-      frm.set_value("address_details", "");
+      frm.fields_dict["address_details"].$wrapper.html("");
     }
   },
   customer_contact: function (frm) {
@@ -128,11 +132,11 @@ frappe.ui.form.on("Service Order", {
         args: { customer_contact: frm.doc.customer_contact },
         callback: function (r) {
           let details = r.message["details"] || "";
-          frm.set_value("contact_details", details);
+          frm.fields_dict["contact_details"].$wrapper.html(details);
         },
       });
     } else {
-      frm.set_value("contact_details", "");
+      frm.fields_dict["contact_details"].$wrapper.html("");
     }
   },
   set_enable_invoicing: (frm) => {

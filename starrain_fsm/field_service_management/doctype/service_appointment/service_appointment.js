@@ -12,6 +12,10 @@ frappe.ui.form.on("Service Appointment", {
       frm.set_value("posting_date", frappe.datetime.get_today());
     }
 
+    // Render address/contact HTML on load
+    frm.trigger("customer_address");
+    frm.trigger("customer_contact");
+
     // Lock service_order field once set
     if (frm.doc.service_order) frm.toggle_enable("service_order", 0);
 
@@ -141,11 +145,11 @@ frappe.ui.form.on("Service Appointment", {
           "starrain_fsm.field_service_management.utils.address_util.get_address_details",
         args: { customer_address: frm.doc.customer_address },
         callback: function (r) {
-          frm.set_value("address_details", r.message["details"] || "");
+          frm.fields_dict["address_details"].$wrapper.html(r.message["details"] || "");
         },
       });
     } else {
-      frm.set_value("address_details", "");
+      frm.fields_dict["address_details"].$wrapper.html("");
     }
   },
   customer_contact: function (frm) {
@@ -155,11 +159,11 @@ frappe.ui.form.on("Service Appointment", {
           "starrain_fsm.field_service_management.utils.address_util.get_contact_details",
         args: { customer_contact: frm.doc.customer_contact },
         callback: function (r) {
-          frm.set_value("contact_details", r.message["details"] || "");
+          frm.fields_dict["contact_details"].$wrapper.html(r.message["details"] || "");
         },
       });
     } else {
-      frm.set_value("contact_details", "");
+      frm.fields_dict["contact_details"].$wrapper.html("");
     }
   },
   disable_schedule_fields_on_submit: (frm) => {

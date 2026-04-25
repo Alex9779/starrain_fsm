@@ -596,9 +596,8 @@
   },
   {
    "fieldname": "address_details",
-   "fieldtype": "Small Text",
-   "label": "Address Details",
-   "read_only": 1
+   "fieldtype": "HTML",
+   "label": "Address Details"
   },
   {
    "fieldname": "customer_contact",
@@ -609,9 +608,8 @@
   },
   {
    "fieldname": "contact_details",
-   "fieldtype": "Small Text",
-   "label": "Contact Details",
-   "read_only": 1
+   "fieldtype": "HTML",
+   "label": "Contact Details"
   },
   {
    "fieldname": "serial_no",

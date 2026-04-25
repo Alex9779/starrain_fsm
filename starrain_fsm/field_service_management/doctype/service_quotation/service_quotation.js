@@ -21,6 +21,10 @@ frappe.ui.form.on("Service Quotation", {
     };
   },
   refresh: function (frm) {
+    // Render address/contact HTML on load
+    frm.trigger("service_address");
+    frm.trigger("customer_contact");
+
     // Status Buttons
     if (
       frm.doc.docstatus === 1 &&
@@ -161,11 +165,11 @@ frappe.ui.form.on("Service Quotation", {
         args: { customer_address: frm.doc.service_address },
         callback: function (r) {
           let details = r.message["details"] || "";
-          frm.set_value("address_details", details);
+          frm.fields_dict["address_details"].$wrapper.html(details);
         },
       });
     } else {
-      frm.set_value("address_details", "");
+      frm.fields_dict["address_details"].$wrapper.html("");
     }
   },
 
@@ -177,11 +181,11 @@ frappe.ui.form.on("Service Quotation", {
         args: { customer_contact: frm.doc.customer_contact },
         callback: function (r) {
           let details = r.message["details"] || "";
-          frm.set_value("contact_details", details);
+          frm.fields_dict["contact_details"].$wrapper.html(details);
         },
       });
     } else {
-      frm.set_value("contact_details", "");
+      frm.fields_dict["contact_details"].$wrapper.html("");
     }
   },
 
