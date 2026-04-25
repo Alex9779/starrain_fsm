@@ -12,13 +12,14 @@ def create_service_invoice(docname, doctype, customer, items=None):
 	invoice.custom_reference_service_doctype = doctype
 	invoice.custom_reference_service_document = docname
 	for item in items:
+		if not item.get("item_code"):
+			continue
 		invoice.append(
 			"items",
 			{
 				"item_code": item["item_code"],
-				"qty": item["qty"],
-				"rate": item["rate"],
-				"amount": item["amount"],
+				"qty": item.get("qty", 1),
+				"rate": item.get("rate", 0),
 			},
 		)
 	invoice.insert()
