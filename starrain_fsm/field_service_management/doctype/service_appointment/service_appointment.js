@@ -203,137 +203,41 @@ frappe.ui.form.on("Service Appointment", {
           item_code: item.item_code,
           item_name: item.item_name,
           qty: remaining_qty,
-          max_qty: remaining_qty,
           rate: item.rate,
-          amount: item.rate * remaining_qty,
         });
       }
     });
 
     if (non_invoiced_items.length === 0) {
-      frappe.msgprint("This Appointment is already fully Invoiced.");
+      frappe.msgprint(__("This Appointment is already fully Invoiced."));
       return;
     }
 
-    function mergeDuplicates(items) {
-      let mergedItems = items.reduce((acc, item) => {
-        let existingItem = acc.find((i) => i.item_code === item.item_code);
-        if (existingItem) {
-          existingItem.qty += item.qty;
-          existingItem.max_qty += item.max_qty;
-          existingItem.amount = existingItem.rate * existingItem.qty;
-        } else {
-          acc.push({ ...item });
+    // Merge duplicate item_codes
+    non_invoiced_items = non_invoiced_items.reduce((acc, item) => {
+      let existing = acc.find((i) => i.item_code === item.item_code);
+      if (existing) {
+        existing.qty += item.qty;
+      } else {
+        acc.push({ ...item });
+      }
+      return acc;
+    }, []);
+
+    frappe.call({
+      method: "starrain_fsm.field_service_management.fsm_utils.create_service_invoice",
+      args: {
+        docname: frm.doc.name,
+        doctype: frm.doc.doctype,
+        customer: frm.doc.customer,
+        items: JSON.stringify(non_invoiced_items),
+      },
+      callback: function (r) {
+        if (r.message) {
+          frappe.set_route("Form", "Sales Invoice", r.message);
         }
-        return acc;
-      }, []);
-      return mergedItems;
-    }
-    non_invoiced_items = mergeDuplicates(non_invoiced_items);
-
-    // Create the dialog to show non-invoiced items
-    const dialog = new frappe.ui.Dialog({
-      title: __("Services and Parts to Invoice"),
-      fields: [
-        {
-          fieldname: "service_items",
-          fieldtype: "Table",
-          label: __("Services and Parts"),
-          options: "Service Order Item",
-          in_place_edit: true,
-          reqd: 1,
-          fields: [
-            {
-              fieldname: "item_code",
-              label: __("Item Code"),
-              fieldtype: "Link",
-              options: "Item",
-              in_list_view: 1,
-            },
-            {
-              fieldname: "qty",
-              label: __("Quantity"),
-              fieldtype: "Float",
-              in_list_view: 1,
-            },
-            {
-              fieldname: "rate",
-              label: __("Rate"),
-              fieldtype: "Currency",
-              in_list_view: 1,
-              read_only: 1,
-            },
-            {
-              fieldname: "amount",
-              label: __("Amount"),
-              fieldtype: "Currency",
-              in_list_view: 1,
-            },
-            {
-              fieldname: "max_qty",
-              label: __("Max Quantity"),
-              fieldtype: "Float",
-              hidden: 1,
-            },
-          ],
-        },
-      ],
-      primary_action: (values) => {
-        let tableField = dialog.get_field("service_items");
-        tableField.df.data.forEach((item) => {
-          if (item.max_qty < item.qty) {
-            frappe.throw(
-              __("Quantity for {0} cannot exceed {1}", [
-                item.item_code,
-                item.max_qty,
-              ])
-            );
-            return;
-          }
-          item.amount = item.rate * item.qty;
-        });
-        tableField.grid.refresh();
-        frappe.call({
-          method:
-            "starrain_fsm.field_service_management.fsm_utils.create_service_invoice",
-          args: {
-            docname: frm.doc.name,
-            doctype: frm.doc.doctype,
-            customer: frm.doc.customer,
-            items: values.service_items,
-          },
-          callback: function (r) {
-            if (r.message) {
-              frappe.set_route("Form", "Sales Invoice", r.message);
-            }
-          },
-        });
-        dialog.hide();
       },
-      primary_action_label: __("Create Invoice"),
-      secondary_action: (e, values) => {
-        let tableField = dialog.get_field("service_items");
-        tableField.df.data.forEach((item) => {
-          if (item.max_qty < item.qty) {
-            frappe.throw(
-              __("Quantity for {0} cannot exceed {1}", [
-                item.item_code,
-                item.max_qty,
-              ])
-            );
-            return;
-          }
-          item.amount = item.rate * item.qty;
-        });
-        tableField.grid.refresh();
-      },
-      secondary_action_label: __("Refresh Amount"),
     });
-    let tableField = dialog.get_field("service_items");
-    tableField.df.data = non_invoiced_items;
-    tableField.grid.refresh();
-
-    dialog.show();
   },
 
   schedule_appointment: (frm) => {
