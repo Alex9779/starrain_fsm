@@ -1795,7 +1795,7 @@ msgstr "Serviceteam"
 #. Label of a Currency field in DocType 'Service Order'
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.json
 msgid "Service Item Budget"
-msgstr "Serviceartielbudget"
+msgstr "Serviceartikelbudget"
 
 #. Name of a DocType
 #: starrain_fsm/field_service_management/doctype/service_items/service_items.json
