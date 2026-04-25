@@ -264,9 +264,9 @@
   "write": 1
  },
  {
-  "amend": 0,
-  "cancel": 0,
-  "create": 0,
+  "amend": 1,
+  "cancel": 1,
+  "create": 1,
   "delete": 0,
   "docstatus": 0,
   "doctype": "Custom DocPerm",
@@ -274,7 +274,7 @@
   "export": 0,
   "if_owner": 0,
   "import": 0,
-  "modified": "2026-04-18 00:00:00.000000",
+  "modified": "2026-04-25 00:00:00.000000",
   "name": "tech_appt_01",
   "parent": "Service Appointment",
   "permlevel": 0,
@@ -284,7 +284,7 @@
   "role": "Service Technician",
   "select": 1,
   "share": 0,
-  "submit": 0,
+  "submit": 1,
   "write": 1
  },
  {
