@@ -23,8 +23,12 @@ class ServiceAppointment(Document):
 		# Only check overlap when rescheduling — not when marking as Completed/Cancelled
 		if self.status not in ("Completed", "Cancelled"):
 			self.validate_overlap()
+		# Only validate the Service Report on the transition TO Completed,
+		# not on subsequent saves of an already-completed appointment
 		if self.status == "Completed":
-			self._validate_submitted_report()
+			old_doc = self.get_doc_before_save()
+			if not old_doc or old_doc.status != "Completed":
+				self._validate_submitted_report()
 		self.refresh_address_contact_details()
 		self.update_service_order_status()
 

@@ -41,21 +41,48 @@ frappe.ui.form.on("Service Appointment", {
       if (frm.doc.status == "Scheduled") {
         frm
           .add_custom_button(__("Complete"), function () {
+            // 1. Check actual times synchronously
             if (!frm.doc.actual_start_datetime) {
-              frappe.throw(__("Please enter the Actual Start Datetime before completing."));
+              frappe.msgprint({
+                title: __("Cannot Complete"),
+                message: __("Please enter the Actual Start Datetime before completing."),
+                indicator: "orange",
+              });
               return;
             }
             if (!frm.doc.actual_finish_datetime) {
-              frappe.throw(__("Please enter the Actual Finish Datetime before completing."));
+              frappe.msgprint({
+                title: __("Cannot Complete"),
+                message: __("Please enter the Actual Finish Datetime before completing."),
+                indicator: "orange",
+              });
               return;
             }
-            frappe.confirm(
-              __("Are you sure you want to complete this appointment?"),
-              () => {
-                frm.set_value("status", "Completed");
-                frm.save("Update");
-              }
-            );
+            // 2. Check for a submitted Service Report before asking to confirm
+            frappe.db
+              .get_list("Service Report", {
+                filters: { service_appointment: frm.doc.name, docstatus: 1 },
+                limit: 1,
+              })
+              .then((reports) => {
+                if (!reports || reports.length === 0) {
+                  frappe.msgprint({
+                    title: __("Cannot Complete"),
+                    message: __(
+                      "At least one submitted Service Report is required before completing this appointment."
+                    ),
+                    indicator: "orange",
+                  });
+                  return;
+                }
+                frappe.confirm(
+                  __("Are you sure you want to complete this appointment?"),
+                  () => {
+                    frm.set_value("status", "Completed");
+                    frm.save("Update");
+                  }
+                );
+              });
           })
           .removeClass("btn-default")
           .addClass("btn-success");
