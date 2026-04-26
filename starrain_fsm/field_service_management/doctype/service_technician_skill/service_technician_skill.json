@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "SKILL-.####",
+ "autoname": "SK-.####",
  "creation": "2025-01-30 04:31:34.638684",
  "doctype": "DocType",
  "engine": "InnoDB",

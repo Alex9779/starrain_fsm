@@ -22,7 +22,7 @@
    "fieldname": "naming_series",
    "fieldtype": "Select",
    "label": "Series",
-   "options": "SVC-RPT-.YYYY.-",
+   "options": "SRP-.YYYY.-",
    "reqd": 1
   },
   {

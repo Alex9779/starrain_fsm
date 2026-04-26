@@ -107,7 +107,7 @@
    "fieldtype": "Select",
    "label": "Series",
    "no_copy": 1,
-   "options": "SVC-ORD-.YYYY.-",
+   "options": "SO-.YYYY.-",
    "reqd": 1
   },
   {
