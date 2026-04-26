@@ -189,12 +189,7 @@ class ServiceAppointment(Document):
 			if current_status in ("Open", "Assessed"):
 				frappe.db.set_value("Service Order", self.service_order, "status", "Scheduled")
 		elif self.status == "Completed":
-			# Assessment visits move the order to Assessed so scope can be
-			# defined before scheduling an execution appointment.
-			if self.service_type == "Assessment":
-				new_status = "Assessed"
-			else:
-				new_status = "Completed"
+			new_status = "Completed"
 			frappe.db.set_value("Service Order", self.service_order, "status", new_status)
 
 	def cancel_linked_order(self):

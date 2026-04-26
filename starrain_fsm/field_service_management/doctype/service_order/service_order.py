@@ -1012,7 +1012,7 @@ def make_order_from_assessed(source_name, target_doc=None):
 
 @frappe.whitelist()
 def make_order_from_appointment(source_name, target_doc=None):
-	"""Create a new Service Order directly from a completed Assessment appointment."""
+	"""Create a new Service Order directly from a completed appointment."""
 	def postprocess(source, target):
 		if not target.naming_series:
 			target.naming_series = "SVC-ORD-.YYYY.-"
