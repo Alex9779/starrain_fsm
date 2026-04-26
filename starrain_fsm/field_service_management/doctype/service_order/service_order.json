@@ -614,7 +614,7 @@
   },
   {
    "fieldname": "address_details",
-   "fieldtype": "HTML",
+   "fieldtype": "Long Text",
    "label": "Address Details"
   },
   {
@@ -626,7 +626,7 @@
   },
   {
    "fieldname": "contact_details",
-   "fieldtype": "HTML",
+   "fieldtype": "Long Text",
    "label": "Contact Details"
   },
   {

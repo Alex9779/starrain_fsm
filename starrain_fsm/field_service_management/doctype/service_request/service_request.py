@@ -4,10 +4,18 @@
 import frappe
 from frappe.model.document import Document
 from frappe.utils import add_days, getdate, today
+from starrain_fsm.field_service_management.utils.address_util import get_address_details, get_contact_details
 
 
 class ServiceRequest(Document):
-	pass
+	def validate(self):
+		self.refresh_address_contact_details()
+
+	def refresh_address_contact_details(self):
+		if self.customer_address:
+			self.address_details = get_address_details(self.customer_address).get("details", "")
+		if self.customer_contact:
+			self.contact_details = get_contact_details(self.customer_contact).get("details", "")
 
 
 def update_status():

@@ -13,6 +13,13 @@ class ServiceOrder(Document):
 	def validate(self):
 		self.set_in_words()
 		self.calculate_service_totals()
+		self.refresh_address_contact_details()
+
+	def refresh_address_contact_details(self):
+		if self.customer_address:
+			self.address_details = get_address_details(self.customer_address).get("details", "")
+		if self.customer_contact:
+			self.contact_details = get_contact_details(self.customer_contact).get("details", "")
 
 	def before_submit(self):
 		self.update_linked_doc_status_before_submit()

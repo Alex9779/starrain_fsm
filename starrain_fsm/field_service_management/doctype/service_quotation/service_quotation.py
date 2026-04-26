@@ -8,6 +8,15 @@ from starrain_fsm.field_service_management.utils.address_util import get_address
 
 
 class ServiceQuotation(Document):
+	def validate(self):
+		self.refresh_address_contact_details()
+
+	def refresh_address_contact_details(self):
+		if self.service_address:
+			self.address_details = get_address_details(self.service_address).get("details", "")
+		if self.customer_contact:
+			self.contact_details = get_contact_details(self.customer_contact).get("details", "")
+
 	def before_submit(self):
 		if self.service_request:
 			request = frappe.get_doc("Service Request", self.service_request)

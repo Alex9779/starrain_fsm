@@ -18,6 +18,7 @@ class ServiceAppointment(Document):
 		self.validate_items()
 		self.validate_technicians()
 		self.set_scheduled_status()
+		self.refresh_address_contact_details()
 
 	def before_update_after_submit(self):
 		# Only check overlap when rescheduling — not when marking as Completed/Cancelled
