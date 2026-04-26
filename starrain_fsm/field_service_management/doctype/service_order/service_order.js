@@ -25,9 +25,15 @@ frappe.ui.form.on("Service Order", {
       frm.__over_budget_confirmed = false;
     }
 
-    // Render address/contact HTML on load
-    frm.trigger("customer_address");
-    frm.trigger("customer_contact");
+    // Render address/contact HTML only when a customer is selected.
+    // This avoids tax-party validation from ERPNext selling hooks on empty new docs.
+    if (frm.doc.customer) {
+      frm.trigger("customer_address");
+      frm.trigger("customer_contact");
+    } else {
+      frm.fields_dict["address_details"].$wrapper.html("");
+      frm.fields_dict["contact_details"].$wrapper.html("");
+    }
 
     // set posting date
     frm.trigger("set_posting_date");
@@ -110,6 +116,11 @@ frappe.ui.form.on("Service Order", {
     });
   },
   customer_address: function (frm) {
+    if (!frm.doc.customer) {
+      frm.fields_dict["address_details"].$wrapper.html("");
+      return;
+    }
+
     if (frm.doc.customer_address) {
       frappe.call({
         method:
@@ -125,6 +136,11 @@ frappe.ui.form.on("Service Order", {
     }
   },
   customer_contact: function (frm) {
+    if (!frm.doc.customer) {
+      frm.fields_dict["contact_details"].$wrapper.html("");
+      return;
+    }
+
     if (frm.doc.customer_contact) {
       frappe.call({
         method:
