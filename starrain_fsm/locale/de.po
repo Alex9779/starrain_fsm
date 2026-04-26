@@ -2378,3 +2378,7 @@ msgstr "Mindestens ein eingereichter Servicebericht ist erforderlich, bevor dies
 msgid "Reports can only be created for submitted Service Appointments."
 msgstr "Berichte können nur für eingereichte Servicetermine erstellt werden."
 
+#. Dialog title in service_appointment.js
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js
+msgid "Cannot Complete"
+msgstr "Abschluss nicht möglich"
