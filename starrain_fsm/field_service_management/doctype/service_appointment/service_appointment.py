@@ -23,8 +23,20 @@ class ServiceAppointment(Document):
 		# Only check overlap when rescheduling — not when marking as Completed/Cancelled
 		if self.status not in ("Completed", "Cancelled"):
 			self.validate_overlap()
+		if self.status == "Completed":
+			self._validate_submitted_report()
 		self.refresh_address_contact_details()
 		self.update_service_order_status()
+
+	def _validate_submitted_report(self):
+		submitted = frappe.db.count(
+			"Service Report",
+			filters={"service_appointment": self.name, "docstatus": 1},
+		)
+		if not submitted:
+			frappe.throw(
+				_("At least one submitted Service Report is required before completing this appointment.")
+			)
 
 	def refresh_address_contact_details(self):
 		if self.customer_address:

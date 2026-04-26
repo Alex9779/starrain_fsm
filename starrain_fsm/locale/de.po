@@ -2293,3 +2293,88 @@ msgstr ""
 msgid "quotation_item"
 msgstr ""
 
+#. DocType: Service Report
+#: starrain_fsm/field_service_management/doctype/service_report/service_report.json
+msgid "Service Report"
+msgstr "Servicebericht"
+
+#. Label of a Link field in DocType 'Service Report'
+#: starrain_fsm/field_service_management/doctype/service_report/service_report.json
+msgid "Service Appointment"
+msgstr "Servicetermin"
+
+#. Label of a Date field in DocType 'Service Report'
+#: starrain_fsm/field_service_management/doctype/service_report/service_report.json
+msgid "Report Date"
+msgstr "Berichtsdatum"
+
+#. Label of a Select field in DocType 'Service Report'
+#: starrain_fsm/field_service_management/doctype/service_report/service_report.json
+msgid "Report Type"
+msgstr "Berichtstyp"
+
+#. Option for the 'Report Type' (Select) field in DocType 'Service Report'
+#: starrain_fsm/field_service_management/doctype/service_report/service_report.json
+msgid "Completion Report"
+msgstr "Abschlussbericht"
+
+#. Option for the 'Report Type' (Select) field in DocType 'Service Report'
+#: starrain_fsm/field_service_management/doctype/service_report/service_report.json
+msgid "Correction"
+msgstr "Korrektur"
+
+#. Option for the 'Report Type' (Select) field in DocType 'Service Report'
+#: starrain_fsm/field_service_management/doctype/service_report/service_report.json
+msgid "Follow-up"
+msgstr "Nachverfolgung"
+
+#. Option for the 'Report Type' (Select) field in DocType 'Service Report'
+#: starrain_fsm/field_service_management/doctype/service_report/service_report.json
+msgid "Other"
+msgstr "Sonstiges"
+
+#. Label of a Text Editor field in DocType 'Service Report'
+#: starrain_fsm/field_service_management/doctype/service_report/service_report.json
+msgid "Content"
+msgstr "Inhalt"
+
+#. Label of a Link field in DocType 'Service Report'
+#: starrain_fsm/field_service_management/doctype/service_report/service_report.json
+msgid "Amended From"
+msgstr "Geändert von"
+
+#. Label of a Select field in DocType 'Service Report'
+#: starrain_fsm/field_service_management/doctype/service_report/service_report.json
+msgid "Status"
+msgstr "Status"
+
+#. Option for the 'Status' (Select) field in DocType 'Service Report'
+#: starrain_fsm/field_service_management/doctype/service_report/service_report.json
+msgid "Draft"
+msgstr "Entwurf"
+
+#. Option for the 'Status' (Select) field in DocType 'Service Report'
+#: starrain_fsm/field_service_management/doctype/service_report/service_report.json
+msgid "Submitted"
+msgstr "Eingereicht"
+
+#. Button label in service_report.js
+#: starrain_fsm/field_service_management/doctype/service_report/service_report.js
+msgid "Open Service Appointment"
+msgstr "Servicetermin öffnen"
+
+#. Button label in service_appointment.js
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js
+msgid "Service Report"
+msgstr "Servicebericht"
+
+#. Validation error in service_appointment.py
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.py
+msgid "At least one submitted Service Report is required before completing this appointment."
+msgstr "Mindestens ein eingereichter Servicebericht ist erforderlich, bevor dieser Termin abgeschlossen werden kann."
+
+#. Validation error in service_report.py
+#: starrain_fsm/field_service_management/doctype/service_report/service_report.py
+msgid "Reports can only be created for submitted Service Appointments."
+msgstr "Berichte können nur für eingereichte Servicetermine erstellt werden."
+

@@ -25,6 +25,19 @@ frappe.ui.form.on("Service Appointment", {
     frm.trigger("handle_actual_time_fields");
 
     if (frm.doc.docstatus == 1 && !frm.is_dirty()) {
+      // Always allow creating a Service Report for submitted appointments
+      frm.add_custom_button(
+        __("Service Report"),
+        () => {
+          frappe.new_doc("Service Report", {
+            service_appointment: frm.doc.name,
+            report_date: frappe.datetime.get_today(),
+            customer: frm.doc.customer,
+          });
+        },
+        __("Create")
+      );
+
       if (frm.doc.status == "Scheduled") {
         frm
           .add_custom_button(__("Complete"), function () {

@@ -280,6 +280,10 @@
   {
    "link_doctype": "Sales Invoice",
    "link_fieldname": "custom_reference_service_document"
+  },
+  {
+   "link_doctype": "Service Report",
+   "link_fieldname": "service_appointment"
   }
  ],
  "modified": "2025-11-02 05:09:07.178919",
