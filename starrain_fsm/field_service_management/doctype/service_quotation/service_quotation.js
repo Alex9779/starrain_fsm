@@ -13,6 +13,10 @@ erpnext.accounts.taxes.setup_tax_filters("Sales Taxes and Charges");
 // erpnext.pre_sales.set_as_lost("Service Quotation");
 erpnext.sales_common.setup_selling_controller();
 
+const get_customer_from_quotation = (frm) => {
+  return frm.doc.quotation_to === "Customer" ? frm.doc.party_name : "";
+};
+
 frappe.ui.form.on("Service Quotation", {
   setup: function (frm) {
     // Create a custom button for Service Order mapping
@@ -21,9 +25,15 @@ frappe.ui.form.on("Service Quotation", {
     };
   },
   refresh: function (frm) {
-    // Render address/contact HTML on load
-    frm.trigger("service_address");
-    frm.trigger("customer_contact");
+    // Render address/contact HTML only when a customer is selected.
+    const customer = get_customer_from_quotation(frm);
+    if (customer) {
+      frm.trigger("service_address");
+      frm.trigger("customer_contact");
+    } else {
+      frm.fields_dict["address_details"].$wrapper.html("");
+      frm.fields_dict["contact_details"].$wrapper.html("");
+    }
 
     // Status Buttons
     if (
@@ -79,7 +89,7 @@ frappe.ui.form.on("Service Quotation", {
     frm.set_query("project", function (doc) {
       return {
         filters: {
-          customer: frm.doc.party_name,
+          customer: customer,
           company: frm.doc.company,
         },
       };
@@ -135,15 +145,23 @@ frappe.ui.form.on("Service Quotation", {
     frm.trigger("toggle_reqd_lead_customer");
     frm.trigger("set_dynamic_field_label");
     frm.set_value("party_name", "");
+    frm.fields_dict["address_details"].$wrapper.html("");
+    frm.fields_dict["contact_details"].$wrapper.html("");
   },
 
   party_name: function (frm) {
-    if (frm.doc.party !== "Customer") return;
+    const customer = get_customer_from_quotation(frm);
+    if (!customer) {
+      frm.fields_dict["address_details"].$wrapper.html("");
+      frm.fields_dict["contact_details"].$wrapper.html("");
+      return;
+    }
+
     frm.set_query("service_address", function (doc) {
       return {
         filters: {
           link_doctype: "Customer",
-          link_name: doc.party_name,
+          link_name: customer,
         },
       };
     });
@@ -151,13 +169,18 @@ frappe.ui.form.on("Service Quotation", {
       return {
         filters: {
           link_doctype: "Customer",
-          link_name: doc.party_name,
+          link_name: customer,
         },
       };
     });
   },
 
   service_address: function (frm) {
+    if (!get_customer_from_quotation(frm)) {
+      frm.fields_dict["address_details"].$wrapper.html("");
+      return;
+    }
+
     if (frm.doc.service_address) {
       frappe.call({
         method:
@@ -174,6 +197,11 @@ frappe.ui.form.on("Service Quotation", {
   },
 
   customer_contact: function (frm) {
+    if (!get_customer_from_quotation(frm)) {
+      frm.fields_dict["contact_details"].$wrapper.html("");
+      return;
+    }
+
     if (frm.doc.customer_contact) {
       frappe.call({
         method:
