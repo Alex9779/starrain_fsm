@@ -38,8 +38,7 @@ class ServiceQuotation(Document):
 @frappe.whitelist()
 def make_service_quotation(source_name, target_doc=None, selected_items=None):
 	def postprocess(source, target):
-		if not target.naming_series:
-			target.naming_series = "SQ-.YYYY.-"
+		target.naming_series = "SQ-.YYYY.-"
 		if target.service_address:
 			target.address_details = get_address_details(target.service_address).get("details", "")
 		if target.customer_contact:
@@ -74,8 +73,7 @@ def make_service_quotation(source_name, target_doc=None, selected_items=None):
 @frappe.whitelist()
 def make_quotation_from_appointment(source_name, target_doc=None):
 	def postprocess(source, target):
-		if not target.naming_series:
-			target.naming_series = "SQ-.YYYY.-"
+		target.naming_series = "SQ-.YYYY.-"
 		if target.service_address:
 			target.address_details = get_address_details(target.service_address).get("details", "")
 		if target.customer_contact:
@@ -113,8 +111,7 @@ def make_quotation_from_appointment(source_name, target_doc=None):
 @frappe.whitelist()
 def make_quotation_from_order(source_name, target_doc=None):
 	def postprocess(source, target):
-		if not target.naming_series:
-			target.naming_series = "SQ-.YYYY.-"
+		target.naming_series = "SQ-.YYYY.-"
 		if target.service_address:
 			target.address_details = get_address_details(target.service_address).get("details", "")
 		if target.customer_contact:

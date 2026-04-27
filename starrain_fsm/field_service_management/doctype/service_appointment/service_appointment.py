@@ -202,6 +202,7 @@ class ServiceAppointment(Document):
 @frappe.whitelist()
 def make_appointment_from_order(source_name, target_doc=None, selected_items=None):
 	def postprocess(source, target):
+		target.naming_series = "SA-.YYYY.-"
 		if target.customer_address:
 			target.address_details = get_address_details(target.customer_address).get("details", "")
 		if target.customer_contact:

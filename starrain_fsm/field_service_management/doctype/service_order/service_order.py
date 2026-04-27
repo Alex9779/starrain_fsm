@@ -881,8 +881,7 @@ def make_purchase_invoice(service_order: str, items=None):
 @frappe.whitelist()
 def make_order_from_request(source_name, target_doc=None, selected_items=None):
 	def postprocess(source, target):
-		if not target.naming_series:
-			target.naming_series = "SVC-ORD-.YYYY.-"
+		target.naming_series = "SO-.YYYY.-"
 		if target.customer_address:
 			target.address_details = get_address_details(target.customer_address).get("details", "")
 		if target.customer_contact:
@@ -917,8 +916,7 @@ def make_order_from_request(source_name, target_doc=None, selected_items=None):
 @frappe.whitelist()
 def make_order_from_quote(source_name, target_doc=None, selected_items=None):
 	def postprocess(source, target):
-		if not target.naming_series:
-			target.naming_series = "SVC-ORD-.YYYY.-"
+		target.naming_series = "SO-.YYYY.-"
 		if target.customer_address:
 			target.address_details = get_address_details(target.customer_address).get("details", "")
 		if target.customer_contact:
@@ -966,8 +964,7 @@ def make_order_from_quote(source_name, target_doc=None, selected_items=None):
 def make_order_from_assessed(source_name, target_doc=None):
 	"""Create a new Service Order from an Assessed order, carrying over all scope details."""
 	def postprocess(source, target):
-		if not target.naming_series:
-			target.naming_series = "SVC-ORD-.YYYY.-"
+		target.naming_series = "SO-.YYYY.-"
 		if target.customer_address:
 			target.address_details = get_address_details(target.customer_address).get("details", "")
 		if target.customer_contact:
@@ -1014,8 +1011,7 @@ def make_order_from_assessed(source_name, target_doc=None):
 def make_order_from_appointment(source_name, target_doc=None):
 	"""Create a new Service Order directly from a completed appointment."""
 	def postprocess(source, target):
-		if not target.naming_series:
-			target.naming_series = "SVC-ORD-.YYYY.-"
+		target.naming_series = "SO-.YYYY.-"
 		if target.customer_address:
 			target.address_details = get_address_details(target.customer_address).get("details", "")
 		if target.customer_contact:
