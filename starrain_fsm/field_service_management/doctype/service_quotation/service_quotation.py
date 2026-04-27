@@ -9,6 +9,8 @@ from starrain_fsm.field_service_management.utils.address_util import get_address
 
 class ServiceQuotation(Document):
 	def validate(self):
+		if self.amended_from and self.status == "Cancelled":
+			self.status = "Open"
 		self.refresh_address_contact_details()
 
 	def refresh_address_contact_details(self):

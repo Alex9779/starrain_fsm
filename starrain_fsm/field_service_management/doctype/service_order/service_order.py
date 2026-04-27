@@ -11,6 +11,8 @@ from starrain_fsm.field_service_management.utils.address_util import get_address
 
 class ServiceOrder(Document):
 	def validate(self):
+		if self.amended_from and self.status == "Cancelled":
+			self.status = "Open"
 		self.set_in_words()
 		self.calculate_service_totals()
 		self.refresh_address_contact_details()

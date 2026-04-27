@@ -18,6 +18,8 @@ class ServiceAppointment(Document):
 		self.set_service_order_status()
 
 	def validate(self):
+		if self.amended_from and self.status in ("Cancelled", "Completed"):
+			self.status = "Open"
 		self.validate_items()
 		self.validate_technicians()
 		self.set_scheduled_status()
