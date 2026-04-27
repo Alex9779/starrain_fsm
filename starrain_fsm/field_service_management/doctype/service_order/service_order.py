@@ -927,6 +927,7 @@ def make_order_from_quote(source_name, target_doc=None, selected_items=None):
 			"doctype": "Service Order",
 			"field_map": {
 				"name": "service_quotation",
+				"service_request": "service_request",
 				"party_name": "customer",
 				"company": "company",
 				"type": "type",

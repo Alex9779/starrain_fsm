@@ -213,6 +213,8 @@ def make_appointment_from_order(source_name, target_doc=None, selected_items=Non
 			"doctype": "Service Appointment",
 			"field_map": {
 				"name": "service_order",
+				"service_request": "service_request",
+				"service_quotation": "service_quotation",
 				"customer": "customer",
 				"company": "company",
 				"type": "service_type",
