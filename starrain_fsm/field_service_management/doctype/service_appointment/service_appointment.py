@@ -198,7 +198,18 @@ class ServiceAppointment(Document):
 	def cancel_linked_order(self):
 		if not self.service_order:
 			return
-		frappe.db.set_value("Service Order", self.service_order, "status", "Open")
+
+		other_active = frappe.db.count(
+			"Service Appointment",
+			filters={
+				"service_order": self.service_order,
+				"name": ["!=", self.name],
+				"docstatus": ["!=", 2],
+			},
+		)
+		if not other_active:
+			frappe.db.set_value("Service Order", self.service_order, "status", "Open")
+
 		self.service_order = ""
 
 
