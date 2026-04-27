@@ -9,6 +9,9 @@ from starrain_fsm.field_service_management.utils.address_util import get_address
 
 
 class ServiceAppointment(Document):
+	def before_cancel(self):
+		self.status = "Cancelled"
+
 	def before_submit(self):
 		self.validate_overlap()
 		self.set_scheduled_status()

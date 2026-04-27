@@ -137,6 +137,7 @@ def update_appointment_from_api(
 			appointment.status = changed_status
 		else:
 			appointment.cancel()
+			return appointment.name
 
 	appointment.save()
 	return appointment.name
