@@ -23,6 +23,9 @@ class ServiceQuotation(Document):
 			request.status = "Quotation"
 			request.save()
 
+	def before_cancel(self):
+		self.status = "Cancelled"
+
 	def on_cancel(self):
 		self.cancel_linked_request()
 

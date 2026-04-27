@@ -10,7 +10,7 @@ class ServiceReport(Document):
 	def before_submit(self):
 		self.status = "Submitted"
 
-	def on_cancel(self):
+	def before_cancel(self):
 		self.status = "Draft"
 
 	def validate(self):
