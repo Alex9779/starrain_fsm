@@ -4,7 +4,7 @@
 frappe.ui.form.on("Service Appointment", {
   onload: function (frm) {
     // Lock service_order field once set (it drives the appointment)
-    if (frm.doc.service_order) frm.toggle_enable("service_order", 0);
+    if (frm.doc.service_order && !frm.doc.__islocal) frm.toggle_enable("service_order", 0);
   },
   refresh(frm) {
     // Set Posting Date
@@ -17,7 +17,7 @@ frappe.ui.form.on("Service Appointment", {
     frm.trigger("customer_contact");
 
     // Lock service_order field once set
-    if (frm.doc.service_order) frm.toggle_enable("service_order", 0);
+    if (frm.doc.service_order && !frm.doc.__islocal) frm.toggle_enable("service_order", 0);
 
     frm.trigger("disable_invoicing");
     frm.trigger("disable_items_and_techs_edit");

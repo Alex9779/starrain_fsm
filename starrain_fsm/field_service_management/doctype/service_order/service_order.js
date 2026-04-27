@@ -15,9 +15,11 @@ frappe.ui.form.on("Service Order", {
     };
   },
   onload: function (frm) {
-    // Hide either quotation or request
-    if (frm.doc.service_request) frm.toggle_enable("service_quotation", 0);
-    if (frm.doc.service_quotation) frm.toggle_enable("service_request", 0);
+    // Hide either quotation or request — only on saved docs, not on new/cloned ones
+    if (!frm.doc.__islocal) {
+      if (frm.doc.service_request) frm.toggle_enable("service_quotation", 0);
+      if (frm.doc.service_quotation) frm.toggle_enable("service_request", 0);
+    }
   },
   validate: function (frm) {},
   refresh(frm) {
@@ -38,9 +40,11 @@ frappe.ui.form.on("Service Order", {
     // set posting date
     frm.trigger("set_posting_date");
 
-    // Hide either quotation or request
-    if (frm.doc.service_request) frm.toggle_enable("service_quotation", 0);
-    if (frm.doc.service_quotation) frm.toggle_enable("service_request", 0);
+    // Hide either quotation or request — only on saved docs, not on new/cloned ones
+    if (!frm.doc.__islocal) {
+      if (frm.doc.service_request) frm.toggle_enable("service_quotation", 0);
+      if (frm.doc.service_quotation) frm.toggle_enable("service_request", 0);
+    }
 
     // Enable/Disable Invoicing
     frm.trigger("set_enable_invoicing");
