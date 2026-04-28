@@ -14,8 +14,8 @@ class ServiceRequest(Document):
 	def refresh_address_contact_details(self):
 		if self.customer_address:
 			self.address_details = get_address_details(self.customer_address).get("details", "")
-		if self.customer_contact:
-			self.contact_details = get_contact_details(self.customer_contact).get("details", "")
+		if self.contact_person:
+			self.contact_details = get_contact_details(self.contact_person).get("details", "")
 
 
 def update_status():

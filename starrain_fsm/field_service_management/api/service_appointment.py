@@ -48,7 +48,7 @@ def get_appointments(
 		"naming_series",
 		"customer_address",
 		"address_details",
-		"customer_contact",
+		"contact_person",
 		"contact_details",
 	]
 

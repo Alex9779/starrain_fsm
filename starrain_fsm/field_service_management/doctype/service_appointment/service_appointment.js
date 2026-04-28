@@ -14,7 +14,7 @@ frappe.ui.form.on("Service Appointment", {
 
     // Render address/contact HTML on load
     frm.trigger("customer_address");
-    frm.trigger("customer_contact");
+    frm.trigger("contact_person");
 
     // Lock service_order field once set
     if (frm.doc.service_order && !frm.doc.__islocal) frm.toggle_enable("service_order", 0);
@@ -157,11 +157,28 @@ frappe.ui.form.on("Service Appointment", {
         filters: { link_doctype: "Customer", link_name: doc.customer },
       };
     });
-    frm.set_query("customer_contact", function (doc) {
+    frm.set_query("contact_person", function (doc) {
       return {
         filters: { link_doctype: "Customer", link_name: doc.customer },
       };
     });
+
+    // Auto-select the default address and contact when customer changes
+    frm.set_value("customer_address", "");
+    frm.set_value("contact_person", "");
+    if (frm.doc.customer) {
+      frappe.call({
+        method:
+          "starrain_fsm.field_service_management.utils.address_util.get_default_customer_address_and_contact",
+        args: { customer: frm.doc.customer },
+        callback: function (r) {
+          if (r.message) {
+            if (r.message.address) frm.set_value("customer_address", r.message.address);
+            if (r.message.contact) frm.set_value("contact_person", r.message.contact);
+          }
+        },
+      });
+    }
   },
   customer_address: function (frm) {
     if (frm.doc.customer_address) {
@@ -177,12 +194,12 @@ frappe.ui.form.on("Service Appointment", {
       frm.fields_dict["address_details"].$wrapper.html("");
     }
   },
-  customer_contact: function (frm) {
-    if (frm.doc.customer_contact) {
+  contact_person: function (frm) {
+    if (frm.doc.contact_person) {
       frappe.call({
         method:
           "starrain_fsm.field_service_management.utils.address_util.get_contact_details",
-        args: { customer_contact: frm.doc.customer_contact },
+        args: { contact_person: frm.doc.contact_person },
         callback: function (r) {
           frm.fields_dict["contact_details"].$wrapper.html(r.message["details"] || "");
         },
@@ -196,7 +213,7 @@ frappe.ui.form.on("Service Appointment", {
       frm.set_df_property("scheduled_start_datetime", "read_only", 1);
       frm.set_df_property("scheduled_finish_datetime", "read_only", 1);
       frm.set_df_property("customer_address", "read_only", 1);
-      frm.set_df_property("customer_contact", "read_only", 1);
+      frm.set_df_property("contact_person", "read_only", 1);
     }
   },
 
@@ -311,10 +328,10 @@ frappe.ui.form.on("Service Appointment", {
         },
         {
           label: "Contact Person",
-          fieldname: "customer_contact",
+          fieldname: "contact_person",
           fieldtype: "Link",
           options: "Contact",
-          default: frm.doc.customer_contact,
+          default: frm.doc.contact_person,
           get_query: () => ({
             filters: { link_doctype: "Customer", link_name: frm.doc.customer },
           }),
@@ -336,8 +353,8 @@ frappe.ui.form.on("Service Appointment", {
         if (values.customer_address) {
           frm.set_value("customer_address", values.customer_address);
         }
-        if (values.customer_contact) {
-          frm.set_value("customer_contact", values.customer_contact);
+        if (values.contact_person) {
+          frm.set_value("contact_person", values.contact_person);
         }
         frm.set_value("status", "Scheduled");
         frm.save("Update");

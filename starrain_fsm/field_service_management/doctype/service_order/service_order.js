@@ -31,7 +31,7 @@ frappe.ui.form.on("Service Order", {
     // This avoids tax-party validation from ERPNext selling hooks on empty new docs.
     if (frm.doc.customer) {
       frm.trigger("customer_address");
-      frm.trigger("customer_contact");
+      frm.trigger("contact_person");
     } else {
       frm.fields_dict["address_details"].$wrapper.html("");
       frm.fields_dict["contact_details"].$wrapper.html("");
@@ -110,7 +110,7 @@ frappe.ui.form.on("Service Order", {
         },
       };
     });
-    frm.set_query("customer_contact", function (doc) {
+    frm.set_query("contact_person", function (doc) {
       return {
         filters: {
           link_doctype: "Customer",
@@ -139,17 +139,17 @@ frappe.ui.form.on("Service Order", {
       frm.fields_dict["address_details"].$wrapper.html("");
     }
   },
-  customer_contact: function (frm) {
+  contact_person: function (frm) {
     if (!frm.doc.customer) {
       frm.fields_dict["contact_details"].$wrapper.html("");
       return;
     }
 
-    if (frm.doc.customer_contact) {
+    if (frm.doc.contact_person) {
       frappe.call({
         method:
           "starrain_fsm.field_service_management.utils.address_util.get_contact_details",
-        args: { customer_contact: frm.doc.customer_contact },
+        args: { contact_person: frm.doc.contact_person },
         callback: function (r) {
           let details = r.message["details"] || "";
           frm.fields_dict["contact_details"].$wrapper.html(details);

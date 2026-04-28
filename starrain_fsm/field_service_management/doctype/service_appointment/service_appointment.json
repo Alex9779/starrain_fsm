@@ -19,7 +19,7 @@
   "customer_address",
   "address_details",
   "column_break_contact",
-  "customer_contact",
+  "contact_person",
   "contact_details",
   "appointment_preference_section",
   "pref_date_1",
@@ -82,7 +82,7 @@
   },
   {
    "allow_on_submit": 1,
-   "fieldname": "customer_contact",
+   "fieldname": "contact_person",
    "fieldtype": "Link",
    "label": "Contact Person",
    "options": "Contact",

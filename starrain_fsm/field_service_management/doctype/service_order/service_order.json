@@ -24,7 +24,7 @@
   "customer_address",
   "address_details",
   "column_break_jctz",
-  "customer_contact",
+  "contact_person",
   "contact_details",
   "appointment_preference_section",
   "preferred_date_1",
@@ -618,7 +618,7 @@
    "label": "Address Details"
   },
   {
-   "fieldname": "customer_contact",
+   "fieldname": "contact_person",
    "fieldtype": "Link",
    "label": "Contact Person",
    "options": "Contact",

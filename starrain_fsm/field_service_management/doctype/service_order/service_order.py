@@ -20,8 +20,8 @@ class ServiceOrder(Document):
 	def refresh_address_contact_details(self):
 		if self.customer_address:
 			self.address_details = get_address_details(self.customer_address).get("details", "")
-		if self.customer_contact:
-			self.contact_details = get_contact_details(self.customer_contact).get("details", "")
+		if self.contact_person:
+			self.contact_details = get_contact_details(self.contact_person).get("details", "")
 
 	def before_submit(self):
 		self.update_linked_doc_status_before_submit()
@@ -93,7 +93,7 @@ class ServiceOrder(Document):
 		appointment.customer = self.customer
 		appointment.customer_address = self.customer_address
 		appointment.address_details = self.address_details
-		appointment.customer_contact = self.customer_contact
+		appointment.contact_person = self.contact_person
 		appointment.contact_details = self.contact_details
 
 		for item in self.items:
@@ -287,7 +287,7 @@ def make_delivery_note(service_order: str, items=None):
 	delivery_note.posting_date = today()
 	delivery_note.customer = order.customer
 	delivery_note.customer_address = order.customer_address
-	delivery_note.contact_person = order.customer_contact
+	delivery_note.contact_person = order.contact_person
 	delivery_note.tc_name = getattr(order, "tc_name", None)
 	delivery_note.terms = getattr(order, "terms", None)
 	delivery_note.custom_service_order = order.name
@@ -889,8 +889,8 @@ def make_order_from_request(source_name, target_doc=None, selected_items=None):
 		target.naming_series = "SO-.YYYY.-"
 		if target.customer_address:
 			target.address_details = get_address_details(target.customer_address).get("details", "")
-		if target.customer_contact:
-			target.contact_details = get_contact_details(target.customer_contact).get("details", "")
+		if target.contact_person:
+			target.contact_details = get_contact_details(target.contact_person).get("details", "")
 
 	mapping = {
 		"Service Request": {
@@ -902,7 +902,7 @@ def make_order_from_request(source_name, target_doc=None, selected_items=None):
 				"posting_date": "posting_date",
 				"due_date": "due_date",
 				"customer_address": "customer_address",
-				"customer_contact": "customer_contact",
+				"contact_person": "contact_person",
 				"cost_center": "cost_center",
 				"project": "project",
 				"currency": "currency",
@@ -924,8 +924,8 @@ def make_order_from_quote(source_name, target_doc=None, selected_items=None):
 		target.naming_series = "SO-.YYYY.-"
 		if target.customer_address:
 			target.address_details = get_address_details(target.customer_address).get("details", "")
-		if target.customer_contact:
-			target.contact_details = get_contact_details(target.customer_contact).get("details", "")
+		if target.contact_person:
+			target.contact_details = get_contact_details(target.contact_person).get("details", "")
 
 	mapping = {
 		"Service Quotation": {
@@ -939,7 +939,7 @@ def make_order_from_quote(source_name, target_doc=None, selected_items=None):
 				"priority": "priority",
 				"due_date": "due_date",
 				"service_address": "customer_address",
-				"customer_contact": "customer_contact",
+				"contact_person": "contact_person",
 				"cost_center": "cost_center",
 				"project": "project",
 				"currency": "currency",
@@ -973,8 +973,8 @@ def make_order_from_assessed(source_name, target_doc=None):
 		target.naming_series = "SO-.YYYY.-"
 		if target.customer_address:
 			target.address_details = get_address_details(target.customer_address).get("details", "")
-		if target.customer_contact:
-			target.contact_details = get_contact_details(target.customer_contact).get("details", "")
+		if target.contact_person:
+			target.contact_details = get_contact_details(target.contact_person).get("details", "")
 
 	mapping = {
 		"Service Order": {
@@ -986,7 +986,7 @@ def make_order_from_assessed(source_name, target_doc=None):
 				"priority": "priority",
 				"due_date": "due_date",
 				"customer_address": "customer_address",
-				"customer_contact": "customer_contact",
+				"contact_person": "contact_person",
 				"cost_center": "cost_center",
 				"project": "project",
 				"currency": "currency",
@@ -1020,8 +1020,8 @@ def make_order_from_appointment(source_name, target_doc=None):
 		target.naming_series = "SO-.YYYY.-"
 		if target.customer_address:
 			target.address_details = get_address_details(target.customer_address).get("details", "")
-		if target.customer_contact:
-			target.contact_details = get_contact_details(target.customer_contact).get("details", "")
+		if target.contact_person:
+			target.contact_details = get_contact_details(target.contact_person).get("details", "")
 
 	mapping = {
 		"Service Appointment": {
@@ -1033,7 +1033,7 @@ def make_order_from_appointment(source_name, target_doc=None):
 				"cost_center": "cost_center",
 				"project": "project",
 				"customer_address": "customer_address",
-				"customer_contact": "customer_contact",
+				"contact_person": "contact_person",
 				"serial_no": "serial_no",
 				"due_date": "due_date",
 			},

@@ -16,8 +16,8 @@ class ServiceQuotation(Document):
 	def refresh_address_contact_details(self):
 		if self.service_address:
 			self.address_details = get_address_details(self.service_address).get("details", "")
-		if self.customer_contact:
-			self.contact_details = get_contact_details(self.customer_contact).get("details", "")
+		if self.contact_person:
+			self.contact_details = get_contact_details(self.contact_person).get("details", "")
 
 	def before_submit(self):
 		if self.service_request:
@@ -46,8 +46,8 @@ def make_service_quotation(source_name, target_doc=None, selected_items=None):
 		target.naming_series = "SQ-.YYYY.-"
 		if target.service_address:
 			target.address_details = get_address_details(target.service_address).get("details", "")
-		if target.customer_contact:
-			target.contact_details = get_contact_details(target.customer_contact).get("details", "")
+		if target.contact_person:
+			target.contact_details = get_contact_details(target.contact_person).get("details", "")
 
 	mapping = {
 		"Service Request": {
@@ -59,7 +59,7 @@ def make_service_quotation(source_name, target_doc=None, selected_items=None):
 				"posting_date": "posting_date",
 				"due_date": "due_date",
 				"customer_address": "service_address",
-				"customer_contact": "customer_contact",
+				"contact_person": "contact_person",
 				"cost_center": "cost_center",
 				"project": "project",
 				"currency": "currency",
@@ -81,8 +81,8 @@ def make_quotation_from_appointment(source_name, target_doc=None):
 		target.naming_series = "SQ-.YYYY.-"
 		if target.service_address:
 			target.address_details = get_address_details(target.service_address).get("details", "")
-		if target.customer_contact:
-			target.contact_details = get_contact_details(target.customer_contact).get("details", "")
+		if target.contact_person:
+			target.contact_details = get_contact_details(target.contact_person).get("details", "")
 
 	mapping = {
 		"Service Appointment": {
@@ -94,7 +94,7 @@ def make_quotation_from_appointment(source_name, target_doc=None):
 				"cost_center": "cost_center",
 				"project": "project",
 				"customer_address": "service_address",
-				"customer_contact": "customer_contact",
+				"contact_person": "contact_person",
 				"serial_no": "serial_no",
 			},
 		},
@@ -119,8 +119,8 @@ def make_quotation_from_order(source_name, target_doc=None):
 		target.naming_series = "SQ-.YYYY.-"
 		if target.service_address:
 			target.address_details = get_address_details(target.service_address).get("details", "")
-		if target.customer_contact:
-			target.contact_details = get_contact_details(target.customer_contact).get("details", "")
+		if target.contact_person:
+			target.contact_details = get_contact_details(target.contact_person).get("details", "")
 
 	mapping = {
 		"Service Order": {
@@ -132,7 +132,7 @@ def make_quotation_from_order(source_name, target_doc=None):
 				"priority": "priority",
 				"due_date": "due_date",
 				"customer_address": "service_address",
-				"customer_contact": "customer_contact",
+				"contact_person": "contact_person",
 				"cost_center": "cost_center",
 				"project": "project",
 				"currency": "currency",

@@ -23,8 +23,8 @@ def get_address_details(customer_address):
 
 
 @frappe.whitelist()
-def get_contact_details(customer_contact):
-	contact_doc = frappe.get_doc("Contact", customer_contact)
+def get_contact_details(contact_person):
+	contact_doc = frappe.get_doc("Contact", contact_person)
 	full_name_parts = [
 		contact_doc.get(field)
 		for field in ["first_name", "middle_name", "last_name"]
@@ -44,3 +44,13 @@ def get_contact_details(customer_contact):
 
 	html = '<div class="address-box">' + "".join(lines) + "</div>"
 	return {"details": html}
+
+
+@frappe.whitelist()
+def get_default_customer_address_and_contact(customer):
+	from frappe.contacts.doctype.address.address import get_default_address
+	from erpnext.accounts.party import get_default_contact
+
+	address = get_default_address("Customer", customer)
+	contact = get_default_contact("Customer", customer)
+	return {"address": address, "contact": contact}

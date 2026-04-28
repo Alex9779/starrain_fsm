@@ -23,7 +23,7 @@
   "service_address",
   "address_details",
   "column_break_phrd",
-  "customer_contact",
+  "contact_person",
   "contact_details",
   "appointment_preference_section",
   "preferred_date_1",
@@ -700,7 +700,7 @@
    "label": "Contact Details"
   },
   {
-   "fieldname": "customer_contact",
+   "fieldname": "contact_person",
    "fieldtype": "Link",
    "label": "Service Contact",
    "options": "Contact",

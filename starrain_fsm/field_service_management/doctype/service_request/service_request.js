@@ -24,7 +24,7 @@ frappe.ui.form.on("Service Request", {
 
     // Render address/contact HTML on load (always trigger so DOM is cleared on new docs)
     frm.trigger("customer_address");
-    frm.trigger("customer_contact");
+    frm.trigger("contact_person");
 
     // Disable connection links add
     frm.trigger("disable_connection_links_add");
@@ -107,7 +107,7 @@ frappe.ui.form.on("Service Request", {
         },
       };
     });
-    frm.set_query("customer_contact", function (doc) {
+    frm.set_query("contact_person", function (doc) {
       return {
         filters: {
           link_doctype: "Customer",
@@ -115,6 +115,23 @@ frappe.ui.form.on("Service Request", {
         },
       };
     });
+
+    // Auto-select the default address and contact when customer changes
+    frm.set_value("customer_address", "");
+    frm.set_value("contact_person", "");
+    if (frm.doc.customer) {
+      frappe.call({
+        method:
+          "starrain_fsm.field_service_management.utils.address_util.get_default_customer_address_and_contact",
+        args: { customer: frm.doc.customer },
+        callback: function (r) {
+          if (r.message) {
+            if (r.message.address) frm.set_value("customer_address", r.message.address);
+            if (r.message.contact) frm.set_value("contact_person", r.message.contact);
+          }
+        },
+      });
+    }
   },
   customer_address: function (frm) {
     if (frm.doc.customer_address) {
@@ -131,12 +148,12 @@ frappe.ui.form.on("Service Request", {
       frm.fields_dict["address_details"].$wrapper.html("");
     }
   },
-  customer_contact: function (frm) {
-    if (frm.doc.customer_contact) {
+  contact_person: function (frm) {
+    if (frm.doc.contact_person) {
       frappe.call({
         method:
           "starrain_fsm.field_service_management.utils.address_util.get_contact_details",
-        args: { customer_contact: frm.doc.customer_contact },
+        args: { contact_person: frm.doc.contact_person },
         callback: function (r) {
           let details = r.message["details"] || "";
           frm.fields_dict["contact_details"].$wrapper.html(details);

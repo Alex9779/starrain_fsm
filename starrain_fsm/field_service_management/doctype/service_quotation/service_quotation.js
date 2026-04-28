@@ -29,7 +29,7 @@ frappe.ui.form.on("Service Quotation", {
     const customer = get_customer_from_quotation(frm);
     if (customer) {
       frm.trigger("service_address");
-      frm.trigger("customer_contact");
+      frm.trigger("contact_person");
     } else {
       frm.fields_dict["address_details"].$wrapper.html("");
       frm.fields_dict["contact_details"].$wrapper.html("");
@@ -165,13 +165,28 @@ frappe.ui.form.on("Service Quotation", {
         },
       };
     });
-    frm.set_query("customer_contact", function (doc) {
+    frm.set_query("contact_person", function (doc) {
       return {
         filters: {
           link_doctype: "Customer",
           link_name: customer,
         },
       };
+    });
+
+    // Auto-select the default address and contact when customer changes
+    frm.set_value("service_address", "");
+    frm.set_value("contact_person", "");
+    frappe.call({
+      method:
+        "starrain_fsm.field_service_management.utils.address_util.get_default_customer_address_and_contact",
+      args: { customer: customer },
+      callback: function (r) {
+        if (r.message) {
+          if (r.message.address) frm.set_value("service_address", r.message.address);
+          if (r.message.contact) frm.set_value("contact_person", r.message.contact);
+        }
+      },
     });
   },
 
@@ -196,17 +211,17 @@ frappe.ui.form.on("Service Quotation", {
     }
   },
 
-  customer_contact: function (frm) {
+  contact_person: function (frm) {
     if (!get_customer_from_quotation(frm)) {
       frm.fields_dict["contact_details"].$wrapper.html("");
       return;
     }
 
-    if (frm.doc.customer_contact) {
+    if (frm.doc.contact_person) {
       frappe.call({
         method:
           "starrain_fsm.field_service_management.utils.address_util.get_contact_details",
-        args: { customer_contact: frm.doc.customer_contact },
+        args: { contact_person: frm.doc.contact_person },
         callback: function (r) {
           let details = r.message["details"] || "";
           frm.fields_dict["contact_details"].$wrapper.html(details);

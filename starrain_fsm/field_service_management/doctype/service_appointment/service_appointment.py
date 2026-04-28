@@ -51,8 +51,8 @@ class ServiceAppointment(Document):
 	def refresh_address_contact_details(self):
 		if self.customer_address:
 			self.address_details = get_address_details(self.customer_address).get("details", "")
-		if self.customer_contact:
-			self.contact_details = get_contact_details(self.customer_contact).get("details", "")
+		if self.contact_person:
+			self.contact_details = get_contact_details(self.contact_person).get("details", "")
 
 	def on_update_after_submit(self):
 		self._log_items_changes()
@@ -221,8 +221,8 @@ def make_appointment_from_order(source_name, target_doc=None, selected_items=Non
 		target.naming_series = "SA-.YYYY.-"
 		if target.customer_address:
 			target.address_details = get_address_details(target.customer_address).get("details", "")
-		if target.customer_contact:
-			target.contact_details = get_contact_details(target.customer_contact).get("details", "")
+		if target.contact_person:
+			target.contact_details = get_contact_details(target.contact_person).get("details", "")
 
 	mapping = {
 		"Service Order": {
@@ -237,7 +237,7 @@ def make_appointment_from_order(source_name, target_doc=None, selected_items=Non
 				"priority": "priority",
 				"due_date": "due_date",
 				"customer_address": "customer_address",
-				"customer_contact": "customer_contact",
+				"contact_person": "contact_person",
 				"cost_center": "cost_center",
 				"project": "project",
 				"currency": "currency",
