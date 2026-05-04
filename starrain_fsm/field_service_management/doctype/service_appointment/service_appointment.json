@@ -269,7 +269,7 @@
    "fieldname": "items",
    "fieldtype": "Table",
    "label": "Items",
-   "options": "Service Order Item",
+   "options": "Service Appointment Item",
    "reqd": 1
   },
   {
