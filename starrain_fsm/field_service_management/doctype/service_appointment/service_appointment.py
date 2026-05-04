@@ -219,6 +219,8 @@ class ServiceAppointment(Document):
 def make_appointment_from_order(source_name, target_doc=None, selected_items=None):
 	def postprocess(source, target):
 		target.naming_series = "SA-.YYYY.-"
+		target.posting_date = frappe.utils.today()
+		target.due_date = source.due_date
 		if target.customer_address:
 			target.address_details = get_address_details(target.customer_address).get("details", "")
 		if target.contact_person:
@@ -235,7 +237,6 @@ def make_appointment_from_order(source_name, target_doc=None, selected_items=Non
 				"company": "company",
 				"type": "service_type",
 				"priority": "priority",
-				"due_date": "due_date",
 				"customer_address": "customer_address",
 				"contact_person": "contact_person",
 				"cost_center": "cost_center",

@@ -44,6 +44,7 @@ class ServiceQuotation(Document):
 def make_service_quotation(source_name, target_doc=None, selected_items=None):
 	def postprocess(source, target):
 		target.naming_series = "SQ-.YYYY.-"
+		target.posting_date = frappe.utils.today()
 		if target.service_address:
 			target.address_details = get_address_details(target.service_address).get("details", "")
 		if target.contact_person:
@@ -56,7 +57,6 @@ def make_service_quotation(source_name, target_doc=None, selected_items=None):
 				"name": "service_request",
 				"customer": "party_name",
 				"company": "company",
-				"posting_date": "posting_date",
 				"due_date": "due_date",
 				"customer_address": "service_address",
 				"contact_person": "contact_person",
@@ -79,6 +79,7 @@ def make_service_quotation(source_name, target_doc=None, selected_items=None):
 def make_quotation_from_appointment(source_name, target_doc=None):
 	def postprocess(source, target):
 		target.naming_series = "SQ-.YYYY.-"
+		target.posting_date = frappe.utils.today()
 		if target.service_address:
 			target.address_details = get_address_details(target.service_address).get("details", "")
 		if target.contact_person:
@@ -117,6 +118,7 @@ def make_quotation_from_appointment(source_name, target_doc=None):
 def make_quotation_from_order(source_name, target_doc=None):
 	def postprocess(source, target):
 		target.naming_series = "SQ-.YYYY.-"
+		target.posting_date = frappe.utils.today()
 		if target.service_address:
 			target.address_details = get_address_details(target.service_address).get("details", "")
 		if target.contact_person:

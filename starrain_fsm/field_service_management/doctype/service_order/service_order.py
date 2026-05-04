@@ -887,6 +887,7 @@ def make_purchase_invoice(service_order: str, items=None):
 def make_order_from_request(source_name, target_doc=None, selected_items=None):
 	def postprocess(source, target):
 		target.naming_series = "SO-.YYYY.-"
+		target.posting_date = today()
 		if target.customer_address:
 			target.address_details = get_address_details(target.customer_address).get("details", "")
 		if target.contact_person:
@@ -899,7 +900,6 @@ def make_order_from_request(source_name, target_doc=None, selected_items=None):
 				"name": "service_request",
 				"customer": "customer",
 				"company": "company",
-				"posting_date": "posting_date",
 				"due_date": "due_date",
 				"customer_address": "customer_address",
 				"contact_person": "contact_person",
@@ -922,6 +922,7 @@ def make_order_from_request(source_name, target_doc=None, selected_items=None):
 def make_order_from_quote(source_name, target_doc=None, selected_items=None):
 	def postprocess(source, target):
 		target.naming_series = "SO-.YYYY.-"
+		target.posting_date = today()
 		if target.customer_address:
 			target.address_details = get_address_details(target.customer_address).get("details", "")
 		if target.contact_person:
@@ -971,6 +972,7 @@ def make_order_from_assessed(source_name, target_doc=None):
 	"""Create a new Service Order from an Assessed order, carrying over all scope details."""
 	def postprocess(source, target):
 		target.naming_series = "SO-.YYYY.-"
+		target.posting_date = today()
 		if target.customer_address:
 			target.address_details = get_address_details(target.customer_address).get("details", "")
 		if target.contact_person:
@@ -1018,6 +1020,7 @@ def make_order_from_appointment(source_name, target_doc=None):
 	"""Create a new Service Order directly from a completed appointment."""
 	def postprocess(source, target):
 		target.naming_series = "SO-.YYYY.-"
+		target.posting_date = today()
 		if target.customer_address:
 			target.address_details = get_address_details(target.customer_address).get("details", "")
 		if target.contact_person:
