@@ -245,14 +245,13 @@ def make_appointment_from_order(source_name, target_doc=None, selected_items=Non
 			},
 		},
 		"Service Order Item": {
-			"doctype": "Service Order Item",
+			"doctype": "Service Appointment Item",
 			"field_map": {
 				"item_code": "item_code",
 				"description": "description",
 				"qty": "qty",
 				"rate": "rate",
 				"amount": "amount",
-				"invoice_status": "invoice_status",
 			},
 			"add_if_empty": True,
 		},
