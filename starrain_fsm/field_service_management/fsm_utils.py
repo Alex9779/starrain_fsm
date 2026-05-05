@@ -35,6 +35,29 @@ def _get_service_doc(doc):
 	return frappe.get_doc(ref_doctype, ref_docname)
 
 
+def _update_appointment_status_from_invoice(service_doc, invoice_name, method):
+	"""Set Service Appointment status to Invoiced on invoice submit, back to Completed when the last invoice is cancelled."""
+	if service_doc.doctype != "Service Appointment":
+		return
+	if service_doc.status not in ("Completed", "Invoiced"):
+		return
+
+	if method == "on_submit":
+		frappe.db.set_value("Service Appointment", service_doc.name, "status", "Invoiced")
+	elif method == "on_cancel":
+		remaining = frappe.db.count(
+			"Sales Invoice",
+			filters={
+				"custom_reference_service_doctype": "Service Appointment",
+				"custom_reference_service_document": service_doc.name,
+				"docstatus": 1,
+				"name": ["!=", invoice_name],
+			},
+		)
+		if not remaining:
+			frappe.db.set_value("Service Appointment", service_doc.name, "status", "Completed")
+
+
 def update_invoice_status(doc, method):
 	if not doc.custom_reference_service_document:
 		return
@@ -67,6 +90,7 @@ def update_invoice_status(doc, method):
 
 	if updated:
 		service_doc.save()
+		_update_appointment_status_from_invoice(service_doc, doc.name, method)
 
 	update_associated_docs_invoice_status(doc, method)
 

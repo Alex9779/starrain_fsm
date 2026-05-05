@@ -282,6 +282,11 @@ msgstr "Abschließen"
 msgid "Completed"
 msgstr "Abgeschlossen"
 
+#. Option for the 'Status' (Select) field in DocType 'Service Appointment'
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.json
+msgid "Invoiced"
+msgstr "Fakturiert"
+
 #: starrain_fsm/field_service_management/doctype/service_order/service_order.js:1232
 msgid "Confirm"
 msgstr "Bestätigen"

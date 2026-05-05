@@ -94,8 +94,8 @@ frappe.ui.form.on("Service Appointment", {
           .removeClass("btn-default")
           .addClass("btn-info");
       }
-      // Enable Invoice only for Completed appointments
-      if (frm.doc.status == "Completed") {
+      // Enable Invoice for Completed and Invoiced appointments
+      if (["Completed", "Invoiced"].includes(frm.doc.status)) {
         let items = frm.doc.items || [];
         let non_invoiced_items = [];
         items.forEach((item) => {
@@ -148,8 +148,8 @@ frappe.ui.form.on("Service Appointment", {
     frm.set_df_property("actual_finish_datetime", "read_only", editable ? 0 : 1);
   },
   disable_items_and_techs_edit: (frm) => {
-    //when appointment is complete
-    let is_not_allowed = !["Completed"].includes(frm.doc.status);
+    //when appointment is complete or invoiced
+    let is_not_allowed = !["Completed", "Invoiced"].includes(frm.doc.status);
     frm.toggle_enable(["items", "service_technicians"], is_not_allowed);
   },
   customer: function (frm) {
