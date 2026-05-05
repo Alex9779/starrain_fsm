@@ -184,33 +184,49 @@ class ServiceAppointment(Document):
 			frappe.db.set_value("Service Order", self.service_order, "status", "Scheduled")
 
 	def update_service_order_status(self):
-		if not self.service_order:
-			return
-
-		if self.status == "Scheduled":
-			# Only advance to Scheduled — never overwrite In Progress / Review
-			# states that product movements may have set.
-			current_status = frappe.db.get_value("Service Order", self.service_order, "status")
-			if current_status in ("Open", "Assessed"):
-				frappe.db.set_value("Service Order", self.service_order, "status", "Scheduled")
-		elif self.status == "Completed":
-			new_status = "Completed"
-			frappe.db.set_value("Service Order", self.service_order, "status", new_status)
+		self._sync_order_status()
 
 	def cancel_linked_order(self):
+		self._sync_order_status()
+
+	def _sync_order_status(self):
+		"""Derive the Service Order status from all its appointments.
+
+		Rules (evaluated in priority order):
+		  1. Any appointment is Scheduled or In Progress → order is Scheduled
+		  2. All non-cancelled appointments are Completed (≥1 exists) → order is Completed
+		  3. All appointments are cancelled → order reverts to Open
+		"""
 		if not self.service_order:
 			return
 
-		other_active = frappe.db.count(
+		appointments = frappe.db.get_all(
 			"Service Appointment",
-			filters={
-				"service_order": self.service_order,
-				"name": ["!=", self.name],
-				"docstatus": ["!=", 2],
-			},
+			filters={"service_order": self.service_order},
+			fields=["name", "status", "docstatus"],
 		)
-		if not other_active:
+
+		# Exclude cancelled docs (docstatus 2) — they carry no weight
+		active = [a for a in appointments if a.docstatus != 2]
+
+		if not active:
+			# Every appointment has been cancelled — revert order to Open
 			frappe.db.set_value("Service Order", self.service_order, "status", "Open")
+			return
+
+		statuses = {a.status for a in active}
+
+		if statuses & {"Scheduled", "In Progress"}:
+			# At least one appointment is still active
+			new_status = "Scheduled"
+		elif statuses <= {"Completed"}:
+			# All non-cancelled appointments are completed
+			new_status = "Completed"
+		else:
+			# Mixed states (e.g. some Open) — keep as Scheduled
+			new_status = "Scheduled"
+
+		frappe.db.set_value("Service Order", self.service_order, "status", new_status)
 
 
 @frappe.whitelist()
