@@ -2382,3 +2382,13 @@ msgstr "Berichte können nur für eingereichte Servicetermine erstellt werden."
 #: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js
 msgid "Cannot Complete"
 msgstr "Abschluss nicht möglich"
+
+#. Warning dialog title in service_appointment.js
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js
+msgid "Long Appointment"
+msgstr "Langer Termin"
+
+#. Warning dialog message in service_appointment.js
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js
+msgid "This appointment is scheduled to last more than one day. Please confirm this is intended."
+msgstr "Dieser Termin ist für mehr als einen Tag geplant. Bitte bestätigen Sie, dass dies beabsichtigt ist."

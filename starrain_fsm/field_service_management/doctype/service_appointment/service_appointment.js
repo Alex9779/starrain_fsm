@@ -23,6 +23,7 @@ frappe.ui.form.on("Service Appointment", {
     frm.trigger("disable_items_and_techs_edit");
     frm.trigger("disable_schedule_fields_on_submit");
     frm.trigger("handle_actual_time_fields");
+    frm.trigger("warn_long_appointment");
 
     if (frm.doc.docstatus == 1 && !frm.is_dirty()) {
       // Always allow creating a Service Report for submitted appointments
@@ -216,6 +217,22 @@ frappe.ui.form.on("Service Appointment", {
       frm.set_df_property("contact_person", "read_only", 1);
     }
   },
+  warn_long_appointment: (frm) => {
+    const start = frm.doc.scheduled_start_datetime;
+    const finish = frm.doc.scheduled_finish_datetime;
+    if (start && finish) {
+      const diffMs = frappe.datetime.str_to_obj(finish) - frappe.datetime.str_to_obj(start);
+      if (diffMs > 24 * 60 * 60 * 1000) {
+        frappe.msgprint({
+          title: __("Long Appointment"),
+          message: __("This appointment is scheduled to last more than one day. Please confirm this is intended."),
+          indicator: "orange",
+        });
+      }
+    }
+  },
+  scheduled_start_datetime: (frm) => frm.trigger("warn_long_appointment"),
+  scheduled_finish_datetime: (frm) => frm.trigger("warn_long_appointment"),
 
   make_quotation_from_appointment: (frm) => {
     frappe.model.open_mapped_doc({

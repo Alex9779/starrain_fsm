@@ -2306,3 +2306,13 @@ msgstr ""
 msgid "quotation_item"
 msgstr ""
 
+#. Warning dialog title in service_appointment.js
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js
+msgid "Long Appointment"
+msgstr ""
+
+#. Warning dialog message in service_appointment.js
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js
+msgid "This appointment is scheduled to last more than one day. Please confirm this is intended."
+msgstr ""
+
