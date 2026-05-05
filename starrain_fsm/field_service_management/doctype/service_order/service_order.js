@@ -64,7 +64,7 @@ frappe.ui.form.on("Service Order", {
     // 	);
     // }
     if (frm.doc.docstatus === 1 && !frm.is_dirty()) {
-      if (["Open", "Assessed", "Planned"].includes(frm.doc.status)) {
+      if (["Open", "Assessed", "Planned", "Scheduled", "In Progress"].includes(frm.doc.status)) {
         frm.add_custom_button(
           __("Service Appointment"),
           () => {
@@ -187,7 +187,7 @@ frappe.ui.form.on("Service Order", {
   },
   disable_creating_appointment: (frm) => {
     if (![
-      "Scheduled", "Completed",
+      "Completed",
     ].includes(frm.doc.status)) {
       return;
     } else {
