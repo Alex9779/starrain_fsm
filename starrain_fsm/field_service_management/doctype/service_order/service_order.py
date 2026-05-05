@@ -75,7 +75,6 @@ class ServiceOrder(Document):
 			return
 		quote = frappe.get_doc("Service Quotation", self.service_quotation)
 		quote.status = "Open"
-		self.service_quotation = ""
 		quote.save()
 
 	def cancel_linked_request(self):
@@ -83,7 +82,6 @@ class ServiceOrder(Document):
 			return
 		request = frappe.get_doc("Service Request", self.service_request)
 		request.status = "Open"
-		self.service_request = ""
 		request.save()
 
 	@frappe.whitelist()

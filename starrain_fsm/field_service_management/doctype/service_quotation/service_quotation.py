@@ -36,7 +36,6 @@ class ServiceQuotation(Document):
 			return
 		request = frappe.get_doc("Service Request", self.service_request)
 		request.status = "Open"
-		self.service_request = ""
 		request.save()
 
 

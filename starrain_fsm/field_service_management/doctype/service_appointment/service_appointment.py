@@ -212,8 +212,6 @@ class ServiceAppointment(Document):
 		if not other_active:
 			frappe.db.set_value("Service Order", self.service_order, "status", "Open")
 
-		self.service_order = ""
-
 
 @frappe.whitelist()
 def make_appointment_from_order(source_name, target_doc=None, selected_items=None):
