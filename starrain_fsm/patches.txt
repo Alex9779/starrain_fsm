@@ -6,3 +6,4 @@ starrain_fsm.patches.rename_customer_contact_to_contact_person
 [post_model_sync]
 # Patches added in this section will be executed after doctypes are migrated
 starrain_fsm.patches.migrate_appointment_items_to_service_appointment_item
+starrain_fsm.patches.fix_cancelled_service_request_status

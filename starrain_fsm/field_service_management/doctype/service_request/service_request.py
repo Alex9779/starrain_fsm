@@ -11,6 +11,9 @@ class ServiceRequest(Document):
 	def validate(self):
 		self.refresh_address_contact_details()
 
+	def before_cancel(self):
+		self.status = "Cancelled"
+
 	def refresh_address_contact_details(self):
 		if self.customer_address:
 			self.address_details = get_address_details(self.customer_address).get("details", "")

@@ -202,7 +202,7 @@
    "in_standard_filter": 1,
    "label": "Status",
    "no_copy": 1,
-   "options": "Open\nQuotation\nConverted\nDue Soon\nOverdue\nOn Hold\nClosed",
+   "options": "Open\nQuotation\nConverted\nDue Soon\nOverdue\nOn Hold\nClosed\nCancelled",
    "print_hide": 1,
    "read_only": 1,
    "reqd": 1
