@@ -9,6 +9,7 @@
   "overview",
   "quotation_to",
   "party_name",
+  "customer_name",
   "service_request",
   "customer_group",
   "company",
@@ -172,6 +173,14 @@
    "options": "quotation_to",
    "print_hide": 1,
    "search_index": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "label": "Customer Name",
+   "read_only": 1
   },
   {
    "fieldname": "company",
