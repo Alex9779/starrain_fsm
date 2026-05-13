@@ -58,6 +58,7 @@
   },
   {
    "allow_on_submit": 1,
+   "columns": 1,
    "default": "0",
    "fieldname": "is_service",
    "fieldtype": "Check",
@@ -152,7 +153,6 @@
    "allow_on_submit": 1,
    "fieldname": "warehouse",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Delivery Warehouse",
    "options": "Warehouse",
    "print_hide": 1
@@ -163,6 +163,7 @@
   },
   {
    "allow_on_submit": 1,
+   "columns": 1,
    "default": "1",
    "fieldname": "is_billable",
    "fieldtype": "Check",
