@@ -11,7 +11,7 @@
   "service_request",
   "service_quotation",
   "service_order",
-  "service_type",
+  "type",
   "column_break_coqg",
   "naming_series",
   "posting_date",
@@ -220,7 +220,7 @@
   },
   {
    "fetch_from": "service_order.type",
-   "fieldname": "service_type",
+   "fieldname": "type",
    "fieldtype": "Link",
    "label": "Service Type",
    "options": "Service Type",

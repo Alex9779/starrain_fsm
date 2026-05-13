@@ -249,7 +249,7 @@ def make_appointment_from_order(source_name, target_doc=None, selected_items=Non
 				"service_quotation": "service_quotation",
 				"customer": "customer",
 				"company": "company",
-				"type": "service_type",
+				"type": "type",
 				"priority": "priority",
 				"customer_address": "customer_address",
 				"contact_person": "contact_person",

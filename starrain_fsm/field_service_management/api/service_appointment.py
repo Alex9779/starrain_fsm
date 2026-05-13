@@ -43,7 +43,7 @@ def get_appointments(
 		"scheduled_finish_datetime",
 		"actual_start_datetime",
 		"actual_finish_datetime",
-		"service_type",
+		"type",
 		"description",
 		"naming_series",
 		"customer_address",
