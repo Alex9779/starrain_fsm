@@ -10,6 +10,7 @@
   "item_code",
   "col_break1",
   "item_name",
+  "is_billable",
   "is_service",
   "section_break_desc",
   "description",
@@ -25,7 +26,6 @@
   "section_break_wh",
   "warehouse",
   "col_break4",
-  "is_billable",
   "section_break_notes",
   "additional_notes"
  ],
@@ -55,6 +55,15 @@
    "in_global_search": 1,
    "label": "Item Name",
    "reqd": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "columns": 1,
+   "default": "1",
+   "fieldname": "is_billable",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Is Billable"
   },
   {
    "allow_on_submit": 1,
@@ -160,15 +169,6 @@
   {
    "fieldname": "col_break4",
    "fieldtype": "Column Break"
-  },
-  {
-   "allow_on_submit": 1,
-   "columns": 1,
-   "default": "1",
-   "fieldname": "is_billable",
-   "fieldtype": "Check",
-   "in_list_view": 1,
-   "label": "Is Billable"
   },
   {
    "fieldname": "section_break_notes",
