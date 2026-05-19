@@ -9,6 +9,17 @@ from starrain_fsm.field_service_management.utils.address_util import get_address
 
 
 class ServiceAppointment(Document):
+	# Define missing attributes
+	status: str
+	amended_from: str
+	service_order: str
+	customer_address: str
+	contact_person: str
+	items: list
+
+	def after_insert(self):
+		self.set_service_order_status()
+
 	def before_cancel(self):
 		self.status = "Cancelled"
 
@@ -36,7 +47,6 @@ class ServiceAppointment(Document):
 			if not old_doc or old_doc.status != "Completed":
 				self._validate_submitted_report()
 		self.refresh_address_contact_details()
-		self.update_service_order_status()
 
 	def _validate_submitted_report(self):
 		submitted = frappe.db.count(
@@ -56,6 +66,7 @@ class ServiceAppointment(Document):
 
 	def on_update_after_submit(self):
 		self._log_items_changes()
+		self.update_service_order_status()
 
 	def _log_items_changes(self):
 		old_doc = self.get_doc_before_save()

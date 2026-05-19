@@ -1,5 +1,5 @@
 import frappe
-from frappe.utils import getdate
+from frappe.utils import getdate, nowdate
 
 
 @frappe.whitelist()
@@ -56,3 +56,41 @@ def get_service_orders_for_tracking(
 	)
 
 	return orders
+
+
+def create_sales_invoice_from_order(order_name):
+    """Create a Sales Invoice from a completed Service Order."""
+    order = frappe.get_doc("Service Order", order_name)
+
+    if getattr(order, "status", None) != "Completed":
+        frappe.throw("Sales Invoice can only be created from a completed Service Order.")
+
+    invoice = frappe.new_doc("Sales Invoice")
+    invoice.customer = getattr(order, "customer", None)
+    invoice.due_date = nowdate()
+    invoice.custom_reference_service_doctype = "Service Order"
+    invoice.custom_reference_service_document = order_name
+
+    for item in getattr(order, "items", []):
+        invoice.append("items", {
+            "item_code": item.get("item_code"),
+            "qty": item.get("qty"),
+            "rate": item.get("rate"),
+        })
+
+    invoice.insert()
+    return invoice.name
+
+@frappe.whitelist()
+def reopen_service_order(order_name):
+    """Reopen a completed Service Order by creating a new Service Appointment."""
+    order = frappe.get_doc("Service Order", order_name)
+
+    if order.status != "Completed":
+        frappe.throw("Only completed Service Orders can be reopened.")
+
+    order.status = "Scheduled"
+    order.save()
+    frappe.db.commit()
+
+    return order.name

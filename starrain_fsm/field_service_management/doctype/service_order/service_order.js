@@ -48,7 +48,6 @@ frappe.ui.form.on("Service Order", {
 
     // Enable/Disable Invoicing
     frm.trigger("set_enable_invoicing");
-    frm.trigger("disable_creating_appointment");
     frm.trigger("disable_items_edit");
 
     // if(frm.doc.status == 'Open' && !frm.doc.__islocal){
@@ -64,7 +63,7 @@ frappe.ui.form.on("Service Order", {
     // 	);
     // }
     if (frm.doc.docstatus === 1 && !frm.is_dirty()) {
-      if (["Open", "Assessed", "Planned", "Scheduled", "In Progress"].includes(frm.doc.status)) {
+      if (["Open", "Assessed", "Planned", "Scheduled", "In Progress", "Completed"].includes(frm.doc.status)) {
         frm.add_custom_button(
           __("Service Appointment"),
           () => {
@@ -87,6 +86,19 @@ frappe.ui.form.on("Service Order", {
           __("Create")
         );
         cur_frm.page.set_inner_btn_group_as_primary(__("Create"));
+      }
+
+      if (frm.doc.status === "Completed") {
+        let items = frm.doc.items || [];
+        let has_uninvoiced = items.some(item => (item.qty - (item.invoiced_qty || 0)) > 0);
+        if (has_uninvoiced) {
+          frm.add_custom_button(
+            __("Sales Invoice"),
+            () => frm.trigger("create_service_invoice"),
+            __("Create")
+          );
+          cur_frm.page.set_inner_btn_group_as_primary(__("Create"));
+        }
       }
 
       if (!["Open", "Assessed", "Planned"].includes(frm.doc.status)) {
