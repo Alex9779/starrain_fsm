@@ -88,7 +88,7 @@ frappe.ui.form.on("Service Order", {
         cur_frm.page.set_inner_btn_group_as_primary(__("Create"));
       }
 
-      if (frm.doc.status === "Completed") {
+      if (frm.doc.status === "Open") {
         let items = frm.doc.items || [];
         let has_uninvoiced = items.some(item => (item.qty - (item.invoiced_qty || 0)) > 0);
         if (has_uninvoiced) {
