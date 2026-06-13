@@ -291,3 +291,90 @@ def make_appointment_from_order(source_name, target_doc=None, selected_items=Non
 	}
 	doc = get_mapped_doc("Service Order", source_name, mapping, target_doc, postprocess)
 	return doc
+
+
+@frappe.whitelist()
+def split_appointment_by_technicians(appointment_name=None, technician_ids=None):
+	"""Move selected technicians from an appointment into a duplicated appointment."""
+	if not appointment_name:
+		appointment_name = frappe.form_dict.get("appointment_name")
+
+	if isinstance(technician_ids, str):
+		technician_ids = frappe.parse_json(technician_ids)
+
+	if not appointment_name:
+		frappe.throw(_("Service Appointment is required"))
+
+	if not isinstance(technician_ids, list | tuple) or not technician_ids:
+		frappe.throw(_("Please select at least one technician"))
+
+	appointment = frappe.get_doc("Service Appointment", appointment_name)
+
+	if appointment.docstatus == 2 or appointment.status == "Cancelled":
+		frappe.throw(_("Cannot split a cancelled appointment"))
+
+	if appointment.status == "Completed":
+		frappe.throw(_("Cannot split a completed appointment"))
+
+	if not appointment.has_permission("write"):
+		frappe.throw(_("Not permitted"), frappe.PermissionError)
+
+	if not frappe.has_permission("Service Appointment", "create"):
+		frappe.throw(_("Not permitted"), frappe.PermissionError)
+
+	assigned_rows = [d for d in appointment.get("service_technicians") if d.service_technician]
+	if len(assigned_rows) < 2:
+		frappe.throw(_("At least two technicians are required to split an appointment"))
+
+	selected_ids = list(dict.fromkeys([d for d in technician_ids if d]))
+	assigned_ids = [d.service_technician for d in assigned_rows]
+
+	invalid = [tech for tech in selected_ids if tech not in assigned_ids]
+	if invalid:
+		frappe.throw(
+			_("These technicians are not assigned to this appointment: {0}").format(
+				", ".join(invalid)
+			)
+		)
+
+	remaining_rows = [d for d in assigned_rows if d.service_technician not in selected_ids]
+	selected_rows = [d for d in assigned_rows if d.service_technician in selected_ids]
+
+	if not selected_rows:
+		frappe.throw(_("Please select at least one technician"))
+
+	if not remaining_rows:
+		frappe.throw(_("At least one technician must remain on the original appointment"))
+
+	# Copy from the original first, then reassign technician rows on both docs.
+	new_appointment = frappe.copy_doc(appointment)
+	new_appointment.set("service_technicians", [])
+	for tech in selected_rows:
+		new_appointment.append(
+			"service_technicians",
+			{
+				"service_technician": tech.service_technician,
+				"full_name": tech.full_name,
+			},
+		)
+
+	appointment.set("service_technicians", [])
+	for tech in remaining_rows:
+		appointment.append(
+			"service_technicians",
+			{
+				"service_technician": tech.service_technician,
+				"full_name": tech.full_name,
+			},
+		)
+
+	appointment.save()
+
+	new_appointment.insert()
+	if appointment.docstatus == 1:
+		new_appointment.submit()
+
+	return {
+		"original_appointment": appointment.name,
+		"new_appointment": new_appointment.name,
+	}

@@ -24,6 +24,7 @@ frappe.ui.form.on("Service Appointment", {
     frm.trigger("disable_schedule_fields_on_submit");
     frm.trigger("handle_actual_time_fields");
     frm.trigger("warn_long_appointment");
+    frm.trigger("add_split_appointment_button");
 
     if (frm.doc.docstatus == 1 && !frm.is_dirty()) {
       // Always allow creating a Service Report for submitted appointments
@@ -233,6 +234,87 @@ frappe.ui.form.on("Service Appointment", {
   },
   scheduled_start_datetime: (frm) => frm.trigger("warn_long_appointment"),
   scheduled_finish_datetime: (frm) => frm.trigger("warn_long_appointment"),
+
+  add_split_appointment_button: (frm) => {
+    if (frm.doc.__islocal || frm.doc.docstatus == 2) {
+      return;
+    }
+
+    if (["Completed", "Cancelled"].includes(frm.doc.status)) {
+      return;
+    }
+
+    const technicians = frm.doc.service_technicians || [];
+    if (technicians.length < 2) {
+      return;
+    }
+
+    frm.add_custom_button(
+      __("Split Appointment"),
+      () => frm.trigger("split_appointment_by_technicians"),
+      __("Actions")
+    );
+  },
+
+  split_appointment_by_technicians: (frm) => {
+    const rows = frm.doc.service_technicians || [];
+    const options = rows
+      .filter((row) => row.service_technician)
+      .map((row) => ({
+        value: row.service_technician,
+        label: row.full_name
+          ? `${row.full_name} (${row.service_technician})`
+          : row.service_technician,
+      }));
+
+    if (options.length < 2) {
+      frappe.msgprint(__("At least two technicians are required to split an appointment."));
+      return;
+    }
+
+    frappe.prompt(
+      [
+        {
+          fieldtype: "MultiCheck",
+          fieldname: "selected_technicians",
+          label: __("Technicians to move to the new appointment"),
+          reqd: 1,
+          options,
+        },
+      ],
+      (values) => {
+        const selectedTechnicians = values.selected_technicians || [];
+        if (!selectedTechnicians.length) {
+          frappe.msgprint(__("Please select at least one technician."));
+          return;
+        }
+
+        frappe.call({
+          method:
+            "starrain_fsm.field_service_management.doctype.service_appointment.service_appointment.split_appointment_by_technicians",
+          args: {
+            appointment_name: frm.doc.name,
+            technician_ids: selectedTechnicians,
+          },
+          freeze: true,
+          freeze_message: __("Splitting appointment..."),
+          callback: (r) => {
+            const newAppointment = r.message && r.message.new_appointment;
+            if (newAppointment) {
+              frappe.show_alert({
+                message: __("Created appointment {0}", [newAppointment]),
+                indicator: "green",
+              });
+              frm.reload_doc();
+              frappe.set_route("Form", "Service Appointment", newAppointment);
+            }
+          },
+        });
+      },
+      __("Split Appointment"),
+      __("Split")
+    );
+  },
 
   make_quotation_from_appointment: (frm) => {
     frappe.model.open_mapped_doc({

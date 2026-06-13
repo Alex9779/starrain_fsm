@@ -2397,3 +2397,81 @@ msgstr "Langer Termin"
 #: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js
 msgid "This appointment is scheduled to last more than one day. Please confirm this is intended."
 msgstr "Dieser Termin ist für mehr als einen Tag geplant. Bitte bestätigen Sie, dass dies beabsichtigt ist."
+
+#. Split action label in service_appointment.js
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js
+msgid "Split Appointment"
+msgstr "Termin aufteilen"
+
+#. Button group label in service_appointment.js
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js
+msgid "Actions"
+msgstr "Aktionen"
+
+#. Validation message in service_appointment.js
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js
+msgid "At least two technicians are required to split an appointment."
+msgstr "Zum Aufteilen eines Termins sind mindestens zwei Techniker erforderlich."
+
+#. Dialog field label in service_appointment.js
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js
+msgid "Technicians to move to the new appointment"
+msgstr "Techniker, die in den neuen Termin verschoben werden"
+
+#. Validation message in service_appointment.py and service_appointment.js
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.py
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js
+msgid "Please select at least one technician"
+msgstr "Bitte wählen Sie mindestens einen Techniker aus"
+
+#. Validation message in service_appointment.js
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js
+msgid "Please select at least one technician."
+msgstr "Bitte wählen Sie mindestens einen Techniker aus."
+
+#. Freeze message in service_appointment.js
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js
+msgid "Splitting appointment..."
+msgstr "Termin wird aufgeteilt..."
+
+#. Success alert in service_appointment.js
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js
+#, python-format
+msgid "Created appointment {0}"
+msgstr "Termin {0} wurde erstellt"
+
+#. Dialog primary action label in service_appointment.js
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.js
+msgid "Split"
+msgstr "Aufteilen"
+
+#. Validation error in service_appointment.py
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.py
+msgid "Service Appointment is required"
+msgstr "Service-Termin ist erforderlich"
+
+#. Validation error in service_appointment.py
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.py
+msgid "Cannot split a cancelled appointment"
+msgstr "Ein stornierter Termin kann nicht aufgeteilt werden"
+
+#. Validation error in service_appointment.py
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.py
+msgid "Cannot split a completed appointment"
+msgstr "Ein abgeschlossener Termin kann nicht aufgeteilt werden"
+
+#. Validation error in service_appointment.py
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.py
+msgid "At least two technicians are required to split an appointment"
+msgstr "Zum Aufteilen eines Termins sind mindestens zwei Techniker erforderlich"
+
+#. Validation error in service_appointment.py
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.py
+#, python-format
+msgid "These technicians are not assigned to this appointment: {0}"
+msgstr "Diese Techniker sind diesem Termin nicht zugewiesen: {0}"
+
+#. Validation error in service_appointment.py
+#: starrain_fsm/field_service_management/doctype/service_appointment/service_appointment.py
+msgid "At least one technician must remain on the original appointment"
+msgstr "Mindestens ein Techniker muss auf dem ursprünglichen Termin verbleiben"
