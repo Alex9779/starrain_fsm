@@ -85,13 +85,13 @@ frappe.ui.form.on("Service Appointment", {
                   }
                 );
               });
-          })
+          }, __("Actions"))
           .removeClass("btn-default")
           .addClass("btn-success");
         frm
           .add_custom_button(__("Reschedule"), function () {
             frm.trigger("schedule_appointment");
-          })
+          }, __("Actions"))
           .removeClass("btn-default")
           .addClass("btn-info");
       }
