@@ -1,6 +1,13 @@
 // Copyright (c) 2025, Beveren Software and contributors
 // For license information, please see license.txt
 
+const sync_service_appointment_item_amount = (cdt, cdn) => {
+  const row = frappe.get_doc(cdt, cdn);
+  if (!row) return;
+
+  frappe.model.set_value(cdt, cdn, "amount", (flt(row.qty) || 0) * (flt(row.rate) || 0));
+};
+
 frappe.ui.form.on("Service Appointment", {
   onload: function (frm) {
     // Lock service_order field once set (it drives the appointment)
@@ -461,6 +468,18 @@ frappe.ui.form.on("Service Appointment", {
       prompt_title,
       primary_action_label
     );
+  },
+});
+
+frappe.ui.form.on("Service Appointment Item", {
+  item_code(frm, cdt, cdn) {
+    sync_service_appointment_item_amount(cdt, cdn);
+  },
+  qty(frm, cdt, cdn) {
+    sync_service_appointment_item_amount(cdt, cdn);
+  },
+  rate(frm, cdt, cdn) {
+    sync_service_appointment_item_amount(cdt, cdn);
   },
 });
 

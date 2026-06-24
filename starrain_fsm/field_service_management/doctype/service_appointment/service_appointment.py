@@ -5,6 +5,7 @@ import frappe
 from frappe import _
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
+from frappe.utils import flt
 from starrain_fsm.field_service_management.utils.address_util import get_address_details, get_contact_details
 
 
@@ -31,6 +32,7 @@ class ServiceAppointment(Document):
 	def validate(self):
 		if self.amended_from and self.status in ("Cancelled", "Completed"):
 			self.status = "Open"
+		self.calculate_item_amounts()
 		self.validate_items()
 		self.validate_technicians()
 		self.set_scheduled_status()
@@ -122,6 +124,10 @@ class ServiceAppointment(Document):
 	def validate_items(self):
 		if not self.items:
 			frappe.throw(_("Please add at least one item"))
+
+	def calculate_item_amounts(self):
+		for row in self.items or []:
+			row.amount = flt(row.qty) * flt(row.rate)
 
 	def validate_technicians(self):
 		if not self.get("service_technicians"):
