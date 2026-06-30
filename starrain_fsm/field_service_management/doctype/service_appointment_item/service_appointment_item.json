@@ -132,6 +132,7 @@
    "width": "100px"
   },
   {
+    "allow_on_submit": 1,
    "columns": 2,
    "fieldname": "amount",
    "fieldtype": "Currency",
