@@ -759,7 +759,7 @@
    "no_copy": 1,
    "options": "Service Request",
    "read_only": 1,
-   "unique": 1
+   "unique": 0
   },
   {
    "fieldname": "status_section",
